@@ -3,8 +3,8 @@ class Api::UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
-            login!(@user)
-            render "api/users/show"
+            login(@user)
+            render "api/users/show" #or :show  , the default route of the render is based on controller name hence api/users
         else
             render json: @user.errors.full_messages, status: 422
         end
