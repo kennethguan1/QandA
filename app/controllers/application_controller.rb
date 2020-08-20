@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-skip_before_action :verify_authenticity_token #for postman, comment out after use
+# skip_before_action :verify_authenticity_token #for postman, comment out after use
 
   helper_method :current_user, :logged_in?
 
