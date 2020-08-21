@@ -7,10 +7,25 @@ import Root from "./components/root";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const store = configureStore();                 //this needs to be up here to work
+    // const store = configureStore();                 //this needs to be up here for getstate to work to work
     // window.login = api_util.login;
     // window.logout = api_util.logout;
     // window.signup = api_util.signup;
+
+    let store;
+    if (window.currentUser) {
+        const preloadedState = {
+            entities: {
+                users: { [window.currentUser.id]: window.currentUser }
+            },
+            session: { id: window.currentUser.id },
+        };
+        store = configureStore(preloadedState);
+        delete window.currentUser;
+    } else {
+        store = configureStore();
+    }
+
     window.login = sessionActions.login;
     window.logout = sessionActions.logout;
     window.signup = sessionActions.signup;
