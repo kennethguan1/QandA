@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.signup = sessionActions.signup;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
+    
 
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root);
