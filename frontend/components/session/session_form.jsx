@@ -142,6 +142,9 @@ class SessionForm extends React.Component {
         )
     }
 
+    // {this.props.currentUser ? }
+
+
     // render() {
     //     return (
     //         <div className="login-form-container">
