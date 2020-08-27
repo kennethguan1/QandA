@@ -3,10 +3,31 @@ html {
     display: contents;
 }
 
-body {
-    background-color: yellowgreen;
-     background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
 
+
+button:active {
+    outline: none;
+}
+
+#root {
+    padding: 15px 15px 0px 15px;
+}
+
+.routes {
+    display: grid;
+    grid-template-rows: 90px auto auto auto 15px;
+    grid-template-columns: 275px auto;
+}
+
+@keyframes rainbow_animation {
+    0%,
+    100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
 }
 
 .website-title span {
@@ -16,6 +37,16 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: rainbow_animation 10s ease-in-out infinite;
     background-size: 400% 100%;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.react-error {    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 10s ease-in-out infinite;
 }

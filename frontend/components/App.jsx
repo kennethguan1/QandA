@@ -9,9 +9,9 @@ import { AuthRoute, ProtectedRoute, HideRoute, ShowRoute } from '../util/route_u
 const App = () => (
     <div>
 
-        <Route path="/" component={GreetingContainer} />
+        {/* <Route path="/" component={GreetingContainer} />
         <Route path="/" component={SessionContainer} />
-        
+         */}
 
         <HideRoute exact path="/" component={SessionContainer} />
         <ShowRoute path="/" component={GreetingContainer} />
