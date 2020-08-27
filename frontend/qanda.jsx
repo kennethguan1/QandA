@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as api_util from './util/session_api_util';
 import * as sessionActions from './actions/session_actions'; 
+import * as questionActions from './actions/question_actions'; 
 import configureStore from './store/store';
 import Root from "./components/root";
 

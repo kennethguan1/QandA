@@ -5,9 +5,9 @@ export const fetchQuestions = () => (
     })
 );
 
-export const fetchQuestion = question => (
+export const fetchQuestion = questionId => (
     $.ajax({
-        url: `api/questions/${question.id}`,
+        url: `api/questions/${questionId}`,
         method: 'GET'
     })
 );
@@ -32,9 +32,9 @@ export const updateQuestion = question => (
     })
 );
 
-export const deleteQuestion = question => (
+export const deleteQuestion = questionId => (
     $.ajax({
-        url: `/api/questions/${question.id}`,
+        url: `/api/questions/${questionId}`,
         method: 'DELETE',
     })
 );

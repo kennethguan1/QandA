@@ -26,39 +26,40 @@ export const receiveQuestionErrors = errors => ({
 });
 
 
-export const fetchQuestions = () => dispatch => (
+export const requestQuestions = () => dispatch => (
     APIUtil.fetchQuestions()
         .then(questions => (dispatch(receiveQuestions(questions))),
-            (err) => (
+            err => (
                 dispatch(receiveQuestionErrors(err.responseJSON))
             ))
 )
 
-export const fetchQuestion = (id) => (dispatch) => (
-    QuestionAPIUtil.fetchQuestion(id)
-        .then((question) => (dispatch(receiveQuestion(question))),
-            (err) => (
-                dispatch(receiveQuestionErrors(err.responseJSON))
-            ))
-);
-
-export const createQuestion = (question) => (dispatch) => (
-    QuestionAPIUtil.createQuestion(question)
-        .then((question) => (dispatch(receiveQuestion(question))),
-            (err) => (
+export const requestQuestion = (questionId) => dispatch => (
+    APIUtil.fetchQuestion(questionId)
+        .then(question => (dispatch(receiveQuestion(question))),
+            err => (
                 dispatch(receiveQuestionErrors(err.responseJSON))
             ))
 )
 
-export const updateQuestion = question => dispatch => (
-    QuestionAPIUtil.updateQuestion(question)
+export const createQuestion = (question) => dispatch => (
+    APIUtil.createQuestion(question)
         .then(question => (dispatch(receiveQuestion(question))),
             (err) => (
                 dispatch(receiveQuestionErrors(err.responseJSON))
             ))
 )
 
-export const deleteQuestion = question => dispatch => (
-    QuestionAPIUtil.deleteQuestion(question)
-        .then(question => (dispatch(removeQuestion(question)))
+export const updateQuestion = (question) => dispatch => (
+    APIUtil.updateQuestion(question)
+        .then(question => (dispatch(receiveQuestion(question))),
+            (err) => (
+                dispatch(receiveQuestionErrors(err.responseJSON))
+            ))
+)
+
+export const deleteQuestion = (questionId) => dispatch => (
+    APIUtil.deleteQuestion(questionId)
+        .then(() => (dispatch(removeQuestion(questionId))
         ))
+)
