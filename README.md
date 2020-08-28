@@ -1,24 +1,14 @@
-# README
+# QandA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+ ## Background
 
-* Ruby version
+ QandA is a fullstack clone of Quora with a Rails backend and React frontend that allows users to ask questions, answer questions, and comment on questions.
 
-* System dependencies
+ ### Technologies Used
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* PostgresSQL
+* Ruby on Rails
+* React/Redux
+* HTML
+* CSS
