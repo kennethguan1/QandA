@@ -4,6 +4,8 @@ export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 export const RECEIVE_QUESTION_ERRORS = 'RECEIVE_QUESTION_ERRORS';
+export const REMOVE_QUESTION_ERRORS = 'REMOVE_QUESTION_ERRORS';
+
 
 export const receiveQuestion = question => ({
     type: RECEIVE_QUESTION,
@@ -24,6 +26,10 @@ export const receiveQuestionErrors = errors => ({
     type: RECEIVE_QUESTION_ERRORS,
     errors
 });
+
+export const removeQuestionErrors = () => ({
+    type: REMOVE_QUESTION_ERRORS,
+})
 
 
 export const requestQuestions = () => dispatch => (

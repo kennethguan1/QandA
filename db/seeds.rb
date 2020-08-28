@@ -9,3 +9,7 @@
 User.destroy_all
 
 user1 = User.create(username: "user1", email: "user1.com", password: "123456")
+
+Question.create(title: 'Question1', body: 'Text1', author_id: '14')
+Question.create(title: 'Question2', body: 'Text2', author_id: '14')
+Question.create(title: 'Question3', body: 'Text3', author_id: '14')
