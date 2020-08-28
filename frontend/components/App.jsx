@@ -10,6 +10,7 @@ const App = () => (
     <div>
         <HideRoute exact path="/" component={SessionContainer} />
         <ShowRoute path="/" component={GreetingContainer} />
+        <ShowRoute path="/" component={QuestionIndexContainer} />
         {/* <Switch>
             <ProtectedRoute path="/" component={QuestionIndexContainer} />
         </ Switch> */}

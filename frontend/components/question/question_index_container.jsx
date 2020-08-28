@@ -5,7 +5,7 @@ import { requestQuestions, deleteQuestion } from '../../actions/question_actions
 
 const mapStateToProps = state => ({
     questions: state.entities.questions,
-    currentUser: state.session.id,
+    currentUser: state.session.id
 });
 
 const mapDispatchToProps = (dispatch) => ({

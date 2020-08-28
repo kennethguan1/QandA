@@ -32,17 +32,35 @@ class QuestionIndex extends React.Component {
     }
 
     render() {
-        const questions = Object.values(this.props.questions);
         return (
             <div className="feed">
-                {questions.reverse().map((question, i) => (
-                    <li key={i} className="question-list-item">
-                        {this.crudOptions(question)}
-                        <QuestionIndexItem question={question} key={question.id} />
-                        <hr />
-                    </li>
-                ))}
-
+                <br />
+                <br />
+                <br />
+                Which came first? Chicken or the egg?
+                <br />
+                user1
+                <br />
+                <br />
+                Or maybe ducks.
+                <br />
+                <br />
+                <br />
+                Where can I learn more about plexy glass?
+                <br />
+                user1
+                <br />
+                <br />
+                I already tried the library.
+                <br />
+                <br />
+                <br />
+                Are raisins safe to eat?
+                <br />
+                user1
+                <br />
+                <br />
+                I read about toxins on facebook.
             </div>
         )
     }

@@ -10,6 +10,6 @@ User.destroy_all
 
 user1 = User.create(username: "user1", email: "user1.com", password: "123456")
 
-Question.create(title: 'Question1', body: 'Text1', author_id: '14')
-Question.create(title: 'Question2', body: 'Text2', author_id: '14')
-Question.create(title: 'Question3', body: 'Text3', author_id: '14')
+Question.create(title: 'Which came first? Chicken or the egg?', body: 'Or maybe ducks.', author_id: '14')
+Question.create(title: 'Where can I learn more about plexy glass?', body: 'I already tried the library.', author_id: '14')
+Question.create(title: 'Are raisins safe to eat?', body: 'I read about toxins on facebook.', author_id: '14')
