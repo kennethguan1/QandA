@@ -46,7 +46,7 @@ class QuestionIndex extends React.Component {
                 <br />
                 <br />
                 <br />
-                Where can I learn more about plexy glass?
+                Where can I learn more about plexiglass?
                 <br />
                 user1
                 <br />
