@@ -10,10 +10,12 @@ class Api::UsersController < ApplicationController
         end
     end
 
-    def show
-        @user = User.find(params[:id])
-        render "api/users/show"
+  def show
+    @user = User.find(params[:id])
+    if @user
+      render "api/questions/show"
     end
+  end
     
     private
 

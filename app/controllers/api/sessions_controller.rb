@@ -18,7 +18,7 @@ class Api::SessionsController < ApplicationController
     @user = current_user
     if @user
       logout
-      render json: {}
+      render json: {message: 'Logout successful.'}
     else
       render json: ["Not signed in"], status: 404
     end

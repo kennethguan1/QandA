@@ -86,6 +86,44 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/comment_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/comment_actions.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// import * as CommentAPIUtil from '../utils/comment_utils';
+// export const RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
+// export const REMOVE_COMMENT_ERRORS = 'REMOVE_COMMENT_ERRORS';
+// export const receiveCommentErrors = errors => ({
+//     type: RECEIVE_COMMENT_ERRORS,
+//     errors
+// });
+// export const removeCommentErrors = () => ({
+//     type: REMOVE_COMMENT_ERRORS,
+// })
+// export const createComment = (comment) => (dispatch) => (
+//     CommentAPIUtil.createComment(comment)
+//         .then(() => { }, (err) => (
+//             dispatch(receiveCommentErrors(err.responseJSON))
+//         ))
+// )
+// export const updateComment = comment => dispatch => (
+//     CommentAPIUtil.updateComment(comment)
+//         .then(() => { }, (err) => (
+//             dispatch(receiveCommentErrors(err.responseJSON))
+//         ))
+// )
+// export const deleteComment = comment => dispatch => (
+//     CommentAPIUtil.deleteComment(comment)
+//         .then(() => { }, (err) => (
+//             dispatch(receiveCommentErrors(err.responseJSON))
+//         ))
+// )
+
+/***/ }),
+
 /***/ "./frontend/actions/question_actions.js":
 /*!**********************************************!*\
   !*** ./frontend/actions/question_actions.js ***!
@@ -272,11 +310,34 @@ var logout = function logout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _session_session_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session/session_container */ "./frontend/components/session/session_container.jsx");
-/* harmony import */ var _greeting_greeting_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./greeting/greeting_container */ "./frontend/components/greeting/greeting_container.js");
+/* harmony import */ var _greeting_greeting_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./greeting/greeting_container */ "./frontend/components/greeting/greeting_container.js");
+/* harmony import */ var _session_session_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session/session_container */ "./frontend/components/session/session_container.jsx");
 /* harmony import */ var _question_question_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./question/question_index_container */ "./frontend/components/question/question_index_container.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var _question_question_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./question/question_form_container */ "./frontend/components/question/question_form_container.jsx");
+/* harmony import */ var _question_question_show_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./question/question_show_container */ "./frontend/components/question/question_show_container.jsx");
+/* harmony import */ var _question_question_edit_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./question/question_edit_container */ "./frontend/components/question/question_edit_container.jsx");
+/* harmony import */ var _comment_comment_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./comment/comment_form_container */ "./frontend/components/comment/comment_form_container.jsx");
+/* harmony import */ var _comment_comment_edit_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./comment/comment_edit_container */ "./frontend/components/comment/comment_edit_container.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
+// import React from "react";
+// import SessionContainer from "./session/session_container";
+// import GreetingContainer from "./greeting/greeting_container";
+// import QuestionIndexContainer from './question/question_index_container';
+// import { Route, Redirect, Router, Switch } from 'react-router-dom';
+// import { AuthRoute, ProtectedRoute, HideRoute, ShowRoute } from '../util/route_util';
+// const App = () => (
+//     <div>
+//         <HideRoute exact path="/" component={SessionContainer} />
+//         <ShowRoute path="/" component={GreetingContainer} />
+//         <ShowRoute path="/" component={QuestionIndexContainer} />
+//         {/* <Switch>
+//             <ProtectedRoute path="/" component={QuestionIndexContainer} />
+//         </ Switch> */}
+//     </div>
+// );
+// export default App;
 
 
 
@@ -284,21 +345,323 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["HideRoute"], {
+
+
+
+
+
+var customHistory = Object(history__WEBPACK_IMPORTED_MODULE_11__["createBrowserHistory"])();
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "routes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(HiddenRoute, {
     exact: true,
     path: "/",
-    component: _session_session_container__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ShowRoute"], {
+    component: _session_session_container__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ShownRoute, {
     path: "/",
-    component: _greeting_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ShowRoute"], {
+    component: NavBarContainer
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ShownRoute, {
+    path: "/",
+    component: SidebarContainer
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    path: "/askquestion",
+    component: _question_question_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    exact: true,
+    path: "/questions/:id/comments/:commentId/edit",
+    component: _comment_comment_edit_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    exact: true,
+    path: "/questions/:id/edit",
+    component: _question_question_edit_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    exact: true,
+    path: "/questions/:id",
+    component: _comment_comment_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ShownRoute, {
+    exact: true,
+    path: "/questions/:id",
+    component: _question_question_show_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    exact: true,
     path: "/",
     component: _question_question_index_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }));
+  })));
+});
+
+/***/ }),
+
+/***/ "./frontend/components/comment/comment_edit_container.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/comment/comment_edit_container.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _comment_edit_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comment_edit_form */ "./frontend/components/comment/comment_edit_form.jsx");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _actions_question_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/question_actions */ "./frontend/actions/question_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, _ref) {
+  var match = _ref.match;
+  return {
+    author_id: state.session.currentUser.id,
+    comment_errors: state.errors.comment,
+    currentQuestion: parseInt(match.params.id),
+    currentComment: parseInt(match.params.commentId)
+  };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (App);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchQuestion: function fetchQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_3__["fetchQuestion"])(questionId));
+    },
+    sendComment: function sendComment(comment) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["updateComment"])(comment));
+    },
+    removeCommentErrors: function removeCommentErrors() {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["removeCommentErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_comment_edit_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/comment/comment_edit_form.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/comment/comment_edit_form.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var CommentEditForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(CommentEditForm, _React$Component);
+
+  var _super = _createSuper(CommentEditForm);
+
+  function CommentEditForm(props) {
+    var _this;
+
+    _classCallCheck(this, CommentEditForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      body: '',
+      author_id: '',
+      question_id: ''
+    };
+
+    _this.props.fetchQuestion({
+      id: _this.props.currentQuestion
+    }).then(function (data) {
+      var comment = data.question.comments[_this.props.currentComment];
+
+      _this.setState({
+        id: comment.id,
+        body: comment.body,
+        author_id: comment.author_id,
+        question_id: comment.question_id
+      });
+    });
+
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CommentEditForm, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeCommentErrors();
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(type) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, type, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var comment = this.state;
+      this.props.sendComment(comment).then(function () {
+        _this3.props.history.push("/questions/".concat(_this3.props.currentQuestion));
+
+        window.location.reload();
+      }, function (err) {
+        _this3.renderErrors();
+      });
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      var comment_errors = Object.values(this.props.comment_errors).flat();
+
+      if (comment_errors) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-error"
+        }, comment_errors.map(function (error, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i
+          }, error);
+        }));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Edit Comment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "comment-form",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Body",
+        value: this.state.body,
+        onChange: this.handleInput('body')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "create-comment-button",
+        onClick: this.handleSubmit
+      }, "Update"), this.renderErrors()));
+    }
+  }]);
+
+  return CommentEditForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(CommentEditForm));
+
+/***/ }),
+
+/***/ "./frontend/components/comment/comment_form.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/comment/comment_form.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _comment_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comment_form */ "./frontend/components/comment/comment_form.jsx");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, _ref) {
+  var match = _ref.match;
+  return {
+    author_id: state.session.currentUser.id,
+    comment_errors: state.errors.comment,
+    currentQuestion: parseInt(match.params.id)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    sendComment: function sendComment(comment) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["createComment"])(comment));
+    },
+    removeCommentErrors: function removeCommentErrors() {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["removeCommentErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_comment_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/comment/comment_form_container.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/comment/comment_form_container.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _comment_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comment_form */ "./frontend/components/comment/comment_form.jsx");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, _ref) {
+  var match = _ref.match;
+  return {
+    author_id: state.session.currentUser.id,
+    comment_errors: state.errors.comment,
+    currentQuestion: parseInt(match.params.id)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    sendComment: function sendComment(comment) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["createComment"])(comment));
+    },
+    removeCommentErrors: function removeCommentErrors() {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["removeCommentErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_comment_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -421,6 +784,611 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_greeting__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/question/question_edit_container.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/question/question_edit_container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _question_edit_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./question_edit_form */ "./frontend/components/question/question_edit_form.jsx");
+/* harmony import */ var _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/question_actions */ "./frontend/actions/question_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, _ref) {
+  var match = _ref.match;
+  return {
+    question_errors: state.errors.question,
+    questionId: parseInt(match.params.id)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    sendQuestion: function sendQuestion(question) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["updateQuestion"])(question));
+    },
+    removeQuestionErrors: function removeQuestionErrors() {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["removeQuestionErrors"])());
+    },
+    fetchQuestion: function fetchQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestion"])(questionId));
+    },
+    deleteQuestion: function deleteQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["deleteQuestion"])(questionId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_question_edit_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/question/question_edit_form.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/question/question_edit_form.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(QuestionEditForm, _React$Component);
+
+  var _super = _createSuper(QuestionEditForm);
+
+  function QuestionEditForm(props) {
+    var _this;
+
+    _classCallCheck(this, QuestionEditForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      id: '',
+      title: '',
+      body: '',
+      topic_name: '',
+      topic_id: '',
+      author_id: '',
+      topics: {},
+      topic_names_list: []
+    };
+
+    _this.props.fetchQuestion({
+      id: _this.props.questionId
+    }).then(function (data) {
+      _this.setState({
+        id: data.question.id,
+        title: data.question.title,
+        body: data.question.body,
+        topic_name: data.question.topic.name,
+        topic_id: data.question.topic_id,
+        author_id: data.question.author_id,
+        topics: {},
+        topic_names_list: []
+      });
+    });
+
+    _this.makeTopicList = _this.makeTopicList.bind(_assertThisInitialized(_this));
+    _this.renderTopicList = _this.renderTopicList.bind(_assertThisInitialized(_this));
+    _this.renderTopicErrors = _this.renderTopicErrors.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(QuestionEditForm, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeQuestionErrors();
+      this.props.removeTopicErrors();
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.makeTopicList();
+    }
+  }, {
+    key: "makeTopicList",
+    value: function makeTopicList() {
+      var _this2 = this;
+
+      this.props.getTopics().then(function (data) {
+        var flipped = {};
+        Object.keys(data.topics).forEach(function (key) {
+          flipped[data.topics[key].name] = key;
+        });
+
+        _this2.setState({
+          topics: flipped
+        });
+
+        _this2.setState({
+          topic_names_list: Object.keys(flipped).sort()
+        });
+      });
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(type) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState(_defineProperty({}, type, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this4 = this;
+
+      e.preventDefault();
+      this.setState({
+        topic_name: this.state.topic_name.toLowerCase()
+      });
+
+      if (!(this.state.topic_name in this.state.topics)) {
+        this.props.sendTopic({
+          name: this.state.topic_name
+        }).then(function (data) {
+          _this4.setState({
+            topic_id: data.topic.id
+          });
+
+          _this4.makeTopicList();
+
+          _this4.submitHelper();
+        }, function (err) {
+          _this4.renderTopicErrors();
+        });
+      } else {
+        this.state.topic_id = parseInt(this.state.topics[this.state.topic_name]);
+        this.submitHelper();
+      }
+    }
+  }, {
+    key: "submitHelper",
+    value: function submitHelper() {
+      var _this5 = this;
+
+      var question = Object.assign({}, this.state);
+      delete question.topic_name;
+      delete question.topics;
+      delete question.topic_names_list;
+      this.props.sendQuestion(question).then(function (data) {
+        _this5.props.history.push("/questions/".concat(data.question.id));
+      }, function (err) {
+        _this5.renderErrors();
+      });
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(question) {
+      var _this6 = this;
+
+      this.props.deleteQuestion(question).then(function () {
+        _this6.props.history.push('/');
+      });
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      var question_errors = Object.values(this.props.question_errors).flat();
+
+      if (question_errors) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-error"
+        }, question_errors.map(function (error, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i
+          }, error);
+        }));
+      }
+    }
+  }, {
+    key: "crudOptions",
+    value: function crudOptions(question) {
+      var _this7 = this;
+
+      if (question.author_id == currentUser.id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "crud-buttons"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "del-crud-button",
+          onClick: function onClick() {
+            return _this7.handleDelete(question);
+          }
+        }, "Delete"));
+      }
+    }
+  }, {
+    key: "renderTopicErrors",
+    value: function renderTopicErrors() {
+      var topic_errors = Object.values(this.props.topic_errors).flat();
+
+      if (topic_errors) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "topic-error"
+        }, topic_errors.map(function (error, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i
+          }, error);
+        }));
+      }
+    }
+  }, {
+    key: "renderTopicList",
+    value: function renderTopicList() {
+      if (this.state.topic_names_list.length > 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+          id: "topics"
+        }, this.state.topic_names_list.map(function (x, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+            key: i
+          }, x);
+        }));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this8 = this;
+
+      if (this.state === null) {
+        return null;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-question"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "edit-question-form",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Title",
+        value: this.state.title,
+        onChange: this.handleInput('title')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Topic",
+        value: this.state.topic_name,
+        onChange: this.handleInput('topic_name'),
+        list: "topics"
+      }), this.renderTopicList(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Body",
+        value: this.state.body,
+        onChange: this.handleInput('body')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit
+      }, "Update Question"), this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-button-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this8.props.history.goBack();
+        },
+        className: "back-button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RiArrowGoBackLine, null), "Go Back"), this.crudOptions(this.state))));
+    }
+  }]);
+
+  return QuestionEditForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (QuestionEditForm);
+
+/***/ }),
+
+/***/ "./frontend/components/question/question_form.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/question/question_form.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var QuestionForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(QuestionForm, _React$Component);
+
+  var _super = _createSuper(QuestionForm);
+
+  function QuestionForm(props) {
+    var _this;
+
+    _classCallCheck(this, QuestionForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      title: '',
+      body: '',
+      topic_id: '',
+      topic_name: '',
+      author_id: _this.props.author_id,
+      topics: {},
+      topic_names_list: []
+    };
+    _this.makeTopicList = _this.makeTopicList.bind(_assertThisInitialized(_this));
+    _this.renderTopicList = _this.renderTopicList.bind(_assertThisInitialized(_this));
+    _this.renderTopicErrors = _this.renderTopicErrors.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.submitHelper = _this.submitHelper.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(QuestionForm, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeQuestionErrors();
+      this.props.removeTopicErrors();
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.makeTopicList();
+    }
+  }, {
+    key: "makeTopicList",
+    value: function makeTopicList() {
+      var _this2 = this;
+
+      this.props.getTopics().then(function (data) {
+        var flipped = {};
+        Object.keys(data.topics).forEach(function (key) {
+          flipped[data.topics[key].name] = key;
+        });
+
+        _this2.setState({
+          topics: flipped
+        });
+
+        _this2.setState({
+          topic_names_list: Object.keys(flipped).sort()
+        });
+      });
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(type) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState(_defineProperty({}, type, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this4 = this;
+
+      e.preventDefault();
+      this.setState({
+        topic_name: this.state.topic_name.toLowerCase()
+      });
+
+      if (!(this.state.topic_name in this.state.topics)) {
+        this.props.sendTopic({
+          name: this.state.topic_name
+        }).then(function (data) {
+          _this4.setState({
+            topic_id: data.topic.id
+          });
+
+          _this4.makeTopicList();
+
+          _this4.submitHelper();
+        }, function (err) {
+          _this4.renderTopicErrors();
+        });
+      } else {
+        this.state.topic_id = parseInt(this.state.topics[this.state.topic_name]);
+        this.submitHelper();
+      }
+    }
+  }, {
+    key: "submitHelper",
+    value: function submitHelper() {
+      var _this5 = this;
+
+      var question = Object.assign({}, this.state);
+      delete question.topic_name;
+      delete question.topics;
+      delete question.topic_names_list;
+      this.props.sendQuestion(question).then(function (data) {
+        _this5.props.history.push("/questions/".concat(data.question.id));
+      }, function (err) {
+        _this5.renderErrors();
+      });
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      var question_errors = Object.values(this.props.question_errors).flat();
+
+      if (question_errors) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-error"
+        }, question_errors.map(function (error, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i
+          }, error);
+        }));
+      }
+    }
+  }, {
+    key: "renderTopicErrors",
+    value: function renderTopicErrors() {
+      var topic_errors = Object.values(this.props.topic_errors).flat();
+
+      if (topic_errors) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "topic-error"
+        }, topic_errors.map(function (error, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i
+          }, error);
+        }));
+      }
+    }
+  }, {
+    key: "renderTopicList",
+    value: function renderTopicList() {
+      if (this.state.topic_names_list.length > 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+          id: "topics"
+        }, this.state.topic_names_list.map(function (x, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+            key: i
+          }, x);
+        }));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "question-modal"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "question-form",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "New Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/",
+        className: "close-new-question"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "close-question-button"
+      }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Title",
+        value: this.state.title,
+        onChange: this.handleInput('title')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Topic",
+        value: this.state.topic_name,
+        onChange: this.handleInput('topic_name'),
+        list: "topics"
+      }), this.renderTopicList(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Body",
+        value: this.state.body,
+        onChange: this.handleInput('body')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "create-question-button",
+        onClick: this.handleSubmit
+      }, "Create Question"), this.renderErrors(), this.renderTopicErrors()));
+    }
+  }]);
+
+  return QuestionForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(QuestionForm));
+
+/***/ }),
+
+/***/ "./frontend/components/question/question_form_container.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/question/question_form_container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _question_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./question_form */ "./frontend/components/question/question_form.jsx");
+/* harmony import */ var _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/question_actions */ "./frontend/actions/question_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    author_id: state.session.currentUser.id,
+    question_errors: state.errors.question
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    sendQuestion: function sendQuestion(question) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["createQuestion"])(question));
+    },
+    removeQuestionErrors: function removeQuestionErrors() {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["removeQuestionErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_question_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -639,6 +1607,248 @@ var QuestionIndexItem = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(QuestionIndexItem));
+
+/***/ }),
+
+/***/ "./frontend/components/question/question_show.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/question/question_show.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var QuestionShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(QuestionShow, _React$Component);
+
+  var _super = _createSuper(QuestionShow);
+
+  function QuestionShow(props) {
+    var _this;
+
+    _classCallCheck(this, QuestionShow);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      question: {}
+    };
+
+    _this.props.fetchQuestion({
+      id: _this.props.questionId
+    }).then(function (question) {
+      _this.setState(question);
+    });
+
+    return _this;
+  }
+
+  _createClass(QuestionShow, [{
+    key: "handleDelete",
+    value: function handleDelete(question) {
+      var _this2 = this;
+
+      this.props.deleteQuestion(question).then(function () {
+        _this2.props.history.push('/');
+      });
+    }
+  }, {
+    key: "handleEdit",
+    value: function handleEdit(question) {
+      this.props.history.push("/questions/".concat(question.id, "/edit"));
+    }
+  }, {
+    key: "crudOptions",
+    value: function crudOptions(question) {
+      var _this3 = this;
+
+      if (question.author_id == currentUser.id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "crud-buttons"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "edit-crud-button",
+          onClick: function onClick() {
+            return _this3.handleEdit(question);
+          }
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "del-crud-button",
+          onClick: function onClick() {
+            return _this3.handleDelete(question);
+          }
+        }, "Delete"));
+      }
+    }
+  }, {
+    key: "handleCDelete",
+    value: function handleCDelete(comment) {
+      this.props.deleteComment(comment).then(function () {
+        window.location.reload();
+      });
+    }
+  }, {
+    key: "handleCEdit",
+    value: function handleCEdit(comment) {
+      this.props.history.push("/questions/".concat(this.props.questionId, "/comments/").concat(comment.id, "/edit"));
+    }
+  }, {
+    key: "crudCOptions",
+    value: function crudCOptions(comment) {
+      var _this4 = this;
+
+      if (comment.author_id == currentUser.id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "crud-buttons"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "edit-crud-button",
+          onClick: function onClick() {
+            return _this4.handleCEdit(comment);
+          }
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "del-crud-button",
+          onClick: function onClick() {
+            return _this4.handleCDelete(comment);
+          }
+        }, "Delete"));
+      }
+    }
+  }, {
+    key: "displayQuestion",
+    value: function displayQuestion() {
+      var _this5 = this;
+
+      if (this.state.question.topic != undefined) {
+        var question = this.state.question;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "show-box"
+        }, this.crudOptions(this.state.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "show-info"
+        }, "Written in #", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "topic-linker",
+          onClick: function onClick() {
+            return _this5.props.history.push("/topics/".concat(question.topic.id));
+          }
+        }, question.topic.name), " by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, question.author.fname, " ", question.author.lname)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, question.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "show-body"
+        }, question.body));
+      }
+    }
+  }, {
+    key: "displayComments",
+    value: function displayComments() {
+      var _this6 = this;
+
+      var comments = [];
+
+      if (this.state.question.comments != undefined) {
+        comments = Object.values(this.state.question.comments).map(function (comment, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i,
+            className: "comment-list-item"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "comment-item"
+          }, _this6.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, comment.author.fname, " ", comment.author.lname), " | \"", comment.author.credentials, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+        });
+      } else {
+        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "404",
+          className: "comment-list-item"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "There aren't any comments yet, be the first!"));
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comments-show"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), comments);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this7 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show"
+      }, this.displayQuestion(), this.displayComments(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          _this7.props.history.push('/');
+        },
+        className: "back-button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RiArrowGoBackLine, null), "Go Back"));
+    }
+  }]);
+
+  return QuestionShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (QuestionShow);
+
+/***/ }),
+
+/***/ "./frontend/components/question/question_show_container.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/question/question_show_container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _question_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./question_show */ "./frontend/components/question/question_show.jsx");
+/* harmony import */ var _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/question_actions */ "./frontend/actions/question_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, _ref) {
+  var match = _ref.match;
+  return {
+    questionId: parseInt(match.params.id)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchQuestion: function fetchQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestion"])(questionId));
+    },
+    deleteQuestion: function deleteQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["deleteQuestion"])(questionId));
+    },
+    deleteComment: function deleteComment(commentId) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__["deleteComment"])(commentId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_question_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
