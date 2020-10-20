@@ -9,7 +9,6 @@ const mapStateToProps = (state, { match }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchQuestion: (questionId) => dispatch(fetchQuestion(questionId)),
     deleteQuestion: (questionId) => dispatch(deleteQuestion(questionId)),
     deleteComment: (commentId) => dispatch(deleteComment(commentId)),
 });

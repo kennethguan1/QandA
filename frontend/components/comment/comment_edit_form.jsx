@@ -64,7 +64,7 @@ class CommentEditForm extends React.Component {
                 <h3>Edit Comment</h3>
                 <form className="comment-form" onSubmit={this.handleSubmit}>
                     <textarea
-                        placeholder="Body"
+                        placeholder="Comment Text"
                         value={this.state.body}
                         onChange={this.handleInput('body')}
                     />

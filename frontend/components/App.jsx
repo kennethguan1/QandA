@@ -39,20 +39,19 @@ const customHistory = createBrowserHistory();
 
 export default () => (
     <div className="routes">
-        <HiddenRoute exact path="/" component={SessionContainer} />
-        <ShownRoute path="/" component={NavBarContainer} />
-        <ShownRoute path="/" component={SidebarContainer} />
-        <ProtectedRoute path="/askquestion" component={QuestionFormContainer} />
-        <ProtectedRoute exact path="/questions/:id/comments/:commentId/edit" component={CommentEditFormContainer} />
+        <Route exact path="/" component={SessionContainer} />
+        <Route path="/" component={GreetingContainer} />
+        <Route path="/askquestion" component={QuestionFormContainer} />
+        <Route exact path="/questions/:id/comments/:commentId/edit" component={CommentEditFormContainer} />
 
         <Switch>
-            <ProtectedRoute exact path="/questions/:id/edit" component={QuestionEditContainer} />
-            <ProtectedRoute exact path="/questions/:id" component={CommentFormContainer} />
+            <Route exact path="/questions/:id/edit" component={QuestionEditContainer} />
+            <Route exact path="/questions/:id" component={CommentFormContainer} />
         </Switch>
 
         <Switch>
-            <ShownRoute exact path="/questions/:id" component={QuestionShowContainer} />
-            <ProtectedRoute exact path="/" component={QuestionIndexContainer} />
+            <Route exact path="/questions/:id" component={QuestionShowContainer} />
+            <Route exact path="/" component={QuestionIndexContainer} />
         </Switch>
     </div>
 );

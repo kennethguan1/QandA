@@ -1,16 +1,16 @@
 import {
-  RECEIVE_SESSION_ERRORS,
-  REMOVE_SESSION_ERRORS,
-} from "../actions/session_actions";
+  REMOVE_COMMENT_ERRORS,
+  RECEIVE_COMMENT_ERRORS,
+} from "../actions/comment_actions";
 
-const sessionErrorsReducer = (oldState = {}, action) => {
+const commentErrorsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
-    case RECEIVE_SESSION_ERRORS:
+    case RECEIVE_COMMENT_ERRORS:
       return Object.assign({}, oldState, {
         errors: action.errors,
       });
-    case REMOVE_SESSION_ERRORS:
+    case REMOVE_COMMENT_ERRORS:
       return Object.assign({}, oldState, {
         errors: [],
       });
@@ -19,4 +19,4 @@ const sessionErrorsReducer = (oldState = {}, action) => {
   }
 };
 
-export default sessionErrorsReducer;
+export default commentErrorsReducer;
