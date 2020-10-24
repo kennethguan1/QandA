@@ -56,16 +56,14 @@ class QuestionShow extends React.Component {
     }
 
     displayQuestion() {
-        if (this.state.question.topic != undefined) {
+        // if (this.state.question.topic != undefined) {
             const question = this.state.question;
             return (
                 <div className="show-box">
                     {this.crudOptions(this.state.question)}
-                    <p className="show-info">Written in #
-          <strong className="topic-linker" onClick={() => this.props.history.push(`/topics/${question.topic.id}`)}>
-                            {question.topic.name}
-                        </strong> by <strong>
-                            {question.author.fname} {question.author.lname}
+                    <p className="show-info">
+                        <strong>
+                            {question.author.username}
                         </strong>
                     </p>
                     <h1>{question.title}</h1>
@@ -73,7 +71,7 @@ class QuestionShow extends React.Component {
                     <p className="show-body">{question.body}</p>
                 </div>
             )
-        }
+        // }
     }
 
     displayComments() {
@@ -86,7 +84,7 @@ class QuestionShow extends React.Component {
                             {this.crudCOptions(comment)}
                             <p>
                                 <strong>
-                                    {comment.author.fname} {comment.author.lname}
+                                    {comment.author.username}
                                 </strong> | "{comment.author.credentials}"
               </p>
                             <p>{comment.body}</p>
@@ -116,7 +114,7 @@ class QuestionShow extends React.Component {
             <div className="show">
                 {this.displayQuestion()}
                 {this.displayComments()}
-                <button onClick={() => { this.props.history.push('/') }} className="back-button"><RiArrowGoBackLine />Go Back</button>
+                <button onClick={() => { this.props.history.push('/') }} className="back-button">Go Back</button>
             </div>
         );
     }

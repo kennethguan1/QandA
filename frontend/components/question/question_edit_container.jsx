@@ -9,9 +9,10 @@ const mapStateToProps = (state, { match }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    sendQuestion: (question) => dispatch(updateQuestion(question)),
-    removeQuestionErrors: () => dispatch(removeQuestionErrors()),
-    deleteQuestion: (questionId) => dispatch(deleteQuestion(questionId)),
+  sendQuestion: (question) => dispatch(updateQuestion(question)),
+  removeQuestionErrors: () => dispatch(removeQuestionErrors()),
+  fetchQuestion: (questionId) => dispatch(fetchQuestion(questionId)),
+  deleteQuestion: (questionId) => dispatch(deleteQuestion(questionId)),
 });
 
 export default connect(

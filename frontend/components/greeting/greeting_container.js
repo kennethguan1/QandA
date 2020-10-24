@@ -13,3 +13,13 @@ const mDTP  = dispatch => ({
 });
 
 export default connect(mSTP,mDTP)(Greeting);
+
+// const mapStateToProps = (state) => ({
+//   currentUser: state.session.currentUser,
+// });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   logout: () => dispatch(logout()),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Greeting);

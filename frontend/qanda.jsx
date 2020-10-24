@@ -1,16 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import * as api_util from './util/session_api_util';
+import * as questionActions from "./actions/question_actions"; 
 import * as sessionActions from './actions/session_actions'; 
-// import * as questionActions from './actions/question_actions'; 
+import * as commentActions from "./actions/comment_actions"; 
 import configureStore from './store/store';
 import Root from "./components/root";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const store = configureStore();                 //this needs to be up here for getstate to work to work
-  // window.login = api_util.login;
-  // window.logout = api_util.logout;
-  // window.signup = api_util.signup;
+  // const store = configureStore();                 //this needs to be up here for getstate to work
 
   let store;
   if (window.currentUser) {
@@ -28,11 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // FOR TESTING
 
+  window.createComment = commentActions.createComment;
+  window.updateComment = commentActions.updateComment;
+  window.deleteComment = commentActions.deleteComment;
+  window.deleteQuestion = questionActions.deleteQuestion;
+  window.updateQuestion = questionActions.updateQuestion;
+  window.createQuestion = questionActions.createQuestion;
+  window.fetchQuestions = questionActions.fetchQuestions;
+  window.fetchQuestion = questionActions.fetchQuestion;
   window.login = sessionActions.login;
   window.logout = sessionActions.logout;
   window.signup = sessionActions.signup;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+  window.store = store;
 
   // FOR TESTING
 

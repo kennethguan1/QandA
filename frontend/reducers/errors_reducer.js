@@ -5,7 +5,7 @@ import commentErrorsReducer from "./comment_errors_reducer";
 
 const errorsReducer = combineReducers({
   session: sessionErrorsReducer,
-  questions: questionErrorsReducer,
+  question: questionErrorsReducer,
   comment: commentErrorsReducer,
 });
 

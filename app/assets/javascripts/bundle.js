@@ -145,7 +145,7 @@ var deleteComment = function deleteComment(comment) {
 /*!**********************************************!*\
   !*** ./frontend/actions/question_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_QUESTION, RECEIVE_QUESTIONS, REMOVE_QUESTION, RECEIVE_QUESTION_ERRORS, REMOVE_QUESTION_ERRORS, receiveQuestion, receiveQuestions, removeQuestion, receiveQuestionErrors, removeQuestionErrors, requestQuestions, requestQuestion, createQuestion, updateQuestion, deleteQuestion */
+/*! exports provided: RECEIVE_QUESTION, RECEIVE_QUESTIONS, REMOVE_QUESTION, RECEIVE_QUESTION_ERRORS, REMOVE_QUESTION_ERRORS, receiveQuestion, receiveQuestions, removeQuestion, receiveQuestionErrors, removeQuestionErrors, fetchQuestions, fetchQuestion, createQuestion, updateQuestion, deleteQuestion */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -160,18 +160,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeQuestion", function() { return removeQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveQuestionErrors", function() { return receiveQuestionErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeQuestionErrors", function() { return removeQuestionErrors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestQuestions", function() { return requestQuestions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestQuestion", function() { return requestQuestion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchQuestions", function() { return fetchQuestions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchQuestion", function() { return fetchQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createQuestion", function() { return createQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateQuestion", function() { return updateQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteQuestion", function() { return deleteQuestion; });
 /* harmony import */ var _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/question_api_util */ "./frontend/util/question_api_util.js");
 
-var RECEIVE_QUESTION = 'RECEIVE_QUESTION';
-var RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-var REMOVE_QUESTION = 'REMOVE_QUESTION';
-var RECEIVE_QUESTION_ERRORS = 'RECEIVE_QUESTION_ERRORS';
-var REMOVE_QUESTION_ERRORS = 'REMOVE_QUESTION_ERRORS';
+var RECEIVE_QUESTION = "RECEIVE_QUESTION";
+var RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
+var REMOVE_QUESTION = "REMOVE_QUESTION";
+var RECEIVE_QUESTION_ERRORS = "RECEIVE_QUESTION_ERRORS";
+var REMOVE_QUESTION_ERRORS = "REMOVE_QUESTION_ERRORS";
 var receiveQuestion = function receiveQuestion(question) {
   return {
     type: RECEIVE_QUESTION,
@@ -201,18 +201,18 @@ var removeQuestionErrors = function removeQuestionErrors() {
     type: REMOVE_QUESTION_ERRORS
   };
 };
-var requestQuestions = function requestQuestions() {
+var fetchQuestions = function fetchQuestions(questions) {
   return function (dispatch) {
-    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestions"]().then(function (questions) {
+    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestions"](questions).then(function (questions) {
       return dispatch(receiveQuestions(questions));
     }, function (err) {
       return dispatch(receiveQuestionErrors(err.responseJSON));
     });
   };
 };
-var requestQuestion = function requestQuestion(questionId) {
+var fetchQuestion = function fetchQuestion(id) {
   return function (dispatch) {
-    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestion"](questionId).then(function (question) {
+    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestion"](id).then(function (question) {
       return dispatch(receiveQuestion(question));
     }, function (err) {
       return dispatch(receiveQuestionErrors(err.responseJSON));
@@ -237,10 +237,10 @@ var updateQuestion = function updateQuestion(question) {
     });
   };
 };
-var deleteQuestion = function deleteQuestion(questionId) {
+var deleteQuestion = function deleteQuestion(question) {
   return function (dispatch) {
-    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteQuestion"](questionId).then(function () {
-      return dispatch(removeQuestion(questionId));
+    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteQuestion"](question).then(function (question) {
+      return dispatch(removeQuestion(question));
     });
   };
 };
@@ -444,6 +444,9 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchQuestion: function fetchQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_3__["fetchQuestion"])(questionId));
+    },
     sendComment: function sendComment(comment) {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["updateComment"])(comment));
     },
@@ -905,7 +908,13 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_greeting__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_greeting__WEBPACK_IMPORTED_MODULE_2__["default"])); // const mapStateToProps = (state) => ({
+//   currentUser: state.session.currentUser,
+// });
+// const mapDispatchToProps = (dispatch) => ({
+//   logout: () => dispatch(logout()),
+// });
+// export default connect(mapStateToProps, mapDispatchToProps)(Greeting);
 
 /***/ }),
 
@@ -940,6 +949,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     removeQuestionErrors: function removeQuestionErrors() {
       return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["removeQuestionErrors"])());
+    },
+    fetchQuestion: function fetchQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestion"])(questionId));
     },
     deleteQuestion: function deleteQuestion(questionId) {
       return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["deleteQuestion"])(questionId));
@@ -1003,11 +1015,7 @@ var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
       id: '',
       title: '',
       body: '',
-      topic_name: '',
-      topic_id: '',
-      author_id: '',
-      topics: {},
-      topic_names_list: []
+      author_id: ''
     };
 
     _this.props.fetchQuestion({
@@ -1017,17 +1025,10 @@ var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
         id: data.question.id,
         title: data.question.title,
         body: data.question.body,
-        topic_name: data.question.topic.name,
-        topic_id: data.question.topic_id,
-        author_id: data.question.author_id,
-        topics: {},
-        topic_names_list: []
+        author_id: data.question.author_id
       });
     });
 
-    _this.makeTopicList = _this.makeTopicList.bind(_assertThisInitialized(_this));
-    _this.renderTopicList = _this.renderTopicList.bind(_assertThisInitialized(_this));
-    _this.renderTopicErrors = _this.renderTopicErrors.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
@@ -1037,93 +1038,41 @@ var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.props.removeQuestionErrors();
-      this.props.removeTopicErrors();
-    }
-  }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.makeTopicList();
-    }
-  }, {
-    key: "makeTopicList",
-    value: function makeTopicList() {
-      var _this2 = this;
-
-      this.props.getTopics().then(function (data) {
-        var flipped = {};
-        Object.keys(data.topics).forEach(function (key) {
-          flipped[data.topics[key].name] = key;
-        });
-
-        _this2.setState({
-          topics: flipped
-        });
-
-        _this2.setState({
-          topic_names_list: Object.keys(flipped).sort()
-        });
-      });
     }
   }, {
     key: "handleInput",
     value: function handleInput(type) {
-      var _this3 = this;
+      var _this2 = this;
 
       return function (e) {
-        _this3.setState(_defineProperty({}, type, e.target.value));
+        _this2.setState(_defineProperty({}, type, e.target.value));
       };
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this4 = this;
-
       e.preventDefault();
-      this.setState({
-        topic_name: this.state.topic_name.toLowerCase()
-      });
-
-      if (!(this.state.topic_name in this.state.topics)) {
-        this.props.sendTopic({
-          name: this.state.topic_name
-        }).then(function (data) {
-          _this4.setState({
-            topic_id: data.topic.id
-          });
-
-          _this4.makeTopicList();
-
-          _this4.submitHelper();
-        }, function (err) {
-          _this4.renderTopicErrors();
-        });
-      } else {
-        this.state.topic_id = parseInt(this.state.topics[this.state.topic_name]);
-        this.submitHelper();
-      }
+      this.submitHelper();
     }
   }, {
     key: "submitHelper",
     value: function submitHelper() {
-      var _this5 = this;
+      var _this3 = this;
 
       var question = Object.assign({}, this.state);
-      delete question.topic_name;
-      delete question.topics;
-      delete question.topic_names_list;
       this.props.sendQuestion(question).then(function (data) {
-        _this5.props.history.push("/questions/".concat(data.question.id));
+        _this3.props.history.push("/questions/".concat(data.question.id));
       }, function (err) {
-        _this5.renderErrors();
+        _this3.renderErrors();
       });
     }
   }, {
     key: "handleDelete",
     value: function handleDelete(question) {
-      var _this6 = this;
+      var _this4 = this;
 
       this.props.deleteQuestion(question).then(function () {
-        _this6.props.history.push('/');
+        _this4.props.history.push('/');
       });
     }
   }, {
@@ -1144,7 +1093,7 @@ var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "crudOptions",
     value: function crudOptions(question) {
-      var _this7 = this;
+      var _this5 = this;
 
       if (question.author_id == currentUser.id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1152,43 +1101,15 @@ var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "del-crud-button",
           onClick: function onClick() {
-            return _this7.handleDelete(question);
+            return _this5.handleDelete(question);
           }
         }, "Delete"));
       }
     }
   }, {
-    key: "renderTopicErrors",
-    value: function renderTopicErrors() {
-      var topic_errors = Object.values(this.props.topic_errors).flat();
-
-      if (topic_errors) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "topic-error"
-        }, topic_errors.map(function (error, i) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: i
-          }, error);
-        }));
-      }
-    }
-  }, {
-    key: "renderTopicList",
-    value: function renderTopicList() {
-      if (this.state.topic_names_list.length > 0) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
-          id: "topics"
-        }, this.state.topic_names_list.map(function (x, i) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-            key: i
-          }, x);
-        }));
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this8 = this;
+      var _this6 = this;
 
       if (this.state === null) {
         return null;
@@ -1206,13 +1127,7 @@ var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "Title",
         value: this.state.title,
         onChange: this.handleInput('title')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        placeholder: "Topic",
-        value: this.state.topic_name,
-        onChange: this.handleInput('topic_name'),
-        list: "topics"
-      }), this.renderTopicList(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Body",
         value: this.state.body,
         onChange: this.handleInput('body')
@@ -1222,10 +1137,10 @@ var QuestionEditForm = /*#__PURE__*/function (_React$Component) {
         className: "show-button-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this8.props.history.goBack();
+          return _this6.props.history.goBack();
         },
         className: "back-button"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RiArrowGoBackLine, null), "Go Back"), this.crudOptions(this.state))));
+      }, "Go Back"), this.crudOptions(this.state))));
     }
   }]);
 
@@ -1289,15 +1204,8 @@ var QuestionForm = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       title: '',
       body: '',
-      topic_id: '',
-      topic_name: '',
-      author_id: _this.props.author_id,
-      topics: {},
-      topic_names_list: []
+      author_id: _this.props.author_id
     };
-    _this.makeTopicList = _this.makeTopicList.bind(_assertThisInitialized(_this));
-    _this.renderTopicList = _this.renderTopicList.bind(_assertThisInitialized(_this));
-    _this.renderTopicErrors = _this.renderTopicErrors.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.submitHelper = _this.submitHelper.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
@@ -1308,84 +1216,32 @@ var QuestionForm = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.props.removeQuestionErrors();
-      this.props.removeTopicErrors();
-    }
-  }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.makeTopicList();
-    }
-  }, {
-    key: "makeTopicList",
-    value: function makeTopicList() {
-      var _this2 = this;
-
-      this.props.getTopics().then(function (data) {
-        var flipped = {};
-        Object.keys(data.topics).forEach(function (key) {
-          flipped[data.topics[key].name] = key;
-        });
-
-        _this2.setState({
-          topics: flipped
-        });
-
-        _this2.setState({
-          topic_names_list: Object.keys(flipped).sort()
-        });
-      });
     }
   }, {
     key: "handleInput",
     value: function handleInput(type) {
-      var _this3 = this;
+      var _this2 = this;
 
       return function (e) {
-        _this3.setState(_defineProperty({}, type, e.target.value));
+        _this2.setState(_defineProperty({}, type, e.target.value));
       };
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this4 = this;
-
       e.preventDefault();
-      this.setState({
-        topic_name: this.state.topic_name.toLowerCase()
-      });
-
-      if (!(this.state.topic_name in this.state.topics)) {
-        this.props.sendTopic({
-          name: this.state.topic_name
-        }).then(function (data) {
-          _this4.setState({
-            topic_id: data.topic.id
-          });
-
-          _this4.makeTopicList();
-
-          _this4.submitHelper();
-        }, function (err) {
-          _this4.renderTopicErrors();
-        });
-      } else {
-        this.state.topic_id = parseInt(this.state.topics[this.state.topic_name]);
-        this.submitHelper();
-      }
+      this.submitHelper();
     }
   }, {
     key: "submitHelper",
     value: function submitHelper() {
-      var _this5 = this;
+      var _this3 = this;
 
       var question = Object.assign({}, this.state);
-      delete question.topic_name;
-      delete question.topics;
-      delete question.topic_names_list;
       this.props.sendQuestion(question).then(function (data) {
-        _this5.props.history.push("/questions/".concat(data.question.id));
+        _this3.props.history.push("/questions/".concat(data.question.id));
       }, function (err) {
-        _this5.renderErrors();
+        _this3.renderErrors();
       });
     }
   }, {
@@ -1400,34 +1256,6 @@ var QuestionForm = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i
           }, error);
-        }));
-      }
-    }
-  }, {
-    key: "renderTopicErrors",
-    value: function renderTopicErrors() {
-      var topic_errors = Object.values(this.props.topic_errors).flat();
-
-      if (topic_errors) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "topic-error"
-        }, topic_errors.map(function (error, i) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: i
-          }, error);
-        }));
-      }
-    }
-  }, {
-    key: "renderTopicList",
-    value: function renderTopicList() {
-      if (this.state.topic_names_list.length > 0) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
-          id: "topics"
-        }, this.state.topic_names_list.map(function (x, i) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-            key: i
-          }, x);
         }));
       }
     }
@@ -1449,20 +1277,14 @@ var QuestionForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "Title",
         value: this.state.title,
         onChange: this.handleInput('title')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        placeholder: "Topic",
-        value: this.state.topic_name,
-        onChange: this.handleInput('topic_name'),
-        list: "topics"
-      }), this.renderTopicList(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Body",
         value: this.state.body,
         onChange: this.handleInput('body')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "create-question-button",
         onClick: this.handleSubmit
-      }, "Create Question"), this.renderErrors(), this.renderTopicErrors()));
+      }, "Create Question"), this.renderErrors()));
     }
   }]);
 
@@ -1602,7 +1424,21 @@ var QuestionIndex = /*#__PURE__*/function (_React$Component) {
           }
         }, "Delete"));
       }
-    }
+    } //   render() {
+    //       console.log(this.props.getQuestions());
+    //         //  console.log(this.props.questions);
+    //     const questions = Object.values(this.props.questions);
+    //     return (
+    //       <div className="feed">
+    //         {questions.reverse().map((question, i) => (
+    //           <li key={i} className="question-list-item">
+    //             {this.crudOptions(question)}
+    //             <QuestionIndexItem question={question} key={question.id} />
+    //             <hr />
+    //           </li>
+    //         ))}
+    //       </div>
+
   }, {
     key: "render",
     value: function render() {
@@ -1638,14 +1474,14 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     questions: state.entities.questions,
-    currentUser: state.session.id
+    currentUser: state.session.currentUser
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getQuestions: function getQuestions() {
-      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["requestQuestions"])());
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestions"])());
     },
     deleteQuestion: function deleteQuestion(question) {
       return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["deleteQuestion"])(question));
@@ -1859,28 +1695,20 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "displayQuestion",
     value: function displayQuestion() {
-      var _this5 = this;
-
-      if (this.state.question.topic != undefined) {
-        var question = this.state.question;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "show-box"
-        }, this.crudOptions(this.state.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "show-info"
-        }, "Written in #", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-          className: "topic-linker",
-          onClick: function onClick() {
-            return _this5.props.history.push("/topics/".concat(question.topic.id));
-          }
-        }, question.topic.name), " by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, question.author.fname, " ", question.author.lname)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, question.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "show-body"
-        }, question.body));
-      }
+      // if (this.state.question.topic != undefined) {
+      var question = this.state.question;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-box"
+      }, this.crudOptions(this.state.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "show-info"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, question.author.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, question.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "show-body"
+      }, question.body)); // }
     }
   }, {
     key: "displayComments",
     value: function displayComments() {
-      var _this6 = this;
+      var _this5 = this;
 
       var comments = [];
 
@@ -1891,7 +1719,7 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
             className: "comment-list-item"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "comment-item"
-          }, _this6.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, comment.author.fname, " ", comment.author.lname), " | \"", comment.author.credentials, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, comment.author.username), " | \"", comment.author.credentials, "\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
         });
       } else {
         comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1907,16 +1735,16 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this6 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show"
       }, this.displayQuestion(), this.displayComments(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          _this7.props.history.push('/');
+          _this6.props.history.push('/');
         },
         className: "back-button"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RiArrowGoBackLine, null), "Go Back"));
+      }, "Go Back"));
     }
   }]);
 
@@ -1954,6 +1782,9 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchQuestion: function fetchQuestion(questionId) {
+      return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestion"])(questionId));
+    },
     deleteQuestion: function deleteQuestion(questionId) {
       return dispatch(Object(_actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["deleteQuestion"])(questionId));
     },
@@ -2316,23 +2147,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
+/* harmony import */ var _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/question_actions */ "./frontend/actions/question_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
- // import * as api_util from './util/session_api_util';
 
- // import * as questionActions from './actions/question_actions'; 
+
+
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  // const store = configureStore();                 //this needs to be up here for getstate to work to work
-  // window.login = api_util.login;
-  // window.logout = api_util.logout;
-  // window.signup = api_util.signup;
+  // const store = configureStore();                 //this needs to be up here for getstate to work
   var store;
 
   if (window.currentUser) {
@@ -2344,21 +2174,30 @@ document.addEventListener("DOMContentLoaded", function () {
         id: window.currentUser.id
       }
     };
-    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(preloadedState);
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_5__["default"])(preloadedState);
     delete window.currentUser;
   } else {
-    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_5__["default"])();
   } // FOR TESTING
 
 
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"];
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"];
-  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"];
+  window.createComment = _actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__["createComment"];
+  window.updateComment = _actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__["updateComment"];
+  window.deleteComment = _actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__["deleteComment"];
+  window.deleteQuestion = _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["deleteQuestion"];
+  window.updateQuestion = _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["updateQuestion"];
+  window.createQuestion = _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["createQuestion"];
+  window.fetchQuestions = _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestions"];
+  window.fetchQuestion = _actions_question_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestion"];
+  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"];
+  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"];
+  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["signup"];
   window.getState = store.getState;
-  window.dispatch = store.dispatch; // FOR TESTING
+  window.dispatch = store.dispatch;
+  window.store = store; // FOR TESTING
 
   var root = document.getElementById("root");
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_6__["default"], {
     store: store
   }), root);
 });
@@ -2412,11 +2251,11 @@ var commentErrorsReducer = function commentErrorsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _questions_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./questions_reducer */ "./frontend/reducers/questions_reducer.js");
+/* harmony import */ var _question_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./question_reducer */ "./frontend/reducers/question_reducer.js");
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  question: _questions_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  questions: _question_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -2441,7 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  questions: _question_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  question: _question_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   comment: _comment_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
@@ -2485,10 +2324,10 @@ var questionErrorsReducer = function questionErrorsReducer() {
 
 /***/ }),
 
-/***/ "./frontend/reducers/questions_reducer.js":
-/*!************************************************!*\
-  !*** ./frontend/reducers/questions_reducer.js ***!
-  \************************************************/
+/***/ "./frontend/reducers/question_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/question_reducer.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2499,29 +2338,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var questionsReducer = function questionsReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+var questionReducer = function questionReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(oldState);
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_question_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_QUESTIONS"]:
       return action.questions;
 
     case _actions_question_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_QUESTION"]:
-      return Object.assign({}, oldState, _defineProperty({}, action.question.id, action.question));
+      return _defineProperty({}, action.question.id, action.question);
 
     case _actions_question_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_QUESTION"]:
-      var nextState = Object.assign({}, oldState);
-      delete nextState[action.questionId];
-      return nextState;
+      var newState = state;
+      delete newState[action.questionId];
+      return newState;
 
     default:
-      return oldState;
+      return state;
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (questionsReducer);
+/* harmony default export */ __webpack_exports__["default"] = (questionReducer);
 
 /***/ }),
 
@@ -2538,7 +2377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducers/entities_reducer.js");
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
 /* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducers/errors_reducer.js");
-/* harmony import */ var _questions_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./questions_reducer */ "./frontend/reducers/questions_reducer.js");
+/* harmony import */ var _question_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./question_reducer */ "./frontend/reducers/question_reducer.js");
 
 
 
@@ -2548,7 +2387,7 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  questions: _questions_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  questions: _question_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -2564,23 +2403,39 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+// import {
+//   RECEIVE_SESSION_ERRORS,
+//   REMOVE_SESSION_ERRORS,
+// } from "../actions/session_actions";
+// const sessionErrorsReducer = (oldState = {}, action) => {
+//   Object.freeze(oldState);
+//   switch (action.type) {
+//     case RECEIVE_SESSION_ERRORS:
+//       return Object.assign({}, oldState, {
+//         errors: action.errors,
+//       });
+//     case REMOVE_SESSION_ERRORS:
+//       return Object.assign({}, oldState, {
+//         errors: [],
+//       });
+//     default:
+//       return oldState;
+//   }
+// };
+// export default sessionErrorsReducer;
 
 
 var sessionErrorsReducer = function sessionErrorsReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
-      return Object.assign({}, oldState, {
-        errors: action.errors
-      });
+      return action.errors;
 
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SESSION_ERRORS"]:
-      return Object.assign({}, oldState, {
-        errors: []
-      });
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+      return [];
 
     default:
       return oldState;

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import questionsReducer from "./questions_reducer";
+import questionReducer from "./question_reducer";
 
 const entitiesReducer = combineReducers({
-  question: questionsReducer,
+  questions: questionReducer,
 });
 
 export default entitiesReducer;

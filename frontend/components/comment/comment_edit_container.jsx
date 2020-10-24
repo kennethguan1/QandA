@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CommentEditForm from './comment_edit_form';
 import { removeCommentErrors, updateComment } from '../../actions/comment_actions';
-import { requestQuestions } from "../../actions/question_actions";
+import { fetchQuestion } from "../../actions/question_actions";
 
 const mapStateToProps = (state, { match }) => ({
     author_id: state.session.currentUser.id,
@@ -11,8 +11,9 @@ const mapStateToProps = (state, { match }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    sendComment: (comment) => dispatch(updateComment(comment)),
-    removeCommentErrors: () => dispatch(removeCommentErrors()),
+  fetchQuestion: (questionId) => dispatch(fetchQuestion(questionId)),
+  sendComment: (comment) => dispatch(updateComment(comment)),
+  removeCommentErrors: () => dispatch(removeCommentErrors()),
 });
 
 export default connect(
