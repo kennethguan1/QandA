@@ -19,9 +19,9 @@ class QuestionForm extends React.Component {
         this.props.removeQuestionErrors();
     }
 
-    handleInput(type) {
+    handleInput(field) {
         return (e) => {
-            this.setState({ [type]: e.target.value });
+            this.setState({ [field]: e.target.value });
         }
     }
 

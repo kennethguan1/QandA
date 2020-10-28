@@ -104,19 +104,9 @@ form {
     margin-top: 15px;
 }
 
-.fname, .lname {
+.signup-input {
     display: flex;
     width: 90px;
-}
-
-.fname {
-    justify-self: left;
-    margin-right: 2px;
-}
-
-.lname {
-    justify-self: right;
-    margin-left: 2px;
 }
 
 .signup-button, .login-button {

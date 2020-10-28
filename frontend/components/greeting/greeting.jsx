@@ -1,31 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../../util/session_api_util';
 
 class Greeting extends React.Component {
-        constructor(props) {
-            super(props);
-        };
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
 
-        render() {
+    <div className="navbar-website-title">
+        <Link to="/" className="website-title-link">
+          <h1>
+            QandA
+          </h1>
+        </Link>
+    </div>;
+    const guestgreeting = () => (
+      <nav className="welcome-guest">
+        <p>Welcome Guest!</p>
+      </nav>
+    );
 
-        const sessionLinks = () => (
-            <nav className="login-signup">
-                <Link to="/">Login or Sign Up</Link>
-            </nav>
-        );
+    const personalGreeting = () => (
+      <hgroup className="header-group">
+        <Link to="/askquestion" className="link-to-new-question">
+          <button className="ask-question-button">Ask Question</button>
+        </Link>
 
-        const personalGreeting = () => (
-        <hgroup className="header-group">
-            <h2 className="header-name">Hi, {this.props.currentUser.username}!</h2>
-            <button className="header-button" onClick={this.props.logoutCurrentUser}>Log Out</button>
-        </hgroup>
-        );
+        <h2 className="welcome">Hi, {this.props.currentUser.username}!</h2>
 
-        return this.props.currentUser ? personalGreeting() : sessionLinks();
+        <button
+          className="logout-button"
+          onClick={this.props.logoutCurrentUser}
+        >
+          Log Out
+        </button>
+      </hgroup>
+    );
 
-        }
-    };
-
+    return this.props.currentUser ? personalGreeting() : guestgreeting();
+  }
+};
 
 export default Greeting;

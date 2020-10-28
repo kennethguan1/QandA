@@ -1,0 +1,252 @@
+.question-modal {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.question-form {
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-content: center;
+    justify-content: center;
+    background-color: rgb(152, 174, 235);
+    display: flex;
+    flex-direction: column;
+}
+
+.question-form h1 {
+    text-align: center;
+}
+
+.close-question-button {
+    position: absolute;
+    left: 360px;
+    top: 10px;
+    height: 25px;
+    width: 25px;
+}
+
+.question-form input[type="text"] {
+    border: 1px solid black;
+    margin-bottom: 2px;
+    width: 300px;
+    height: 30px;
+}
+
+.question-form textarea {
+    overflow-y: scroll;
+    width: 300px;
+    height: 120px;
+    resize: none;
+    padding-top: 10px;
+}
+
+.question-form button, .question-form Link {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #507cc0;
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.question-list-item {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.question-button {
+    background-color: white;
+}
+
+.question-list-item p, .question-list-item h3 {
+    max-width: 100vh;
+    overflow-y: hidden;
+}
+
+.question-list-item p {
+    max-height: 22px;
+}
+
+.question-list-item h3 {
+    text-align: left;
+}
+
+.question-header button {
+    border: none;
+    padding: 0;
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+.question-header button:hover {
+    cursor: pointer;
+}
+
+.show-box {
+    grid-area: 2 / 2 / 3 / 3;
+    padding-bottom: 150px;
+    background-color: white;
+    border: 3px solid black;
+    border-bottom: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.show-info {
+    margin: 0px;
+    padding: 15px;
+    padding-left: 0px;
+}
+
+.edit-question-form {
+    padding-right: 25px;
+    width: 90%;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-question-form h1 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.edit-question-form input[type="text"] {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    margin-bottom: 2px;
+    width: 90%;
+    height: 30px;
+}
+
+.edit-question-form textarea {
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 400px;
+    resize: none;
+    padding-top: 10px;
+}
+
+.edit-question-form button,
+.edit-question-form Link {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #507cc0;
+    color: white;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.edit-question-form button:hover {
+    background-color: #416fb598;
+}
+
+.show {
+    grid-area: 2 / 2 / 5 / 3;
+    display: contents;
+}
+
+.show h1 {
+    text-align: center;
+    text-transform: capitalize;
+    overflow-x: auto;
+}
+
+.show-body {
+    padding-right: 15px;
+}
+
+.back-button {
+    position: fixed;
+    left: 50px;
+    bottom: 50px;
+    color: white;
+    text-decoration: none;
+    width: 100px;
+    background-color: #df4930;
+    border: 1px solid black;
+    padding: 3px;
+    font-weight: bold;
+    border-radius: 2px;
+    height: 40px;
+}
+
+.back-button:hover {
+    cursor: pointer;
+    background-color: #d53c219a;
+}
+
+.back-button svg {
+    padding-right: 5px;
+}
+
+.feed {
+    grid-area: 2 / 2 / 5 / 2;
+    background-color: white;
+    border: 3px solid black;
+    height: fit-content;
+}
+
+.crud-buttons {
+    height: fit-content;
+    float: right;
+}
+
+.question-list-item .crud-buttons {
+    margin-top: 15.6px;
+    margin-right: 10px;
+}
+
+.show-box .crud-buttons {
+    padding-top: 15px;
+}
+
+.crud-buttons button {
+    cursor: pointer;
+}
+
+.edit-crud-button {
+    background-color: #df4930;
+    color: white;
+    margin-right: 10px;
+}
+
+.edit-crud-button:hover {
+    background-color: #d53c219a;
+}
+
+.del-crud-button {
+    background-color: #507cc0;
+    color: white;
+}
+
+.del-crud-button:hover {
+    background-color: #416fb598;
+}

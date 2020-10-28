@@ -2,24 +2,12 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import Greeting from './greeting';
 
-const mSTP = ({ session, entities: { users } }) => {
-    return {
-        currentUser: users[session.id]
-    };
-};
-
-const mDTP  = dispatch => ({
-    logoutCurrentUser: () => dispatch(logout())
+const mSTP = (state) => ({
+  currentUser: state.session.currentUser,
 });
 
-export default connect(mSTP,mDTP)(Greeting);
+const mDTP = (dispatch) => ({
+  logoutCurrentUser: () => dispatch(logout()),
+});
 
-// const mapStateToProps = (state) => ({
-//   currentUser: state.session.currentUser,
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   logout: () => dispatch(logout()),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Greeting);
+export default connect(mSTP, mDTP)(Greeting);
