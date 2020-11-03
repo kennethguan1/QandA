@@ -37,12 +37,14 @@ class Greeting extends React.Component {
             </Link>
             <br />
             <br />
-            <button
-              className="logout-button"
-              onClick={this.props.logoutCurrentUser}
-            >
-              Log Out
-            </button>
+            <Link to="/">
+              <button
+                className="logout-button"
+                onClick={this.props.logoutCurrentUser}
+              >
+                Log Out
+              </button>
+            </Link>
           </hgroup>
         </div>
       </div>
