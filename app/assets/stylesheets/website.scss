@@ -41,27 +41,6 @@ button:active {
     grid-template-columns: 275px auto;
 }
 
-@keyframes rainbow_animation {
-    0%,
-    100% {
-        background-position: 0 0;
-    }
-
-    50% {
-        background-position: 100% 0;
-    }
-}
-
-.website-title span {
-    font-size: 52px;
-    vertical-align: text-top;
-    background: linear-gradient(to right, red, orange, yellow, rgb(0, 255, 0), rgb(0, 177, 247), rgb(202, 0, 202));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    background-size: 400% 100%;
-}
-
 .hidden {
     display: none;
     visibility: hidden;
