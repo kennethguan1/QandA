@@ -8,15 +8,22 @@ class QuestionIndexItem extends React.Component {
     render() {
         const question = this.props.question;
         return (
-            <div className="question-header">
-                <button className="question-button" onClick={() => { this.props.history.push(`/questions/${question.id}`) }}><h3>{question.title}</h3></button>
-                <p>
-                    <strong>
-                        {question.author.username}
-                    </strong>
-                </p>
-                <p>{question.body}</p>
-            </div>
+          <div className="question-header">
+            <p>
+              <strong>
+                <strong className="question-by">Question by </strong> <strong className="question-username">{question.author.username}</strong>
+              </strong>
+            </p>
+            <button
+              className="question-button"
+              onClick={() => {
+                this.props.history.push(`/questions/${question.id}`);
+              }}
+            >
+              <h3>{question.title}</h3>
+            </button>
+            <p>{question.body}</p>
+          </div>
         );
     }
 }

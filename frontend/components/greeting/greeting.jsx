@@ -15,6 +15,7 @@ class Greeting extends React.Component {
           </h1>
         </Link>
     </div>;
+
     const guestgreeting = () => (
       <nav className="welcome-guest">
         <p>Welcome Guest!</p>
@@ -22,20 +23,29 @@ class Greeting extends React.Component {
     );
 
     const personalGreeting = () => (
-      <hgroup className="header-group">
-        <Link to="/askquestion" className="link-to-new-question">
-          <button className="ask-question-button">Ask Question</button>
-        </Link>
-
-        <h2 className="welcome">Hi, {this.props.currentUser.username}!</h2>
-
-        <button
-          className="logout-button"
-          onClick={this.props.logoutCurrentUser}
-        >
-          Log Out
-        </button>
-      </hgroup>
+      <div className="nav-bar">
+        <div className="banner">
+          <hgroup className="header-group">
+            <div className="navbar-website-title">
+              <Link to="/" className="website-title-link">
+                <h1>QandA</h1>
+              </Link>
+            </div>
+            <h2 className="welcome">Hi, {this.props.currentUser.username}!</h2>
+            <Link to="/askquestion" className="link-to-new-question">
+              <button className="ask-question-button">Ask Question</button>
+            </Link>
+            <br />
+            <br />
+            <button
+              className="logout-button"
+              onClick={this.props.logoutCurrentUser}
+            >
+              Log Out
+            </button>
+          </hgroup>
+        </div>
+      </div>
     );
 
     return this.props.currentUser ? personalGreeting() : guestgreeting();

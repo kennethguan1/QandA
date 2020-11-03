@@ -68,12 +68,17 @@ class QuestionEditForm extends React.Component {
     }
 
     crudOptions(question) {
-        if (question.author_id == currentUser.id) {
-            return (
-                <div className="crud-buttons">
-                    <button className="del-crud-button" onClick={() => this.handleDelete(question)}>Delete</button>
-                </div>
-            )
+        if (question.author_id == this.props.currentUser.id) {
+          return (
+            <div className="crud-buttons">
+              <button
+                className="del-crud-button"
+                onClick={() => this.handleDelete(question)}
+              >
+                Delete
+              </button>
+            </div>
+          );
         }
     }
 

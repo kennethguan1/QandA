@@ -4,11 +4,17 @@ class QuestionShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: {},
+      questionobj: [],
     };
 
+    // this.props.fetchQuestion({ id: this.props.questionId }).then((question) => {
+    //   this.setState(question);
+    // });
+  }
+
+  componentDidMount() {
     this.props.fetchQuestion({ id: this.props.questionId }).then((question) => {
-      this.setState(question);
+      this.setState({ questionobj: question });
     });
   }
 
@@ -77,17 +83,18 @@ class QuestionShow extends React.Component {
   }
 
   displayQuestion() {
-
-      const question = this.state.question;
-      return (
-        <div className="show-box">
-          {this.crudOptions(question)}
-          <h1>{question.title}</h1>
-          <hr />
-          <p className="show-body">{question.body}</p>
-        </div>
-      );
-
+    const question = this.state.question;
+    return (
+      <div className="show-box">
+        {this.crudOptions(this.state.question)}
+        <p className="show-info">
+          By <strong>{question.author.username}</strong>
+        </p>
+        <h1>{question.title}</h1>
+        <hr />
+        <p className="show-body">{question.body}</p>
+      </div>
+    );
   }
 
   displayComments() {
@@ -100,9 +107,7 @@ class QuestionShow extends React.Component {
               <div className="comment-item">
                 {this.crudCOptions(comment)}
                 <p>
-                  <strong>
-                    {comment.author.username}
-                  </strong>{" "}
+                  <strong>{comment.author.username}</strong>{" "}
                 </p>
                 <p>{comment.body}</p>
               </div>
@@ -128,20 +133,25 @@ class QuestionShow extends React.Component {
   }
 
   render() {
-    return (
-      <div className="show">
-        {this.displayQuestion()}
-        {this.displayComments()}
-        <button
-          onClick={() => {
-            this.props.history.push("/");
-          }}
-          className="back-button"
-        >
-          Go Back
-        </button>
-      </div>
-    );
+    if (this.state.questionobj.length === 0) {
+      return <div className="show"></div>;
+    } else {
+      console.log(this.state.questionobj);
+      return (
+        <div className="show">
+          {this.displayQuestion()}
+          {this.displayComments()}
+          <button
+            onClick={() => {
+              this.props.history.push("/");
+            }}
+            className="back-button"
+          >
+            Go Back
+          </button>
+        </div>
+      );
+    }
   }
 }
 

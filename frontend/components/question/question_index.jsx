@@ -41,51 +41,18 @@ class QuestionIndex extends React.Component {
     }
   }
 
-//   render() {
-//       console.log(this.props.getQuestions());
-//         //  console.log(this.props.questions);
-//     const questions = Object.values(this.props.questions);
-//     return (
-//       <div className="feed">
-//         {questions.reverse().map((question, i) => (
-//           <li key={i} className="question-list-item">
-//             {this.crudOptions(question)}
-//             <QuestionIndexItem question={question} key={question.id} />
-//             <hr />
-//           </li>
-//         ))}
-//       </div>
-      render() {
-          return (
-              <div className="feed">
-                  <br />
-                  <br />
-                  <br />
-                  Which came first? Chicken or the egg?
-                  <br />
-                  user1
-                  <br />
-                  <br />
-                  Or maybe ducks.
-                  <br />
-                  <br />
-                  <br />
-                  Where can I learn more about plexiglass?
-                  <br />
-                  user1
-                  <br />
-                  <br />
-                  I already tried the library.
-                  <br />
-                  <br />
-                  <br />
-                  Are raisins safe to eat?
-                  <br />
-                  user1
-                  <br />
-                  <br />
-                  I read about toxins on facebook.
-              </div>
+  render() {
+    const questions = Object.values(this.props.questions);
+    return (
+      <div className="feed">
+        {questions.reverse().map((question, i) => (
+          <li key={i} className="question-list-item">
+            {this.crudOptions(question)}
+            <QuestionIndexItem question={question} key={question.id} />
+            <hr />
+          </li>
+        ))}
+      </div>
     );
   }
 }

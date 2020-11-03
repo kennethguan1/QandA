@@ -51,9 +51,9 @@ class SessionForm extends React.Component {
   demo(e) {
     e.preventDefault();
     const demo_user = {
-      username: "user1",
+      username: "demo_user",
       password: "123456",
-      email: "user1.com",
+      email: "demo@demo.com",
     };
     this.props.loginForm(demo_user);
   }
@@ -68,17 +68,19 @@ class SessionForm extends React.Component {
             type="text"
             value={this.state.username}
             onChange={this.update("username")}
-            className="login-input"
+            className="username-login"
           />
         </label>
         <br />
         <label>
+          <br />
           Password:
+          <br />
           <input
             type="password"
             value={this.state.password}
             onChange={this.update("password")}
-            className="login-input"
+            className="password-input"
           />
         </label>
         <br />
@@ -95,7 +97,7 @@ class SessionForm extends React.Component {
             type="text"
             value={this.state.username}
             onChange={this.update("username")}
-            className="signup-input"
+            className="username"
           />
         </label>
         <br />
@@ -105,17 +107,19 @@ class SessionForm extends React.Component {
             type="text"
             value={this.state.email}
             onChange={this.update("email")}
-            className="signup-input"
+            className="email"
           />
         </label>
         <br />
         <label>
+          <br />
           Password:
+          <br />
           <input
             type="password"
             value={this.state.password}
             onChange={this.update("password")}
-            className="signup-input"
+            className="password-input"
           />
         </label>
         <br />
@@ -149,19 +153,26 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="session-container">
-        QandA
-        {this.renderErrors()}
+      <div className="home-page">
         <div className="session-box">
-          <button className="demo-login" onClick={this.demo}>
-            Demo Login
-          </button>
-          <br />
-          <button className="change-login-type" onClick={this.changeFormType}>
-            {this.buttonName()}
-          </button>
+          <div className="website-title">
+            <h1>QandA</h1>
+          </div>
+          <div className="slogan">
+            <p>A space to share knowledge and better understand the world</p>
+          </div>
+          {this.renderErrors()}
+          <div className="session-buttons-box">
+            <button className="demo-login" onClick={this.demo}>
+              Demo Login
+            </button>
+            <br />
+            <button className="change-login-type" onClick={this.changeFormType}>
+              {this.buttonName()}
+            </button>
+          </div>
+          <div className="session-form">{this.formType()}</div>
         </div>
-        <div className="session-form">{this.formType()}</div>
       </div>
     );
   }

@@ -60,18 +60,31 @@ class CommentEditForm extends React.Component {
 
     render() {
         return (
-            <div className="comment">
-                <h3>Edit Comment</h3>
-                <form className="comment-form" onSubmit={this.handleSubmit}>
-                    <textarea
-                        placeholder="Comment Text"
-                        value={this.state.body}
-                        onChange={this.handleInput('body')}
-                    />
-                    <button className="create-comment-button" onClick={this.handleSubmit}>Update</button>
-                    {this.renderErrors()}
-                </form>
+          <div className="comment">
+            <h3>Edit Comment</h3>
+            <form className="comment-form" onSubmit={this.handleSubmit}>
+              <textarea
+                placeholder="Comment Text"
+                value={this.state.body}
+                onChange={this.handleInput("body")}
+              />
+              <button
+                className="create-comment-button"
+                onClick={this.handleSubmit}
+              >
+                Update
+              </button>
+              {this.renderErrors()}
+            </form>
+            <div className="show-button-box">
+              <button
+                onClick={() => this.props.history.goBack()}
+                className="back-button"
+              >
+                Go Back
+              </button>
             </div>
+          </div>
         );
     }
 }

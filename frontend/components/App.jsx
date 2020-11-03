@@ -32,26 +32,40 @@ import CommentFormContainer from './comment/comment_form_container';
 import CommentEditFormContainer from './comment/comment_edit_container';
 
 import { Route, Redirect, Router, Switch } from 'react-router-dom';
-import { AuthRoute, ProtectedRoute, HideRoute, ShowRoute } from '../util/route_util';
-import { createBrowserHistory } from 'history';
-
-const customHistory = createBrowserHistory();
+import {
+  AuthRoute,
+  ProtectedRoute,
+  HiddenRoute,
+  ShownRoute,
+} from "../util/route_util";
 
 export default () => (
-    <div className="routes">
-        <Route exact path="/" component={SessionContainer} />
-        <Route path="/" component={GreetingContainer} />
-        <Route path="/askquestion" component={QuestionFormContainer} />
-        <Route exact path="/questions/:id/comments/:commentId/edit" component={CommentEditFormContainer} />
+  <div className="routes">
+    <HiddenRoute exact path="/" component={SessionContainer} />
+    <ShownRoute path="/" component={GreetingContainer} />
+    <ProtectedRoute path="/askquestion" component={QuestionFormContainer} />
+    <ProtectedRoute
+      exact
+      path="/questions/:id/comments/:commentId/edit"
+      component={CommentEditFormContainer}
+    />
 
-        <Switch>
-            <Route exact path="/questions/:id/edit" component={QuestionEditContainer} />
-            <Route exact path="/questions/:id" component={CommentFormContainer} />
-        </Switch>
+    <Switch>
+      <ProtectedRoute
+        exact
+        path="/questions/:id/edit"
+        component={QuestionEditContainer}
+      />
+      <ProtectedRoute
+        exact
+        path="/questions/:id"
+        component={CommentFormContainer}
+      />
+    </Switch>
 
-        <Switch>
-            <Route exact path="/questions/:id" component={QuestionShowContainer} />
-            <Route exact path="/" component={QuestionIndexContainer} />
-        </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/questions/:id" component={QuestionShowContainer} />
+      <ProtectedRoute exact path="/" component={QuestionIndexContainer} />
+    </Switch>
+  </div>
 );

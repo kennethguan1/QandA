@@ -1,4 +1,4 @@
-json.merge! @question.attributes
+json.partial! "/api/questions/question", question: @question
 json.author @question.author, :username
 json.comments do
     @question.comments.each do |comment|
