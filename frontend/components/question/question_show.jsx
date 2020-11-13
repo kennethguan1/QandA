@@ -1,4 +1,5 @@
 import React from "react";
+import LikeButton from '../like/like_button';
 
 class QuestionShow extends React.Component {
   constructor(props) {
@@ -92,9 +93,21 @@ class QuestionShow extends React.Component {
 
   displayComments() {
     let comments = [];
+    // let likers;
     if (this.state.question.comments != undefined) {
       comments = Object.values(this.state.question.comments).map(
         (comment, i) => {
+          // let likes = <div></div>;
+          // let likers = comment.likers.length;
+          // let likeBtn = !comment.likers.includes(this.props.currentUser.id) ?
+          //   (<button className="like-btn" onClick={() => this.props.likePost(comment.id, this.props.currentUser.id)}>
+          //       <i className="fas fa-heart unclicked post-index-like">Like</i>
+          //   </button>)
+          //   :
+          //   (<button onClick={() => this.props.unlikePost(comment.id)}>
+          //       <i className="fas fa-heart clicked post-index-like">Unlike</i>
+          //   </button>);
+
           return (
             <li key={i} className="comment-list-item">
               <div className="comment-item">
@@ -105,6 +118,7 @@ class QuestionShow extends React.Component {
                   </strong>{" "}
                 </p>
                 <p>{comment.body}</p>
+                <LikeButton comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost}/>
               </div>
               <hr />
             </li>

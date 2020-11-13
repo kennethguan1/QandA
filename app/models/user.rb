@@ -26,6 +26,10 @@ class User < ApplicationRecord
     has_many :comments,
         foreign_key: :author_id
 
+    has_many :likes,
+        foreign_key: :author_id,
+        class_name: :Like
+
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
         if user && user.is_password?(password)

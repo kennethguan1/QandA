@@ -260,3 +260,15 @@
 .del-crud-button:hover {
     background-color: #416fb598;
 }
+
+.fa-heart.unclicked {
+    position: relative;
+    color: gray;
+    cursor: pointer;
+}
+
+.fa-heart.clicked {
+    position: relative;
+    cursor: pointer;
+    color: red;
+}

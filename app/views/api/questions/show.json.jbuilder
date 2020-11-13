@@ -5,6 +5,9 @@ json.comments do
         json.set! comment.id do
             json.merge! comment.attributes
             json.author comment.author, :username
+            json.set! :likers do
+                json.array! comment.likes.pluck(:author_id)
+            end
         end
     end
 end

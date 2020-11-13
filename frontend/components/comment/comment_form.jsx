@@ -6,21 +6,8 @@ class CommentForm extends React.Component {
     super(props);
     this.state = {
       body: "",
-      // author_id: '',
-      // question_id: '',
     };
-
-    // this.props.fetchQuestion({ id: this.props.currentQuestion })
-    //     .then((data) => {
-    //         const comment = data.question.comments[this.props.currentComment];
-    //         this.setState({
-    //             id: comment.id,
-    //             body: comment.body,
-    //             author_id: comment.author_id,
-    //             question_id: comment.question_id,
-    //         });
-    //     });
-
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
