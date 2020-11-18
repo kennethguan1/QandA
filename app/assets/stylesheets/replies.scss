@@ -1,0 +1,46 @@
+.reply {
+    grid-area: 3 / 2 / 4 / 3;
+    padding: 25px;
+    background-color: rgb(238, 238, 238);
+    border: 3px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.reply-form button {
+    right: 0px;
+    width: 120px;
+    color: white;
+    background-color: #3e78ad;
+}
+
+.reply-form button:hover {
+    cursor: pointer;
+    background-color: #416fb598;
+}
+
+.reply-form textarea {
+    flex: 1;
+    resize: none;
+    overflow-y: auto;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.reply-error {
+    margin-top: 15px;
+}
+
+.replies-show {
+    background-color: rgb(238, 238, 238);
+    border: 3px solid black;
+    border-top: none;
+    list-style-type: none;
+    grid-area: 4 / 2 / 5 / 3;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.reply-item {
+    margin-left: 25px;
+}

@@ -93,6 +93,7 @@ class QuestionShow extends React.Component {
 
   displayComments() {
     let comments = [];
+
     // let likers;
     if (this.state.question.comments != undefined) {
       comments = Object.values(this.state.question.comments).map(
@@ -117,7 +118,14 @@ class QuestionShow extends React.Component {
                     {comment.author.username}
                   </strong>{" "}
                 </p>
+              <button
+                className="question-button"
+                onClick={() => {
+                  this.props.history.push(`/questions/${this.props.questionId}/comments/${comment.id}`);
+                }}
+              >
                 <p>{comment.body}</p>
+              </button>
                 <LikeButton comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost}/>
               </div>
               <hr />

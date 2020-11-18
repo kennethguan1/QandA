@@ -1,32 +1,33 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class CommentEditForm extends React.Component {
+class ReplyEditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             body: '',
             author_id: '',
-            question_id: '',
+            comment_id: '',
         };
 
-        this.props.fetchQuestion({ id: this.props.currentQuestion })
+        this.props.fetchComment({ id: this.props.currentComment })
             .then((data) => {
-                const comment = data.question.comments[this.props.currentComment];
+                const reply = data.comment.replies[this.props.currentReply];
                 this.setState({
-                    id: comment.id,
-                    body: comment.body,
-                    author_id: comment.author_id,
-                    question_id: comment.question_id,
+                    id: reply.id,
+                    body: reply.body,
+                    author_id: reply.author_id,
+                    comment_id: reply.comment_id,
                 });
             });
         console.log(this.props)
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
     }
 
     componentWillUnmount() {
-        this.props.removeCommentErrors();
+        this.props.removeReplyErrors();
     }
 
     handleInput(type) {
@@ -37,20 +38,20 @@ class CommentEditForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const comment = this.state;
-        this.props.sendComment(comment)
+        const reply = this.state;
+        this.props.sendReply(reply)
             .then(() => {
-                this.props.history.push(`/questions/${this.props.currentQuestion}`);
+                this.props.history.push(`/questions/${this.props.currentQuestion}/comments/${this.props.currentComment}`);
                 window.location.reload();
             }, (err) => { this.renderErrors() })
     }
 
     renderErrors() {
-        let comment_errors = Object.values(this.props.comment_errors).flat();
-        if (comment_errors) {
+        let reply_errors = Object.values(this.props.reply_errors).flat();
+        if (reply_errors) {
             return (
                 <div className="comment-error">
-                    {comment_errors.map((error, i) => {
+                    {reply_errors.map((error, i) => {
                         return <li key={i}>{error}</li>
                     })}
                 </div>
@@ -61,7 +62,7 @@ class CommentEditForm extends React.Component {
     render() {
         return (
           <div className="comment">
-            <h3>Edit Comment</h3>
+            <h3>Edit Reply</h3>
             <form className="comment-form" onSubmit={this.handleSubmit}>
               <textarea
                 placeholder="Comment Text"
@@ -89,4 +90,4 @@ class CommentEditForm extends React.Component {
     }
 }
 
-export default withRouter(CommentEditForm);
+export default withRouter(ReplyEditForm);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class CommentForm extends React.Component {
+class ReplyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,12 +10,10 @@ class CommentForm extends React.Component {
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
-
-    console.log(this.props)
   }
 
   componentWillUnmount() {
-    this.props.removeCommentErrors();
+    this.props.removeReplyErrors();
   }
 
   handleInput(type) {
@@ -26,12 +24,12 @@ class CommentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let comment = {
+    let reply = {
       body: this.state.body,
       author_id: this.props.author_id,
-      question_id: this.props.currentQuestion,
+      comment_id: this.props.currentComment,
     };
-    this.props.sendComment(comment).then(
+    this.props.sendReply(reply).then(
       () => {
         this.setState({ body: "" });
         window.location.reload();
@@ -43,11 +41,11 @@ class CommentForm extends React.Component {
   }
 
   renderErrors() {
-    let comment_errors = Object.values(this.props.comment_errors).flat();
-    if (comment_errors && comment_errors.length > 0) {
+    let reply_errors = Object.values(this.props.reply_errors).flat();
+    if (reply_errors && reply_errors.length > 0) {
       return (
-        <div className="comment-error">
-          {comment_errors.map((error, i) => {
+        <div className="reply-error">
+          {reply_errors.map((error, i) => {
             return <li key={i}>{error}</li>;
           })}
         </div>
@@ -57,15 +55,15 @@ class CommentForm extends React.Component {
 
   render() {
     return (
-      <div className="comment">
-        <form className="comment-form" onSubmit={this.handleSubmit}>
+      <div className="reply">
+        <form className="reply-form" onSubmit={this.handleSubmit}>
           <textarea
-            placeholder="Comment"
+            placeholder="Reply"
             value={this.state.body}
             onChange={this.handleInput("body")}
           />
-          <button className="create-comment-button" onClick={this.handleSubmit}>
-            Add Comment
+          <button className="create-reply-button" onClick={this.handleSubmit}>
+            Add Reply
           </button>
         </form>
         {this.renderErrors()}
@@ -74,4 +72,4 @@ class CommentForm extends React.Component {
   }
 }
 
-export default withRouter(CommentForm);
+export default withRouter(ReplyForm);

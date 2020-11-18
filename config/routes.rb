@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         resource :like, only: [:destroy]
       end
       resource :likes, only: [:create]
-      resource :answers, only: [:create, :destroy, :update]
+      resources :replies
     end
 
     root "static_pages#root"

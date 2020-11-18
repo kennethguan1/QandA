@@ -8,6 +8,9 @@ import QuestionShowContainer from './question/question_show_container';
 import QuestionEditContainer from './question/question_edit_container';
 import CommentFormContainer from './comment/comment_form_container';
 import CommentEditFormContainer from './comment/comment_edit_container';
+import ReplyFormContainer from './reply/reply_form_container';
+import CommentShowContainer from './comment/comment_show_container';
+import ReplyEditFormContainer from './reply/reply_edit_container';
 
 import { Route, Redirect, Router, Switch } from 'react-router-dom';
 import {
@@ -27,6 +30,12 @@ export default () => (
       path="/questions/:id/comments/:commentId/edit"
       component={CommentEditFormContainer}
     />
+    <ProtectedRoute
+      exact
+      path="/questions/:id/comments/:commentId/replies/:replyId/edit"
+      component={ReplyEditFormContainer}
+    />
+
 
     <Switch>
       <ProtectedRoute
@@ -39,10 +48,16 @@ export default () => (
         path="/questions/:id"
         component={CommentFormContainer}
       />
+      <ProtectedRoute
+        exact
+        path="/questions/:id/comments/:commentId"
+        component={ReplyFormContainer}
+      />
     </Switch>
 
     <Switch>
       <Route exact path="/questions/:id" component={QuestionShowContainer} />
+      <Route exact path="/questions/:id/comments/:commentId" component={CommentShowContainer} />
       <ProtectedRoute exact path="/" component={QuestionIndexContainer} />
     </Switch>
   </div>

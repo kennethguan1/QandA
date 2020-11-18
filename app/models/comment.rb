@@ -18,7 +18,12 @@ class Comment < ApplicationRecord
     belongs_to :question,
         class_name: :Question
 
+    has_many :replies,
+        class_name: :Reply,
+        dependent: :destroy
+
     has_many :likes,
         foreign_key: :comment_id,
         class_name: :Like
+        
 end
