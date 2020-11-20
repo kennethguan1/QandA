@@ -126,7 +126,7 @@ class QuestionShow extends React.Component {
               >
                 <p>{comment.body}</p>
               </button>
-                <LikeButton comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost}/>
+                <LikeButton isLiked={false} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost}/>
               </div>
               <hr />
             </li>

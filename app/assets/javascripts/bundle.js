@@ -482,6 +482,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import SearchIndexContainer from '../components/SearchComponent/SearchIndexContainer'
 
 
 
@@ -1329,7 +1330,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      likes: 0
+      isLiked: false
     };
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     _this.handleUnlike = _this.handleUnlike.bind(_assertThisInitialized(_this)); // ​      console.log(this.props);
@@ -1346,10 +1347,10 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
       this.props.likePost(commentId, UserId).then(function () {
         // console.log('hitting here Like')
         _this2.setState({
-          likes: _this2.state.likes + 1
-        });
+          isLiked: true
+        }); // window.location.reload();
+        // console.log('after liking', this.state.likes)
 
-        window.location.reload(); // console.log('after liking', this.state.likes)
       });
     }
   }, {
@@ -1361,10 +1362,10 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
       this.props.unlikePost(commentId).then(function () {
         // console.log('hitting here Unlike')
         _this3.setState({
-          likes: _this3.state.likes - 1
-        });
+          isLiked: false
+        }); // window.location.reload();
+        // console.log('after Unliking',this.state.likes)
 
-        window.location.reload(); // console.log('after Unliking',this.state.likes)
       });
     }
   }, {
@@ -1372,7 +1373,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.props.comment.likers.includes(this.props.currentUser.id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.state.isLiked ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "like-btn",
         onClick: function onClick() {
           return _this4.handleLike(_this4.props.comment.id, _this4.props.currentUser.id);
@@ -2230,6 +2231,7 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
               _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            isLiked: false,
             comment: comment,
             currentUser: _this5.props.currentUser,
             likePost: _this5.props.likePost,
