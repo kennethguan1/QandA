@@ -20,7 +20,7 @@ class CommentEditForm extends React.Component {
                     question_id: comment.question_id,
                 });
             });
-        console.log(this.props)
+        // console.log(this.props)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
     }

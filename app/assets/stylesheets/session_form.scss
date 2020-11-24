@@ -4,13 +4,17 @@
     margin: auto;
     margin-top: 60px;
     border-radius: 50%;
-    background-color: #f5f1d0;
+    background-color: white;
     width: 650px;
     height: 650px;
     display: grid;
     grid-template-rows: 20% 20% 20%;
     grid-template-columns: 50% 50%;
-    border: 3px solid black;
+    border: 3px solid grey;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2852&q=80");
 }
 
 .website-title {
@@ -18,7 +22,7 @@
     text-align: center;
     font-size: 30px;
     text-decoration: none;
-    color: #16399c;
+    color: #ff3333;
     font-style: oblique;
     font-family: fangsong;
 }
@@ -35,7 +39,9 @@
 
 .slogan p {
     margin-top: 15px;
-    color: #170d3d;
+    color: #ff8080;
+    font-style: italic;
+    font-family: fangsong;
 }
 
 .session-buttons-box {
@@ -92,10 +98,18 @@ form {
 }
 
 .login-message, .signup-message {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
     width: 270px;
     margin: 0px;
+    font-family: Courier;
+    color: white
+}
+
+.login, .signup {
+    font-family: Courier;
+    font-size: 20px;
+    color: white
 }
 
 .session-form input[type="text"],
@@ -103,7 +117,7 @@ form {
 .session-form button {
     border: 1px;
     border-style: solid;
-    border-color: gray;
+    border-color: #cccccc;
     border-radius: 2px;
     font-size: 15px;
     padding: 8px;
@@ -117,16 +131,20 @@ form {
 
 .password-input, .username-login {
     width: 200px;
+    background-color: #e6e6e6
 }
 
 .username {
     justify-self: left;
     margin-right: 2px;
+    background-color: #e6e6e6
 }
 
 .email {
     justify-self: right;
     margin-left: 2px;
+    background-color: #e6e6e6
+
 }
 
 .signup-button, .login-button {

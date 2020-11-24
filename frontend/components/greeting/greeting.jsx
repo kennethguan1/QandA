@@ -8,6 +8,7 @@ class Greeting extends React.Component {
   
   render() {
 
+    
     <div className="navbar-website-title">
         <Link to="/" className="website-title-link">
           <h1>

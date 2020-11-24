@@ -89,8 +89,8 @@ class QuestionEditForm extends React.Component {
         }
         return (
             <div className="show">
-                <div className="edit-question">
-                    <form className="edit-question-form" onSubmit={this.handleSubmit}>
+                <div className="question-modal">
+                    <form className="question-form" onSubmit={this.handleSubmit}>
                         <h1>Edit Question</h1>
                         <input
                             type="text"

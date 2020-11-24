@@ -11,7 +11,8 @@ import CommentEditFormContainer from './comment/comment_edit_container';
 import ReplyFormContainer from './reply/reply_form_container';
 import CommentShowContainer from './comment/comment_show_container';
 import ReplyEditFormContainer from './reply/reply_edit_container';
-// import SearchIndexContainer from '../components/SearchComponent/SearchIndexContainer'
+import SearchIndexContainer from './search/search_index_container';
+import SearchContainer from './search/search_container'
 
 
 import { Route, Redirect, Router, Switch } from 'react-router-dom';
@@ -26,7 +27,7 @@ export default () => (
   <div className="routes">
     <HiddenRoute exact path="/" component={SessionContainer} />
     <ShownRoute path="/" component={GreetingContainer} />
-    {/* <ShownRoute path="/" component={SearchIndexContainer} /> */}
+    <ShownRoute path="/" component={SearchContainer} />
     <ProtectedRoute path="/askquestion" component={QuestionFormContainer} />
     <ProtectedRoute
       exact
@@ -56,6 +57,11 @@ export default () => (
         path="/questions/:id/comments/:commentId"
         component={ReplyFormContainer}
       />
+      <ProtectedRoute
+        exact
+        path="/search/:searchinput" 
+        component={SearchIndexContainer} 
+        />
     </Switch>
 
     <Switch>

@@ -114,12 +114,11 @@ class QuestionShow extends React.Component {
               <div className="comment-item">
                 {this.crudCOptions(comment)}
                 <p>
-                  <strong>
+                  <strong className="comment-username">
                     {comment.author.username}
                   </strong>{" "}
                 </p>
-              <button
-                className="question-button"
+              <button className="comment-button"
                 onClick={() => {
                   this.props.history.push(`/questions/${this.props.questionId}/comments/${comment.id}`);
                 }}

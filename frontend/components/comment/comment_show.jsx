@@ -87,7 +87,7 @@ class CommentShow extends React.Component {
               <div className="comment-item">
                 {this.crudROptions(reply)}
                 <p>
-                  <strong>
+                  <strong className="reply-username">
                     {reply.author.username}
                   </strong>{" "}
                 </p>
