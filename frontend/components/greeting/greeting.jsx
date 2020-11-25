@@ -64,15 +64,22 @@ class Greeting extends React.Component {
                   <strong className="home-button-text">Home</strong>
                 </button>
               </Link>
-              <br />
-              <br />
-              <Link to="/questions">
                 <button
-                  className="home-button"
+                  className="linkedin-button"
                 >
-                  See Comments
+                  <img className="linkedin-icon" src={window.linkedin}/>
+                  <a href="https://www.linkedin.com/in/2702235a/" className="linkedin-link">
+                    LinkedIn
+                  </a>
                 </button>
-              </Link>
+                <button
+                  className="github-button"
+                >
+                  <img className="github-icon" src={window.github}/>
+                  <a href="https://github.com/kennethguan1" className="github-link">
+                    Github
+                  </a>
+                </button>
               <br />
               <br />
             </div>

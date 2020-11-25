@@ -93,18 +93,57 @@
     font-weight: bold;
     text-decoration: none;
     font-size: 20px;
-    background-color: #2b2e5e;
+    background-color: #be560b;
     color: white;
     border: none;
 }
 
 .home-button:hover {
     color: #fff;
+    background-color: #bc7543;
+    cursor: pointer;
+}
+
+.linkedin-button {
+    width: 300px;
+    padding: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #0e76a8;
+    border: none;
+}
+
+.linkedin-button:hover {
+    color: #fff;
+    background-color: #4987a4;
+    cursor: pointer;
+}
+
+.linkedin-link {
+    color: white;
+    text-decoration: none;
+}
+
+.github-button {
+    width: 300px;
+    padding: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #2b2e5e;
+    border: none;
+}
+
+.github-button:hover {
+    color: #fff;
     background-color: #17438498;
     cursor: pointer;
 }
 
-.home-button-text {
+.github-link {
+    color: white;
+    text-decoration: none;
 }
 
 .options {

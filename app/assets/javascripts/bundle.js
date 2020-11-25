@@ -109,7 +109,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
 var REMOVE_COMMENT_ERRORS = 'REMOVE_COMMENT_ERRORS';
-var RECEIVE_COMMENT = "RECEIVE_COMMENT";
+var RECEIVE_COMMENT = "RECEIVE_COMMENT"; // export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
+// export const REMOVE_COMMENT = "REMOVE_COMMENT";
+
 var receiveCommentErrors = function receiveCommentErrors(errors) {
   return {
     type: RECEIVE_COMMENT_ERRORS,
@@ -126,7 +128,20 @@ var receiveComment = function receiveComment(comment) {
     type: RECEIVE_COMMENT,
     comment: comment
   };
-};
+}; // export const receiveComments = (comments) => ({
+//   type: RECEIVE_COMMENTS,
+//   comments,
+// });
+// export const removeComment = (commentId) => ({
+//   type: REMOVE_COMMENT,
+//   commentId,
+// });
+// export const fetchComments = (comments) => (dispatch) =>
+//   APIUtil.fetchComments(comments).then(
+//     (comments) => dispatch(receiveComments(comments)),
+//     (err) => dispatch(receiveCommentErrors(err.responseJSON))
+//   );
+
 var fetchComment = function fetchComment(id) {
   return function (dispatch) {
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchComment"](id).then(function (comment) {
@@ -486,6 +501,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import CommentIndexContainer from './comment/comment_index_container';
 
 
 
@@ -1264,11 +1280,23 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           src: window.home
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
           className: "home-button-text"
-        }, "Home"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/questions"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "home-button"
-        }, "See Comments")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)))));
+        }, "Home"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "linkedin-button"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "linkedin-icon",
+          src: window.linkedin
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "https://www.linkedin.com/in/2702235a/",
+          className: "linkedin-link"
+        }, "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "github-button"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "github-icon",
+          src: window.github
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "https://github.com/kennethguan1",
+          className: "github-link"
+        }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)))));
       };
 
       return this.props.currentUser ? personalGreeting() : guestgreeting();
@@ -1366,7 +1394,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      likes: 0
+      isLiked: false
     };
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     _this.handleUnlike = _this.handleUnlike.bind(_assertThisInitialized(_this)); // ​      console.log(this.props);
@@ -1383,10 +1411,10 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
       this.props.likePost(commentId, UserId).then(function () {
         // console.log('hitting here Like')
         _this2.setState({
-          likes: _this2.state.likes + 1
-        });
+          isLiked: true
+        }); // window.location.reload();
+        // console.log('after liking', this.state.likes)
 
-        window.location.reload(); // console.log('after liking', this.state.likes)
       });
     }
   }, {
@@ -1398,10 +1426,10 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
       this.props.unlikePost(commentId).then(function () {
         // console.log('hitting here Unlike')
         _this3.setState({
-          likes: _this3.state.likes - 1
-        });
+          isLiked: false
+        }); // window.location.reload();
+        // console.log('after Unliking',this.state.likes)
 
-        window.location.reload(); // console.log('after Unliking',this.state.likes)
       });
     }
   }, {
@@ -1409,7 +1437,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.props.comment.likers.includes(this.props.currentUser.id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.state.isLiked ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "like-btn",
         onClick: function onClick() {
           return _this4.handleLike(_this4.props.comment.id, _this4.props.currentUser.id);
@@ -1445,7 +1473,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
   return LikeButton;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(LikeButton)); // pass isLiked prop to question_show.jsx
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(LikeButton));
 
 /***/ }),
 
@@ -3593,8 +3621,8 @@ var questionReducer = function questionReducer() {
       liker = action.like.author_id;
       comment = action.like.comment_id;
       currentQuestion = Object.keys(newState)[0];
-      newState[currentQuestion].comments[comment].likers.push(liker);
-      debugger;
+      newState[currentQuestion].comments[comment].likers.push(liker); // debugger
+
       return newState;
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_LIKE"]:
@@ -3602,8 +3630,8 @@ var questionReducer = function questionReducer() {
       comment = action.like.comment_id;
       currentQuestion = Object.keys(newState)[0];
       var index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
-      newState[currentQuestion].comments[comment].likers.splice(index);
-      debugger;
+      newState[currentQuestion].comments[comment].likers.splice(index); // debugger
+
       return newState;
 
     default:
@@ -3803,6 +3831,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+// export const fetchComments = (comments) =>
+//   $.ajax({
+//     url: "/api/comments",
+//     method: "GET",
+//     data: {
+//       comments,
+//     },
+//   });
 var fetchComment = function fetchComment(comment) {
   return $.ajax({
     url: "api/comments/".concat(comment.id),

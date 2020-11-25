@@ -34,7 +34,7 @@ const questionReducer = (oldState = {}, action) => {
       comment = action.like.comment_id;
       currentQuestion = Object.keys(newState)[0];
       newState[currentQuestion].comments[comment].likers.push(liker);
-      debugger
+      // debugger
       return newState;
     case REMOVE_LIKE:
       liker = action.like.author_id;
@@ -42,7 +42,7 @@ const questionReducer = (oldState = {}, action) => {
       currentQuestion = Object.keys(newState)[0];
       const index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
       newState[currentQuestion].comments[comment].likers.splice(index);
-      debugger
+      // debugger
       return newState;
     default:
       return oldState;

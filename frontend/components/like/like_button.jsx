@@ -5,7 +5,7 @@ class LikeButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        likes: 0
+        isLiked: false
       }
       this.handleLike = this.handleLike.bind(this)
       this.handleUnlike = this.handleUnlike.bind(this)
@@ -16,8 +16,8 @@ class LikeButton extends React.Component {
       // console.log('before liking',this.state.likes)
       this.props.likePost(commentId, UserId).then(() =>{
         // console.log('hitting here Like')
-        this.setState({likes: this.state.likes + 1});
-        window.location.reload();
+        this.setState({isLiked: true});
+        // window.location.reload();
         // console.log('after liking', this.state.likes)
       })
       
@@ -27,8 +27,8 @@ class LikeButton extends React.Component {
       // console.log('before Unliking',this.state.likes)
       this.props.unlikePost(commentId).then(() =>{
         // console.log('hitting here Unlike')
-        this.setState({likes: this.state.likes - 1});
-        window.location.reload();
+        this.setState({isLiked: false});
+        // window.location.reload();
         // console.log('after Unliking',this.state.likes)
       })
     }
@@ -37,7 +37,7 @@ class LikeButton extends React.Component {
     return (
     <div>
       {
-      !this.props.comment.likers.includes(this.props.currentUser.id) ?
+      !this.state.isLiked ?
             (<button className="like-btn" onClick={() => this.handleLike(this.props.comment.id, this.props.currentUser.id)}>
                 <i className="fas fa-heart unclicked post-index-like">Like</i>
             </button>)
@@ -76,5 +76,3 @@ class LikeButton extends React.Component {
 }
 
 export default withRouter(LikeButton);
-
-// pass isLiked prop to question_show.jsx

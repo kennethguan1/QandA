@@ -1,3 +1,12 @@
+// export const fetchComments = (comments) =>
+//   $.ajax({
+//     url: "/api/comments",
+//     method: "GET",
+//     data: {
+//       comments,
+//     },
+//   });
+
 export const fetchComment = (comment) =>
   $.ajax({
     url: `api/comments/${comment.id}`,
