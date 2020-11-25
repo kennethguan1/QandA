@@ -22,7 +22,7 @@
     text-align: center;
     font-size: 30px;
     text-decoration: none;
-    color: #ff3333;
+    color: white;
     font-style: oblique;
     font-family: fangsong;
 }
@@ -153,6 +153,10 @@ form {
     font-weight: bold;
     display: flex;
     align-self: flex-end;
+}
+
+.signup-button, .login-button {
+    cursor: pointer;
 }
 
 .session-error {

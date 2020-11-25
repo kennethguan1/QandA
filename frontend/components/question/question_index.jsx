@@ -49,7 +49,7 @@ class QuestionIndex extends React.Component {
           <li key={i} className="question-list-item">
             {this.crudOptions(question)}
             <QuestionIndexItem question={question} key={question.id} />
-            <hr />
+            <br />
           </li>
         ))}
       </div>

@@ -83,7 +83,10 @@ class QuestionShow extends React.Component {
       return (
         <div className="show-box">
           {this.crudOptions(question)}
-          <h1>{question.title}</h1>
+                {/* <strong className="question-by">Question by </strong> <strong className="question-username">{question.author.username}</strong> */}
+          <h1>Question:
+            <br />
+            {question.title}</h1>
           <hr />
           <p className="show-body">{question.body}</p>
         </div>
@@ -115,7 +118,8 @@ class QuestionShow extends React.Component {
                 {this.crudCOptions(comment)}
                 <p>
                   <strong className="comment-username">
-                    {comment.author.username}
+                    {comment.author.username}{"   "}
+                    <img className="profile-icon" src={window.defaultImage}/>
                   </strong>{" "}
                 </p>
               <button className="comment-button"

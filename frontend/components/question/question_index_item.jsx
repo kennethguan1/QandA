@@ -10,9 +10,8 @@ class QuestionIndexItem extends React.Component {
         return (
           <div className="question-header">
             <p>
-              <strong>
-                <strong className="question-by">Question by </strong> <strong className="question-username">{question.author.username}</strong>
-              </strong>
+                <strong className="question-by">Question by </strong> <strong className="question-username">{question.author.username}  </strong>
+                <img className="profile-icon" src={window.defaultImage}/>
             </p>
             <button
               className="question-button"
@@ -22,7 +21,7 @@ class QuestionIndexItem extends React.Component {
             >
               <h3>{question.title}</h3>
             </button>
-            <p>{question.body}</p>
+            {/* <p>{question.body}</p> */}
           </div>
         );
     }

@@ -8,6 +8,11 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag asset_path('favicon.png') %>
+    <script>
+      window.defaultImage = "<%= image_url('profile-pic.jpeg') %>";
+      window.pencil = "<%= image_url('edit.png') %>";
+      window.home = "<%= image_url('home.png') %>";
+    </script>
   </head>
 
   <body>

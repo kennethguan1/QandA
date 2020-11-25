@@ -72,7 +72,7 @@ class QuestionEditForm extends React.Component {
           return (
             <div className="crud-buttons">
               <button
-                className="del-crud-button"
+                className="edit-del-crud-button"
                 onClick={() => this.handleDelete(question)}
               >
                 Delete
@@ -94,16 +94,16 @@ class QuestionEditForm extends React.Component {
                         <h1>Edit Question</h1>
                         <input
                             type="text"
-                            placeholder="Title"
+                            placeholder="Question Title"
                             value={this.state.title}
                             onChange={this.handleInput('title')}
                         />
                         <textarea
-                            placeholder="Body"
+                            placeholder="Question Body"
                             value={this.state.body}
                             onChange={this.handleInput('body')}
                         />
-                        <button onClick={this.handleSubmit}>Update Question</button>
+                        <button onClick={this.handleSubmit} className="edit-question-button">Update Question</button>
                         {this.renderErrors()}
                     </form>
                     <div className="show-button-box">

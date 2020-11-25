@@ -69,7 +69,7 @@ class Search extends React.Component {
                         <i className="fas fa-search magnify" />
                         <input type="text" className="searchbox" 
                         value={this.state.searchQuery }
-                        placeholder="Type To Search Question"
+                        placeholder="Search Question"
                         onChange={this.update('searchQuery')}
                     />
                 </form>

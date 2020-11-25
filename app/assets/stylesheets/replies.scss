@@ -1,16 +1,27 @@
 .reply {
     grid-area: 3 / 2 / 4 / 3;
     padding: 25px;
+    margin-left: 75px;
+    width: 950px;
     // border: 1px solid grey;
     // border-top: 1px solid black;
     // border-bottom: 1px solid black;
 }
 
 .reply-form button {
-    right: 0px;
-    width: 120px;
+    grid-area: 2 / 3 / 3 / 4;
+    padding: 10px;
+    width: 125px;
+    font-weight: bold;
+    justify-self: right;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
     color: white;
     background-color: #3e78ad;
+    height: 40px;
+    margin-left: 15px;
+    margin-top: 20px
 }
 
 .reply-form button:hover {
@@ -24,6 +35,8 @@
     overflow-y: auto;
     margin-right: 10px;
     padding: 5px;
+    min-height: 75px;
+    font-size: 20px;
 }
 
 .reply-username {

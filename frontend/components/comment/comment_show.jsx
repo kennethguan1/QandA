@@ -57,8 +57,13 @@ class CommentShow extends React.Component {
       const question = this.state.question;
       return (
         <div className="show-box">
-          <h1>{question.title}</h1>
+          <h1>
+            Question:
+            <br />
+            {question.title}</h1>
           <hr />
+            <strong>Comment:</strong>
+            <br />
           <p className="show-body">{comment.body}</p>
         </div>
       );
@@ -88,7 +93,8 @@ class CommentShow extends React.Component {
                 {this.crudROptions(reply)}
                 <p>
                   <strong className="reply-username">
-                    {reply.author.username}
+                    {reply.author.username}{"   "}
+                    <img className="profile-icon" src={window.defaultImage}/>
                   </strong>{" "}
                 </p>
                 <p>{reply.body}</p>

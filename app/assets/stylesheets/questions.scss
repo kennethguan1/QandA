@@ -31,7 +31,8 @@
 
 .question-form h1 {
     text-align: center;
-    color: white
+    color: white;
+    font-family: courier;
 }
 
 .close-question-button {
@@ -40,12 +41,20 @@
     top: 10px;
     height: 25px;
     width: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(166, 166, 166);
+}
+
+.close-question-button:hover {
+    background-color: rgb(127, 127, 127);
 }
 
 .question-form input[type="text"] {
     margin-bottom: 2px;
     width: 300px;
     height: 30px;
+    font-size: 16px
 }
 
 .question-form textarea {
@@ -54,24 +63,56 @@
     height: 120px;
     resize: none;
     padding-top: 10px;
+    font-size: 16px
 }
 
 .question-form button, .question-form Link {
     font-size: 16px;
     font-weight: bold;
-    background-color: #507cc0;
     color: white;
     cursor: pointer;
     // border: 1px solid white;
 }
 
-.question-list-item {
-    list-style-type: none;
-    padding-left: 10px;
+.create-question-button {
+    background-color: #507cc0;
+    margin-top: 25px;
+    margin-right: 25px;
+    margin-left: 25px;
+    grid-area: 2 / 3 / 3 / 4;
+    padding: 10px;
+    font-weight: bold;
+    justify-self: right;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
 }
 
-.question-button {
-    background-color: white;
+.create-question-button:hover {
+    background-color: #375787
+}
+
+.edit-question-button {
+    background-color: #507cc0;
+    margin-top: 25px;
+    margin-right: 25px;
+    margin-left: 25px;
+    grid-area: 2 / 3 / 3 / 4;
+    padding: 10px;
+    font-weight: bold;
+    justify-self: right;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.edit-question-button:hover {
+    background-color: #375787
+}
+
+.question-list-item {
+    list-style-type: none;
+    padding-left: 130px;
 }
 
 .question-list-item p, .question-list-item h3 {
@@ -80,19 +121,24 @@
 }
 
 .question-list-item p {
-    max-height: 22px;
+    padding: 25px
 }
 
 .question-list-item h3 {
-    text-align: left;
+    padding-left: 25px;
+    margin-top: -15px;
+}
+
+.question-header {
+    background-color: rgb(238, 238, 238);
+    border-radius: 25px;
+    
 }
 
 .question-header button {
     font-size: 18px;
     background-color: rgb(238, 238, 238);
     border: none;
-    padding: 0;
-    text-transform: capitalize;
 }
 
 .question-header button:hover {
@@ -103,11 +149,13 @@
 .question-by {
     color: #195f80;
     font-family: courier;
+    font-size: 25px;
 }
 
 .question-username {
     color: #c25100;
     font-family: courier;
+    font-size: 25px;
 }
 
 .question-header button:hover {
@@ -122,6 +170,11 @@
     // border-bottom: 1px solid grey;
     padding-left: 15px;
     padding-right: 15px;
+    border-radius: 25px;
+    margin-top: 25px;
+    margin-left: 50px;
+    width: 800px;
+    font-size: 15px
 }
 
 .show-info {
@@ -225,10 +278,10 @@
 
 .feed {
     grid-area: 2 / 2 / 5 / 2;
-    background-color: rgb(238, 238, 238);
     // border: 1px solid grey;
     height: fit-content;
-    // z-index: -1;
+    width: 1000px;
+    margin-top: 7px;
 }
 
 .crud-buttons {
@@ -253,6 +306,14 @@
     background-color: #df4930;
     color: white;
     margin-right: 10px;
+    grid-area: 2 / 3 / 3 / 4;
+    padding: 10px;
+    width: 60px;
+    font-weight: bold;
+    justify-self: right;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
 }
 
 .edit-crud-button:hover {
@@ -262,6 +323,15 @@
 .del-crud-button {
     background-color: #507cc0;
     color: white;
+    margin-right: 10px;
+    grid-area: 2 / 3 / 3 / 4;
+    padding: 10px;
+    width: 60px;
+    font-weight: bold;
+    justify-self: right;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
 }
 
 .del-crud-button:hover {
@@ -278,4 +348,23 @@
     position: relative;
     cursor: pointer;
     color: red;
+}
+
+.edit-del-crud-button {
+    position: fixed;
+    left: 50px;
+    bottom: 150px;
+    color: white;
+    text-decoration: none;
+    width: 100px;
+    background-color: #811300;
+    border: 1px solid rgb(105, 0, 0);
+    padding: 3px;
+    font-weight: bold;
+    border-radius: 2px;
+    height: 40px;
+}
+
+.edit-del-crud-button:hover {
+    background-color: #b9351e9a;
 }

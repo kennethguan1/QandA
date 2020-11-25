@@ -1,14 +1,29 @@
 .comment {
     grid-area: 3 / 2 / 4 / 3;
     padding: 25px;
+    margin-left: 75px;
+    width: 950px;
+}
 
+.comment h3 {
+    color: white;
+    font-family: courier;
 }
 
 .comment-form button {
-    right: 0px;
-    width: 120px;
+    grid-area: 2 / 3 / 3 / 4;
+    padding: 10px;
+    width: 125px;
+    font-weight: bold;
+    justify-self: right;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
     color: white;
     background-color: #3e78ad;
+    height: 40px;
+    margin-left: 15px;
+    margin-top: 20px
 }
 
 .comment-form button:hover {
@@ -22,11 +37,17 @@
     overflow-y: auto;
     margin-right: 10px;
     padding: 5px;
+    min-height: 75px;
+    font-size: 20px;
 }
 
 .comment-username {
     color: #c25100;
     font-family: courier;
+}
+
+.comment-button p {
+    margin-top: -15px;
 }
 
 .comment-button {
@@ -44,11 +65,14 @@
 
 .comments-show {
     background-color: rgb(238, 238, 238);
-
     list-style-type: none;
     grid-area: 4 / 2 / 5 / 3;
     padding-left: 15px;
     padding-right: 15px;
+    margin-left: 100px;
+    width: 920px;
+    border-radius: 15px;
+
 }
 
 .comment-item {

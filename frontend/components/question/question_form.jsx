@@ -59,12 +59,12 @@ class QuestionForm extends React.Component {
                     <Link to="/" className="close-new-question"><button className="close-question-button">X</button></Link>
                     <input
                         type="text"
-                        placeholder="Title"
+                        placeholder="Question Title"
                         value={this.state.title}
                         onChange={this.handleInput('title')}
                     />
                     <textarea
-                        placeholder="Body"
+                        placeholder="Question Body"
                         value={this.state.body}
                         onChange={this.handleInput('body')}
                     />
