@@ -179,19 +179,23 @@ var deleteComment = function deleteComment(comment) {
 /*!******************************************!*\
   !*** ./frontend/actions/like_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_LIKE, REMOVE_LIKE, likePost, unlikePost */
+/*! exports provided: RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_LIKES, receiveLikes, likePost, unlikePost, fetchLikes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKE", function() { return RECEIVE_LIKE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIKE", function() { return REMOVE_LIKE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKES", function() { return RECEIVE_LIKES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLikes", function() { return receiveLikes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likePost", function() { return likePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikePost", function() { return unlikePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLikes", function() { return fetchLikes; });
 /* harmony import */ var _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/like_api_util */ "./frontend/util/like_api_util.js");
 
 var RECEIVE_LIKE = "RECEIVE_LIKE";
 var REMOVE_LIKE = "REMOVE_LIKE";
+var RECEIVE_LIKES = "RECEIVE_LIKES"; // export const RECEIVE_LIKE_ERRORS = "RECEIVE_LIKE_ERRORS";
 
 var receiveLike = function receiveLike(like) {
   return {
@@ -205,8 +209,18 @@ var removeLike = function removeLike(like) {
     type: REMOVE_LIKE,
     like: like
   };
-};
+}; // export const receiveLikeErrors = (errors) => ({
+//   type: RECEIVE_LIKE_ERRORS,
+//   errors,
+// });
 
+
+var receiveLikes = function receiveLikes(likes) {
+  return {
+    type: RECEIVE_LIKES,
+    likes: likes
+  };
+};
 var likePost = function likePost(commentId, userId) {
   return function (dispatch) {
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["likePost"](commentId, userId).then(function (like) {
@@ -221,6 +235,17 @@ var unlikePost = function unlikePost(commentId) {
     });
   };
 };
+var fetchLikes = function fetchLikes() {
+  return function (dispatch) {
+    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLikes"]().then(function (likes) {
+      return dispatch(receiveLikes(likes));
+    });
+  };
+}; //   export const fetchLike = (id) => (dispatch) =>
+//   LikeApiUtil.fetchLike(id).then(
+//     (like) => dispatch(receiveLike(like)),
+//     (err) => dispatch(receiveLikeErrors(err.responseJSON))
+//   );
 
 /***/ }),
 
@@ -505,7 +530,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
+
+var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "routes"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["HiddenRoute"], {
@@ -515,7 +541,7 @@ __webpack_require__.r(__webpack_exports__);
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ShownRoute"], {
     path: "/",
     component: _greeting_greeting_container__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ShownRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
     path: "/",
     component: _search_search_container__WEBPACK_IMPORTED_MODULE_13__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
@@ -545,11 +571,11 @@ __webpack_require__.r(__webpack_exports__);
     exact: true,
     path: "/search/:searchinput",
     component: _search_search_index_container__WEBPACK_IMPORTED_MODULE_12__["default"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__["Route"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
     exact: true,
     path: "/questions/:id",
     component: _question_question_show_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
     exact: true,
     path: "/questions/:id/comments/:commentId",
     component: _comment_comment_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -558,7 +584,9 @@ __webpack_require__.r(__webpack_exports__);
     path: "/",
     component: _question_question_index_container__WEBPACK_IMPORTED_MODULE_3__["default"]
   })));
-});
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
 
@@ -1396,11 +1424,36 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       isLiked: false
     };
+
+    _this.props.getLikes().then(function () {
+      var allLikes = [];
+      Object.values(_this.props.likes).forEach(function (like) {
+        if (like.comment_id === _this.props.comment.id) {
+          allLikes.push(like.author_id);
+        }
+      });
+
+      if (allLikes.includes(_this.props.currentUser.id)) {
+        _this.setState({
+          isLiked: true
+        });
+      }
+    });
+
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
-    _this.handleUnlike = _this.handleUnlike.bind(_assertThisInitialized(_this)); // ​      console.log(this.props);
+    _this.handleUnlike = _this.handleUnlike.bind(_assertThisInitialized(_this)); // this.setStateAfter = this.setStateAfter.bind(this)
 
     return _this;
-  }
+  } // componentDidMount(){
+  //     this.setStateAfter()
+  // }
+  // setStateAfter(){
+  //     this.setState({
+  //         likes: this.props.likes
+  //     })
+  //               console.log(this.state)
+  // }
+
 
   _createClass(LikeButton, [{
     key: "handleLike",
@@ -1409,10 +1462,17 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
 
       // console.log('before liking',this.state.likes)
       this.props.likePost(commentId, UserId).then(function () {
-        // console.log('hitting here Like')
+        var allLikes = [];
+        Object.values(_this2.props.likes).forEach(function (like) {
+          if (like.comment_id === _this2.props.comment.id) {
+            allLikes.push(like.author_id);
+          }
+        });
+
         _this2.setState({
           isLiked: true
-        }); // window.location.reload();
+        }); // console.log('hitting here Like')
+        // window.location.reload();
         // console.log('after liking', this.state.likes)
 
       });
@@ -1424,10 +1484,17 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
 
       // console.log('before Unliking',this.state.likes)
       this.props.unlikePost(commentId).then(function () {
-        // console.log('hitting here Unlike')
+        var allLikes = [];
+        Object.values(_this3.props.likes).forEach(function (like) {
+          if (like.comment_id === _this3.props.comment.id) {
+            allLikes.push(like.author_id);
+          }
+        });
+
         _this3.setState({
           isLiked: false
-        }); // window.location.reload();
+        }); // console.log('hitting here Unlike')
+        // window.location.reload();
         // console.log('after Unliking',this.state.likes)
 
       });
@@ -1437,6 +1504,14 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
+      var allLikes = [];
+      Object.values(this.props.likes).forEach(function (like) {
+        if (like.comment_id === _this4.props.comment.id) {
+          allLikes.push(like.author_id);
+        }
+      }); // console.log(this.state)
+      // console.log(this.props)
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.state.isLiked ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "like-btn",
         onClick: function onClick() {
@@ -1444,13 +1519,14 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-heart unclicked post-index-like"
-      }, "Like")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Upvote")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "like-btn",
         onClick: function onClick() {
           return _this4.handleUnlike(_this4.props.comment.id);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-heart clicked post-index-like"
-      }, "Unlike")));
+      }, "Downvote")));
     } // render() {
     //   return (
     //   <div>
@@ -1473,7 +1549,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
   return LikeButton;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(LikeButton));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(LikeButton)); // pass isLiked prop to question_show.jsx
 
 /***/ }),
 
@@ -1991,6 +2067,7 @@ var QuestionIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
+      // console.log(this.state)
       var questions = Object.values(this.props.questions);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "feed"
@@ -2186,7 +2263,8 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
       id: _this.props.questionId
     }).then(function (question) {
       _this.setState(question);
-    });
+    }); // console.log(this.state)
+
 
     return _this;
   }
@@ -2304,11 +2382,13 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
               _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            isLiked: false,
+            likes: _this5.props.likes,
             comment: comment,
             currentUser: _this5.props.currentUser,
             likePost: _this5.props.likePost,
-            unlikePost: _this5.props.unlikePost
+            unlikePost: _this5.props.unlikePost,
+            getLikes: _this5.props.getLikes,
+            getLike: _this5.props.getLike
           })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
         });
       } else {
@@ -2369,7 +2449,8 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
   var match = _ref.match;
   return {
     questionId: parseInt(match.params.id),
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    likes: state.likes
   };
 };
 
@@ -2383,6 +2464,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     deleteComment: function deleteComment(commentId) {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__["deleteComment"])(commentId));
+    },
+    // getLike: (likeId) => dispatch(fetchLike(likeId)),
+    getLikes: function getLikes() {
+      return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_4__["fetchLikes"])());
     },
     likePost: function likePost(commentId, userId) {
       return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_4__["likePost"])(commentId, userId));
@@ -3502,11 +3587,14 @@ var commentErrorsReducer = function commentErrorsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _question_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./question_reducer */ "./frontend/reducers/question_reducer.js");
+/* harmony import */ var _like_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./like_reducer */ "./frontend/reducers/like_reducer.js");
+/* harmony import */ var _question_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./question_reducer */ "./frontend/reducers/question_reducer.js");
+
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  questions: _question_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  questions: _question_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  likes: _like_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -3538,6 +3626,62 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   reply: _reply_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/like_reducer.js":
+/*!*******************************************!*\
+  !*** ./frontend/reducers/like_reducer.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/like_actions */ "./frontend/actions/like_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var likeReducer = function likeReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var liker;
+  var comment;
+  var currentQuestion;
+  var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIKES"]:
+      return action.likes;
+
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIKE"]:
+      //   console.log(newState);
+      //   console.log(Object.keys(newState)[0]);
+      //   liker = action.like.author_id;
+      //   comment = action.like.comment_id;
+      //   currentQuestion = Object.keys(newState)[0];
+      //   newState[currentQuestion].comments[comment].likers.push(liker);
+      return newState;
+
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIKE"]:
+      // console.log(newState);
+      // console.log(Object.keys(newState)[0]);
+      //   liker = action.like.author_id;
+      //   comment = action.like.comment_id;
+      //   currentQuestion = Object.keys(newState)[0];
+      //   const index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
+      //   newState[currentQuestion].comments[comment].likers.splice(index);
+      return newState;
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (likeReducer);
 
 /***/ }),
 
@@ -3588,12 +3732,15 @@ var questionErrorsReducer = function questionErrorsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_question_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/question_actions */ "./frontend/actions/question_actions.js");
-/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/like_actions */ "./frontend/actions/like_actions.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
+ // import {
+//   RECEIVE_LIKE,
+//   REMOVE_LIKE,
+//   RECEIVE_LIKES,
+// } from '../actions/like_actions';
 
 
 
@@ -3603,7 +3750,7 @@ var questionReducer = function questionReducer() {
   var liker;
   var comment;
   var currentQuestion;
-  var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, oldState);
+  var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
   Object.freeze(oldState);
 
   switch (action.type) {
@@ -3616,23 +3763,25 @@ var questionReducer = function questionReducer() {
     case _actions_question_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_QUESTION"]:
       delete newState[action.questionId];
       return newState;
-
-    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_LIKE"]:
-      liker = action.like.author_id;
-      comment = action.like.comment_id;
-      currentQuestion = Object.keys(newState)[0];
-      newState[currentQuestion].comments[comment].likers.push(liker); // debugger
-
-      return newState;
-
-    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_LIKE"]:
-      liker = action.like.author_id;
-      comment = action.like.comment_id;
-      currentQuestion = Object.keys(newState)[0];
-      var index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
-      newState[currentQuestion].comments[comment].likers.splice(index); // debugger
-
-      return newState;
+    // case RECEIVE_LIKES:
+    //   return action.likes;
+    // case RECEIVE_LIKE:
+    //   // console.log(newState);
+    //   // console.log(Object.keys(newState)[0]);
+    //   liker = action.like.author_id;
+    //   comment = action.like.comment_id;
+    //   currentQuestion = Object.keys(newState)[0];
+    //   newState[currentQuestion].comments[comment].likers.push(liker);
+    //   return newState;
+    // case REMOVE_LIKE:
+    //         // console.log(newState);
+    //         // console.log(Object.keys(newState)[0]);
+    //   liker = action.like.author_id;
+    //   comment = action.like.comment_id;
+    //   currentQuestion = Object.keys(newState)[0];
+    //   const index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
+    //   newState[currentQuestion].comments[comment].likers.splice(index);
+    //   return newState;
 
     default:
       return oldState;
@@ -3694,6 +3843,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
 /* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducers/errors_reducer.js");
 /* harmony import */ var _question_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./question_reducer */ "./frontend/reducers/question_reducer.js");
+/* harmony import */ var _like_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./like_reducer */ "./frontend/reducers/like_reducer.js");
+
 
 
 
@@ -3703,7 +3854,8 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  questions: _question_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  questions: _question_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  likes: _like_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -3876,13 +4028,14 @@ var deleteComment = function deleteComment(comment) {
 /*!****************************************!*\
   !*** ./frontend/util/like_api_util.js ***!
   \****************************************/
-/*! exports provided: likePost, unlikePost */
+/*! exports provided: likePost, unlikePost, fetchLikes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likePost", function() { return likePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikePost", function() { return unlikePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLikes", function() { return fetchLikes; });
 var likePost = function likePost(commentId, userId) {
   return $.ajax({
     method: "POST",
@@ -3899,6 +4052,16 @@ var unlikePost = function unlikePost(commentId) {
     url: "api/comments/".concat(commentId, "/like")
   });
 };
+var fetchLikes = function fetchLikes() {
+  return $.ajax({
+    url: "/api/likes",
+    method: "GET"
+  });
+}; //   export const fetchLike = (like) =>
+//   $.ajax({
+//     url: `api/likes/${like.id}`,
+//     method: "GET",
+//   });
 
 /***/ }),
 
@@ -4001,12 +4164,11 @@ var deleteReply = function deleteReply(reply) {
 /*!**************************************!*\
   !*** ./frontend/util/route_util.jsx ***!
   \**************************************/
-/*! exports provided: AuthRoute, ProtectedRoute, HiddenRoute, ShownRoute */
+/*! exports provided: ProtectedRoute, HiddenRoute, ShownRoute */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthRoute", function() { return AuthRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProtectedRoute", function() { return ProtectedRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HiddenRoute", function() { return HiddenRoute; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShownRoute", function() { return ShownRoute; });
@@ -4024,24 +4186,10 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var Auth = function Auth(_ref) {
+var Protected = function Protected(_ref) {
   var loggedIn = _ref.loggedIn,
       path = _ref.path,
       Component = _ref.component;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: path,
-    render: function render(props) {
-      return loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/"
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, props);
-    }
-  });
-};
-
-var Protected = function Protected(_ref2) {
-  var loggedIn = _ref2.loggedIn,
-      path = _ref2.path,
-      Component = _ref2.component;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     render: function render(props) {
@@ -4052,10 +4200,10 @@ var Protected = function Protected(_ref2) {
   });
 };
 
-var HiddenOnLogin = function HiddenOnLogin(_ref3) {
-  var loggedIn = _ref3.loggedIn,
-      path = _ref3.path,
-      Component = _ref3.component;
+var HiddenOnLogin = function HiddenOnLogin(_ref2) {
+  var loggedIn = _ref2.loggedIn,
+      path = _ref2.path,
+      Component = _ref2.component;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     render: function render(props) {
@@ -4066,10 +4214,10 @@ var HiddenOnLogin = function HiddenOnLogin(_ref3) {
   });
 };
 
-var ShownOnLogin = function ShownOnLogin(_ref4) {
-  var loggedIn = _ref4.loggedIn,
-      path = _ref4.path,
-      Component = _ref4.component;
+var ShownOnLogin = function ShownOnLogin(_ref3) {
+  var loggedIn = _ref3.loggedIn,
+      path = _ref3.path,
+      Component = _ref3.component;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: path,
     render: function render(props) {
@@ -4080,7 +4228,6 @@ var ShownOnLogin = function ShownOnLogin(_ref4) {
   });
 };
 
-var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Auth));
 var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Protected));
 var HiddenRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(HiddenOnLogin));
 var ShownRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(ShownOnLogin));

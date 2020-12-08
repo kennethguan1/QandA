@@ -12,3 +12,15 @@ export const unlikePost = (commentId) => {
         url: `api/comments/${commentId}/like`
     })
 }
+
+export const fetchLikes = () =>
+  $.ajax({
+    url: "/api/likes",
+    method: "GET",
+  });
+
+//   export const fetchLike = (like) =>
+//   $.ajax({
+//     url: `api/likes/${like.id}`,
+//     method: "GET",
+//   });

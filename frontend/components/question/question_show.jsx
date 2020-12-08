@@ -11,6 +11,7 @@ class QuestionShow extends React.Component {
     this.props.fetchQuestion({ id: this.props.questionId }).then((question) => {
       this.setState(question);
     });
+    // console.log(this.state)
   }
 
   handleDelete(question) {
@@ -129,7 +130,8 @@ class QuestionShow extends React.Component {
               >
                 <p>{comment.body}</p>
               </button>
-                <LikeButton isLiked={false} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost}/>
+                <LikeButton likes={this.props.likes} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost} getLikes={this.props.getLikes} getLike={this.props.getLike}/>
+                {/* <LikeButton comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost}/> */}
               </div>
               <hr />
             </li>

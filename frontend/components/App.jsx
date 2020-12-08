@@ -16,19 +16,19 @@ import SearchContainer from './search/search_container'
 // import CommentIndexContainer from './comment/comment_index_container';
 
 
-import { Route, Redirect, Router, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import {
-  AuthRoute,
   ProtectedRoute,
   HiddenRoute,
   ShownRoute,
 } from "../util/route_util";
 
-export default () => (
+const App = () => {
+  return(
   <div className="routes">
     <HiddenRoute exact path="/" component={SessionContainer} />
     <ShownRoute path="/" component={GreetingContainer} />
-    <ShownRoute path="/" component={SearchContainer} />
+    <ProtectedRoute path="/" component={SearchContainer} />
     <ProtectedRoute path="/askquestion" component={QuestionFormContainer} />
     <ProtectedRoute
       exact
@@ -66,10 +66,13 @@ export default () => (
     </Switch>
 
     <Switch>
-      <Route exact path="/questions/:id" component={QuestionShowContainer} />
-      <Route exact path="/questions/:id/comments/:commentId" component={CommentShowContainer} />
+      <ProtectedRoute exact path="/questions/:id" component={QuestionShowContainer} />
+      <ProtectedRoute exact path="/questions/:id/comments/:commentId" component={CommentShowContainer} />
       <ProtectedRoute exact path="/" component={QuestionIndexContainer} />
       {/* <ProtectedRoute exact path="/questions" component={CommentIndexContainer} /> */}
     </Switch>
   </div>
-);
+    )
+}
+
+export default App;

@@ -1,7 +1,7 @@
 // import { connect } from 'react-redux';
 // import LikeButton from './like_button';
 // import { likePost, unlikePost } from '../../actions/like_actions';
-// import { fetchQuestion } from '../../actions/question_actions';
+// import { deleteQuestion, fetchQuestion } from '../../actions/question_actions';
 
 
 // const mapStateToProps = (state, { match }) => ({

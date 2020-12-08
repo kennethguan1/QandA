@@ -10,6 +10,7 @@ ActiveRecord::Base.transaction do
 Comment.destroy_all
 Question.destroy_all
 User.destroy_all
+Like.destroy_all
 
 demoUser = User.create(username: "demo_user", email: "demo@demo.com", password: "123456")
 happyUser = User.create(username: "happy_user", email: "happy@user.com", password: "654321")
@@ -31,5 +32,8 @@ comment6 = Comment.create(body: "Did you ever find out?", author_id: curiousUser
 comment7 = Comment.create(body: "Try QandA!", author_id: demoUser.id, question_id: question2.id)
 comment8 = Comment.create(body: "Raisins are just grapes with more personality.", author_id: happyUser.id, question_id: question3.id)
 comment9 = Comment.create(body: "I've got a great opportunity for you! Are you interested?", author_id: curiousUser.id, question_id: question5.id)
+
+# like1= Like.create(author_id: demoUser.id, comment_id: comment1.id)
+# like2= Like.create(author_id: happyUser.id, comment_id: comment1.id)
 
 end
