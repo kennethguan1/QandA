@@ -13,7 +13,6 @@ import CommentShowContainer from './comment/comment_show_container';
 import ReplyEditFormContainer from './reply/reply_edit_container';
 import SearchIndexContainer from './search/search_index_container';
 import SearchContainer from './search/search_container'
-// import CommentIndexContainer from './comment/comment_index_container';
 
 
 import { Route, Switch } from 'react-router-dom';
@@ -69,7 +68,6 @@ const App = () => {
       <ProtectedRoute exact path="/questions/:id" component={QuestionShowContainer} />
       <ProtectedRoute exact path="/questions/:id/comments/:commentId" component={CommentShowContainer} />
       <ProtectedRoute exact path="/" component={QuestionIndexContainer} />
-      {/* <ProtectedRoute exact path="/questions" component={CommentIndexContainer} /> */}
     </Switch>
   </div>
     )

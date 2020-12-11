@@ -21,7 +21,6 @@ class QuestionIndexItem extends React.Component {
             >
               <h3>{question.title}</h3>
             </button>
-            {/* <p>{question.body}</p> */}
           </div>
         );
     }

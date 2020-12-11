@@ -34,16 +34,9 @@ class Search extends React.Component {
 
 
 
-    // filter method 
-    // iterate through the search query
-    // if the each word in the search query is found in at least one of the question's attribute
-        // split and iterate through search query
-        // 
-    // add the question into the search filter
-
     render() {
 
-        let searchTerms = this.state.searchQuery.split(" "); // "hello world" => [hello, world]
+        let searchTerms = this.state.searchQuery.split(" ");
         let questions = this.props.questions;
         let filteredQuestions = []; 
 

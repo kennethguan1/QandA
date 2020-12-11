@@ -9,7 +9,6 @@ import {
 
 
 const mSTP = ( state ) => {
-    // debugger
     return {
         session_errors: state.errors.session,
 

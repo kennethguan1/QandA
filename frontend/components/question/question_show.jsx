@@ -11,7 +11,6 @@ class QuestionShow extends React.Component {
     this.props.fetchQuestion({ id: this.props.questionId }).then((question) => {
       this.setState(question);
     });
-    // console.log(this.state)
   }
 
   handleDelete(question) {
@@ -84,7 +83,6 @@ class QuestionShow extends React.Component {
       return (
         <div className="show-box">
           {this.crudOptions(question)}
-                {/* <strong className="question-by">Question by </strong> <strong className="question-username">{question.author.username}</strong> */}
           <h1>Question:
             <br />
             {question.title}</h1>
@@ -102,16 +100,6 @@ class QuestionShow extends React.Component {
     if (this.state.question.comments != undefined) {
       comments = Object.values(this.state.question.comments).map(
         (comment, i) => {
-          // let likes = <div></div>;
-          // let likers = comment.likers.length;
-          // let likeBtn = !comment.likers.includes(this.props.currentUser.id) ?
-          //   (<button className="like-btn" onClick={() => this.props.likePost(comment.id, this.props.currentUser.id)}>
-          //       <i className="fas fa-heart unclicked post-index-like">Like</i>
-          //   </button>)
-          //   :
-          //   (<button onClick={() => this.props.unlikePost(comment.id)}>
-          //       <i className="fas fa-heart clicked post-index-like">Unlike</i>
-          //   </button>);
 
           return (
             <li key={i} className="comment-list-item">
@@ -131,7 +119,6 @@ class QuestionShow extends React.Component {
                 <p>{comment.body}</p>
               </button>
                 <LikeButton likes={this.props.likes} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost} getLikes={this.props.getLikes} getLike={this.props.getLike}/>
-                {/* <LikeButton comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost}/> */}
               </div>
               <hr />
             </li>

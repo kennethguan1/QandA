@@ -42,7 +42,6 @@ class QuestionIndex extends React.Component {
   }
 
   render() {
-    // console.log(this.state)
     const questions = Object.values(this.props.questions);
     return (
       <div className="feed">

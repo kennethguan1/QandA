@@ -76,16 +76,6 @@ class CommentShow extends React.Component {
     if (this.state.comment.replies != undefined) {
       replies = Object.values(this.state.comment.replies).map(
         (reply, i) => {
-          // let likes = <div></div>;
-          // let likers = comment.likers.length;
-          // let likeBtn = !comment.likers.includes(this.props.currentUser.id) ?
-          //   (<button className="like-btn" onClick={() => this.props.likePost(comment.id, this.props.currentUser.id)}>
-          //       <i className="fas fa-heart unclicked post-index-like">Like</i>
-          //   </button>)
-          //   :
-          //   (<button onClick={() => this.props.unlikePost(comment.id)}>
-          //       <i className="fas fa-heart clicked post-index-like">Unlike</i>
-          //   </button>);
 
           return (
             <li key={i} className="comment-list-item">

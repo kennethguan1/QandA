@@ -26,15 +26,6 @@ class Api::LikesController < ApplicationController
         render "api/likes/index"
     end
 
-    # def show
-    #     @like = Like.find(params[:id])
-    #     if @like
-    #         render "api/likes/show"
-    #     else
-    #         render json: @like.errors.full_messages, status: 404
-    #     end
-    # end
-
     private
 
     def like_params

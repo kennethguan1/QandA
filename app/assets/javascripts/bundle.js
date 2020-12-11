@@ -526,7 +526,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import CommentIndexContainer from './comment/comment_index_container';
 
 
 
@@ -703,8 +702,7 @@ var CommentEditForm = /*#__PURE__*/function (_React$Component) {
         author_id: comment.author_id,
         question_id: comment.question_id
       });
-    }); // console.log(this.props)
-
+    });
 
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
@@ -844,8 +842,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       body: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this)); // console.log(this.props)
-
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1086,16 +1083,6 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.comment.replies != undefined) {
         replies = Object.values(this.state.comment.replies).map(function (reply, i) {
-          // let likes = <div></div>;
-          // let likers = comment.likers.length;
-          // let likeBtn = !comment.likers.includes(this.props.currentUser.id) ?
-          //   (<button className="like-btn" onClick={() => this.props.likePost(comment.id, this.props.currentUser.id)}>
-          //       <i className="fas fa-heart unclicked post-index-like">Like</i>
-          //   </button>)
-          //   :
-          //   (<button onClick={() => this.props.unlikePost(comment.id)}>
-          //       <i className="fas fa-heart clicked post-index-like">Unlike</i>
-          //   </button>);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "comment-list-item"
@@ -1441,26 +1428,15 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     });
 
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
-    _this.handleUnlike = _this.handleUnlike.bind(_assertThisInitialized(_this)); // this.setStateAfter = this.setStateAfter.bind(this)
-
+    _this.handleUnlike = _this.handleUnlike.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount(){
-  //     this.setStateAfter()
-  // }
-  // setStateAfter(){
-  //     this.setState({
-  //         likes: this.props.likes
-  //     })
-  //               console.log(this.state)
-  // }
-
+  }
 
   _createClass(LikeButton, [{
     key: "handleLike",
     value: function handleLike(commentId, UserId) {
       var _this2 = this;
 
-      // console.log('before liking',this.state.likes)
       this.props.likePost(commentId, UserId).then(function () {
         var allLikes = [];
         Object.values(_this2.props.likes).forEach(function (like) {
@@ -1471,10 +1447,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
 
         _this2.setState({
           isLiked: true
-        }); // console.log('hitting here Like')
-        // window.location.reload();
-        // console.log('after liking', this.state.likes)
-
+        });
       });
     }
   }, {
@@ -1482,7 +1455,6 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     value: function handleUnlike(commentId) {
       var _this3 = this;
 
-      // console.log('before Unliking',this.state.likes)
       this.props.unlikePost(commentId).then(function () {
         var allLikes = [];
         Object.values(_this3.props.likes).forEach(function (like) {
@@ -1493,10 +1465,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
 
         _this3.setState({
           isLiked: false
-        }); // console.log('hitting here Unlike')
-        // window.location.reload();
-        // console.log('after Unliking',this.state.likes)
-
+        });
       });
     }
   }, {
@@ -1509,24 +1478,22 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
         if (like.comment_id === _this4.props.comment.id) {
           allLikes.push(like.author_id);
         }
-      }); // console.log(this.state)
-      // console.log(this.props)
-
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.state.isLiked ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "like-btn",
         onClick: function onClick() {
           return _this4.handleLike(_this4.props.comment.id, _this4.props.currentUser.id);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-heart unclicked post-index-like"
-      }, "Upvote")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "far fa-heart"
+      }, " Upvote")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "like-btn",
         onClick: function onClick() {
           return _this4.handleUnlike(_this4.props.comment.id);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-heart clicked post-index-like"
-      }, "Downvote")));
+        className: "fas fa-heart"
+      }, " Downvote")));
     } // render() {
     //   return (
     //   <div>
@@ -2067,7 +2034,6 @@ var QuestionIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      // console.log(this.state)
       var questions = Object.values(this.props.questions);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "feed"
@@ -2263,8 +2229,7 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
       id: _this.props.questionId
     }).then(function (question) {
       _this.setState(question);
-    }); // console.log(this.state)
-
+    });
 
     return _this;
   }
@@ -2356,16 +2321,6 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.question.comments != undefined) {
         comments = Object.values(this.state.question.comments).map(function (comment, i) {
-          // let likes = <div></div>;
-          // let likers = comment.likers.length;
-          // let likeBtn = !comment.likers.includes(this.props.currentUser.id) ?
-          //   (<button className="like-btn" onClick={() => this.props.likePost(comment.id, this.props.currentUser.id)}>
-          //       <i className="fas fa-heart unclicked post-index-like">Like</i>
-          //   </button>)
-          //   :
-          //   (<button onClick={() => this.props.unlikePost(comment.id)}>
-          //       <i className="fas fa-heart clicked post-index-like">Unlike</i>
-          //   </button>);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i,
             className: "comment-list-item"
@@ -2465,7 +2420,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     deleteComment: function deleteComment(commentId) {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__["deleteComment"])(commentId));
     },
-    // getLike: (likeId) => dispatch(fetchLike(likeId)),
     getLikes: function getLikes() {
       return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_4__["fetchLikes"])());
     },
@@ -2598,7 +2552,6 @@ var ReplyEditForm = /*#__PURE__*/function (_React$Component) {
       });
     });
 
-    console.log(_this.props);
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
@@ -2971,20 +2924,13 @@ var Search = /*#__PURE__*/function (_React$Component) {
           _this3.props.history.push("/search/".concat(_this3.state.searchQuery));
         }
       }, 300);
-    } // filter method 
-    // iterate through the search query
-    // if the each word in the search query is found in at least one of the question's attribute
-    // split and iterate through search query
-    // 
-    // add the question into the search filter
-
+    }
   }, {
     key: "render",
     value: function render() {
       var _this4 = this;
 
-      var searchTerms = this.state.searchQuery.split(" "); // "hello world" => [hello, world]
-
+      var searchTerms = this.state.searchQuery.split(" ");
       var questions = this.props.questions;
       var filteredQuestions = [];
       searchTerms = searchTerms.map(function (term) {
@@ -3241,7 +3187,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  // debugger
   return {
     session_errors: state.errors.session
   };
@@ -3658,8 +3603,6 @@ var likeReducer = function likeReducer() {
       return action.likes;
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIKE"]:
-      //   console.log(newState);
-      //   console.log(Object.keys(newState)[0]);
       //   liker = action.like.author_id;
       //   comment = action.like.comment_id;
       //   currentQuestion = Object.keys(newState)[0];
@@ -3667,8 +3610,6 @@ var likeReducer = function likeReducer() {
       return newState;
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIKE"]:
-      // console.log(newState);
-      // console.log(Object.keys(newState)[0]);
       //   liker = action.like.author_id;
       //   comment = action.like.comment_id;
       //   currentQuestion = Object.keys(newState)[0];
@@ -3766,16 +3707,12 @@ var questionReducer = function questionReducer() {
     // case RECEIVE_LIKES:
     //   return action.likes;
     // case RECEIVE_LIKE:
-    //   // console.log(newState);
-    //   // console.log(Object.keys(newState)[0]);
     //   liker = action.like.author_id;
     //   comment = action.like.comment_id;
     //   currentQuestion = Object.keys(newState)[0];
     //   newState[currentQuestion].comments[comment].likers.push(liker);
     //   return newState;
     // case REMOVE_LIKE:
-    //         // console.log(newState);
-    //         // console.log(Object.keys(newState)[0]);
     //   liker = action.like.author_id;
     //   comment = action.like.comment_id;
     //   currentQuestion = Object.keys(newState)[0];

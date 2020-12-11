@@ -20,7 +20,6 @@ class ReplyEditForm extends React.Component {
                     comment_id: reply.comment_id,
                 });
             });
-        console.log(this.props)
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);

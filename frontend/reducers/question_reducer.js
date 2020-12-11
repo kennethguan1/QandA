@@ -33,16 +33,12 @@ const questionReducer = (oldState = {}, action) => {
     // case RECEIVE_LIKES:
     //   return action.likes;
     // case RECEIVE_LIKE:
-    //   // console.log(newState);
-    //   // console.log(Object.keys(newState)[0]);
     //   liker = action.like.author_id;
     //   comment = action.like.comment_id;
     //   currentQuestion = Object.keys(newState)[0];
     //   newState[currentQuestion].comments[comment].likers.push(liker);
     //   return newState;
     // case REMOVE_LIKE:
-    //         // console.log(newState);
-    //         // console.log(Object.keys(newState)[0]);
     //   liker = action.like.author_id;
     //   comment = action.like.comment_id;
     //   currentQuestion = Object.keys(newState)[0];

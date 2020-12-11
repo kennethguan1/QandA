@@ -10,8 +10,6 @@ class CommentForm extends React.Component {
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
-
-    // console.log(this.props)
   }
 
   componentWillUnmount() {

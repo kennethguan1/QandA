@@ -21,23 +21,10 @@ class LikeButton extends React.Component {
 });
       this.handleLike = this.handleLike.bind(this)
       this.handleUnlike = this.handleUnlike.bind(this)
-      // this.setStateAfter = this.setStateAfter.bind(this)
     }
 
-    // componentDidMount(){
-    //     this.setStateAfter()
-
-    // }
-
-    // setStateAfter(){
-    //     this.setState({
-    //         likes: this.props.likes
-    //     })
-    //               console.log(this.state)
-    // }
 
   handleLike(commentId, UserId){
-      // console.log('before liking',this.state.likes)
       this.props.likePost(commentId, UserId).then(() =>{
                       let allLikes = []
     Object.values(this.props.likes).forEach( like => {
@@ -45,16 +32,11 @@ class LikeButton extends React.Component {
           allLikes.push(like.author_id)
       }})
                 this.setState({isLiked: true});
-
-        // console.log('hitting here Like')
-        // window.location.reload();
-        // console.log('after liking', this.state.likes)
       })
       
     }
     
   handleUnlike(commentId){
-      // console.log('before Unliking',this.state.likes)
       this.props.unlikePost(commentId).then(() =>{
             let allLikes = []
 
@@ -63,9 +45,7 @@ class LikeButton extends React.Component {
           allLikes.push(like.author_id)
       }})
                 this.setState({isLiked: false});
-        // console.log('hitting here Unlike')
-        // window.location.reload();
-        // console.log('after Unliking',this.state.likes)
+
       })
     }
 
@@ -76,21 +56,18 @@ class LikeButton extends React.Component {
       if (like.comment_id === this.props.comment.id){
           allLikes.push(like.author_id)
       }})
-          // console.log(this.state)
-          // console.log(this.props)
+
 
     return (
     <div>
       {
       !this.state.isLiked ?
             (<button className="like-btn" onClick={() => this.handleLike(this.props.comment.id, this.props.currentUser.id)}>
-                <i className="fas fa-heart unclicked post-index-like">Upvote</i>
-                      {/* <p>{allLikes.length}</p> */}
+                <i className="far fa-heart"> Upvote</i>
             </button>)
             :
             (<button className="like-btn" onClick={() => this.handleUnlike(this.props.comment.id)}>
-                <i className="fas fa-heart clicked post-index-like">Downvote</i>
-      {/* <p>{allLikes.length}</p> */}
+                <i className="fas fa-heart"> Downvote</i>
             </button>)
       }
     </div>
