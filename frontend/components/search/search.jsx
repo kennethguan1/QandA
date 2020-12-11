@@ -59,7 +59,6 @@ class Search extends React.Component {
             <div>
                  <form className="search"
                     onSubmit={this.redirectSearch}> 
-                        <i className="fas fa-search magnify" />
                         <input type="text" className="searchbox" 
                         value={this.state.searchQuery }
                         placeholder="Search Question"
