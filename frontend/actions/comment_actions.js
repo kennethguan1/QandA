@@ -20,22 +20,6 @@ export const receiveComment = (comment) => ({
   comment,
 });
 
-// export const receiveComments = (comments) => ({
-//   type: RECEIVE_COMMENTS,
-//   comments,
-// });
-
-// export const removeComment = (commentId) => ({
-//   type: REMOVE_COMMENT,
-//   commentId,
-// });
-
-// export const fetchComments = (comments) => (dispatch) =>
-//   APIUtil.fetchComments(comments).then(
-//     (comments) => dispatch(receiveComments(comments)),
-//     (err) => dispatch(receiveCommentErrors(err.responseJSON))
-//   );
-
 export const fetchComment = (id) => (dispatch) =>
   APIUtil.fetchComment(id).then(
     (comment) => dispatch(receiveComment(comment)),

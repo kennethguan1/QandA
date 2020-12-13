@@ -128,20 +128,7 @@ var receiveComment = function receiveComment(comment) {
     type: RECEIVE_COMMENT,
     comment: comment
   };
-}; // export const receiveComments = (comments) => ({
-//   type: RECEIVE_COMMENTS,
-//   comments,
-// });
-// export const removeComment = (commentId) => ({
-//   type: REMOVE_COMMENT,
-//   commentId,
-// });
-// export const fetchComments = (comments) => (dispatch) =>
-//   APIUtil.fetchComments(comments).then(
-//     (comments) => dispatch(receiveComments(comments)),
-//     (err) => dispatch(receiveCommentErrors(err.responseJSON))
-//   );
-
+};
 var fetchComment = function fetchComment(id) {
   return function (dispatch) {
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchComment"](id).then(function (comment) {
