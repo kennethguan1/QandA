@@ -109,9 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
 var REMOVE_COMMENT_ERRORS = 'REMOVE_COMMENT_ERRORS';
-var RECEIVE_COMMENT = "RECEIVE_COMMENT"; // export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
-// export const REMOVE_COMMENT = "REMOVE_COMMENT";
-
+var RECEIVE_COMMENT = "RECEIVE_COMMENT";
 var receiveCommentErrors = function receiveCommentErrors(errors) {
   return {
     type: RECEIVE_COMMENT_ERRORS,
@@ -3905,14 +3903,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
-// export const fetchComments = (comments) =>
-//   $.ajax({
-//     url: "/api/comments",
-//     method: "GET",
-//     data: {
-//       comments,
-//     },
-//   });
 var fetchComment = function fetchComment(comment) {
   return $.ajax({
     url: "api/comments/".concat(comment.id),
