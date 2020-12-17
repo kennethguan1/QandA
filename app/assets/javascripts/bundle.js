@@ -3687,21 +3687,6 @@ var questionReducer = function questionReducer() {
     case _actions_question_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_QUESTION"]:
       delete newState[action.questionId];
       return newState;
-    // case RECEIVE_LIKES:
-    //   return action.likes;
-    // case RECEIVE_LIKE:
-    //   liker = action.like.author_id;
-    //   comment = action.like.comment_id;
-    //   currentQuestion = Object.keys(newState)[0];
-    //   newState[currentQuestion].comments[comment].likers.push(liker);
-    //   return newState;
-    // case REMOVE_LIKE:
-    //   liker = action.like.author_id;
-    //   comment = action.like.comment_id;
-    //   currentQuestion = Object.keys(newState)[0];
-    //   const index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
-    //   newState[currentQuestion].comments[comment].likers.splice(index);
-    //   return newState;
 
     default:
       return oldState;
