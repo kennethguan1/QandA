@@ -9,8 +9,13 @@
   ### User Authentication
   Users are able to sign up and login. Front end error messages are displayed for improper login credentials. Users are also able to login using a demo account for quick demo use   of the application. Access to pages other than the splash page are restricted if users are not logged in. In addition, the splash page changes depending on user login status.
 
+  ![alt text](https://raw.githubusercontent.com/kennethguan1/QandA/master/app/assets/images/login.png)
+
+
   ### Dynamic User Options
   Questions, comments, and responses provided by the logged in user are given options to edit and delete. These options for every other posts by other users are hidden.
+
+  ![alt text](https://raw.githubusercontent.com/kennethguan1/QandA/master/app/assets/images/dashboard.png)
   
   ### Question Search
   Users are able to search the entire database for questions pertaining to their interests. There is also a dropdown on the search bar for suggested questions.
