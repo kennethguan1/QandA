@@ -1,7 +1,7 @@
 class Api::LikesController < ApplicationController
 
     def create
-        @like = Like.new()
+        @like = Like.new
         @like.comment_id = params[:commentId]
         @like.author_id = current_user.id
         if @like.save

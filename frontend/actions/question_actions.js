@@ -31,7 +31,7 @@ export const removeQuestionErrors = () => ({
 });
 
 export const fetchQuestions = (questions) => (dispatch) =>
-  APIUtil.fetchQuestions(questions).then(
+  APIUtil.fetchQuestions(questions).then(                                       //promise for success and failure.
     (questions) => dispatch(receiveQuestions(questions)),
     (err) => dispatch(receiveQuestionErrors(err.responseJSON))
   );

@@ -6,16 +6,25 @@ import * as commentActions from "./actions/comment_actions";
 import configureStore from './store/store';
 import Root from "./components/root";
 
+//this is the entry file
+
 document.addEventListener("DOMContentLoaded", () => {
   // const store = configureStore();                 //this needs to be up here for getstate to work
 
   let store;
   if (window.currentUser) {
     const preloadedState = {
+      entities: {
+        users: { [window.currentUser.id]: window.currentUser },         //use variable as key with []
+      },
       session: { currentUser: window.currentUser },
     };
     store = configureStore(preloadedState);
-    delete window.currentUser;
+
+    // Clean up after ourselves so we don't accidentally use the
+    // global currentUser instead of the one in the store
+
+    delete window.currentUser;                      //delete property from object
   } else {
     store = configureStore();
   }

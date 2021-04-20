@@ -7,7 +7,7 @@ const configureStore = (preloadedState = {}) =>
     createStore(rootReducer, 
         preloadedState, 
         applyMiddleware(thunk
-            // , logger
+            // , logger                             this is to see your logs (actions, state) in chrome developer tools
         )
     );
 

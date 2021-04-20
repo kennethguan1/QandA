@@ -12,13 +12,13 @@
 #
 class User < ApplicationRecord
 
-    attr_reader :password
+    attr_reader :password #getter method to access password
 
-    validates :username, :email, presence: true, uniqueness: true
+    validates :username, :email, presence: true, uniqueness: true #make sure our user has email and is unique
     validates :password_digest, :session_token, presence: true
     validates :password, length: {minimum: 6, allow_nil: true}
 
-    after_initialize :ensure_session_token
+    after_initialize :ensure_session_token                      #after user model is initialized
 
     has_many :questions,
         foreign_key: :author_id
@@ -33,7 +33,7 @@ class User < ApplicationRecord
         foreign_key: :author_id,
         class_name: :Like
 
-    def self.find_by_credentials(username, password)
+    def self.find_by_credentials(username, password)        #checks user credentials
         user = User.find_by(username: username)
         if user && user.is_password?(password)
             return user
@@ -52,13 +52,13 @@ class User < ApplicationRecord
         password_obj.is_password?(password)
     end
 
-    def reset_session_token!
+    def reset_session_token!                                            #for user logout
         self.session_token = SecureRandom.urlsafe_base64
         self.save!
         self.session_token 
     end
 
-    def ensure_session_token
+    def ensure_session_token                                            #create session token
         self.session_token ||= SecureRandom.urlsafe_base64
     end
 

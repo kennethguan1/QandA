@@ -1,10 +1,10 @@
-export const fetchQuestions = (questions) =>
+export const fetchQuestions = (questions) =>                  //implicit return of success, failure
   $.ajax({
     url: "/api/questions",
     method: "GET",
     data: {
       questions,
-    },
+    },                                                        //implicit return of success, failure
   });
 
 export const fetchQuestion = (question) =>

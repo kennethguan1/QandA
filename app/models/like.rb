@@ -1,7 +1,7 @@
 class Like < ApplicationRecord
     validates :author_id, :comment_id, presence: true
 
-    validates :comment, uniqueness: {scope: :user}
+    # validates :comment, uniqueness: {scope: :user}
 
     belongs_to :user,
         foreign_key: :author_id,

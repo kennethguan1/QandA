@@ -9,9 +9,9 @@ import { merge } from 'lodash';
 
 const likeReducer = (oldState = {}, action) => {
   
-  let liker;
-  let comment;
-  let currentQuestion;
+  // let liker;
+  // let comment;
+  // let currentQuestion;
   let newState = merge({}, oldState);
   Object.freeze(oldState);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({                         //defines state for logged in status
   loggedIn:
     Boolean(state.session.currentUser) &&
     state.session.currentUser !== undefined &&

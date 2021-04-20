@@ -296,7 +296,8 @@ var removeQuestionErrors = function removeQuestionErrors() {
 };
 var fetchQuestions = function fetchQuestions(questions) {
   return function (dispatch) {
-    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestions"](questions).then(function (questions) {
+    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestions"](questions).then( //promise for success and failure.
+    function (questions) {
       return dispatch(receiveQuestions(questions));
     }, function (err) {
       return dispatch(receiveQuestionErrors(err.responseJSON));
@@ -3421,12 +3422,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/comment_actions */ "./frontend/actions/comment_actions.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
 
 
+
+ //this is the entry file
 
 document.addEventListener("DOMContentLoaded", function () {
   // const store = configureStore();                 //this needs to be up here for getstate to work
@@ -3434,12 +3438,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (window.currentUser) {
     var preloadedState = {
+      entities: {
+        users: _defineProperty({}, window.currentUser.id, window.currentUser) //use variable as key with []
+
+      },
       session: {
         currentUser: window.currentUser
       }
     };
-    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_5__["default"])(preloadedState);
-    delete window.currentUser;
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_5__["default"])(preloadedState); // Clean up after ourselves so we don't accidentally use the
+    // global currentUser instead of the one in the store
+
+    delete window.currentUser; //delete property from object
   } else {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_5__["default"])();
   } // FOR TESTING
@@ -3517,12 +3527,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _like_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./like_reducer */ "./frontend/reducers/like_reducer.js");
 /* harmony import */ var _question_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./question_reducer */ "./frontend/reducers/question_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   questions: _question_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  likes: _like_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  likes: _like_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -3575,9 +3588,9 @@ __webpack_require__.r(__webpack_exports__);
 var likeReducer = function likeReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  var liker;
-  var comment;
-  var currentQuestion;
+  // let liker;
+  // let comment;
+  // let currentQuestion;
   var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
   Object.freeze(oldState);
 
@@ -3671,10 +3684,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var questionReducer = function questionReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  var liker;
-  var comment;
-  var currentQuestion;
-  var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
+  // let liker;
+  // let comment;
+  // let currentQuestion;
+  var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState); //use lodash merge instead of Object.assign()
+
   Object.freeze(oldState);
 
   switch (action.type) {
@@ -3785,19 +3799,13 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
-      return {
-        errors: action.errors
-      };
+      return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SESSION_ERRORS"]:
-      return Object.assign({}, oldState, {
-        errors: []
-      });
+      return [];
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return {
-        currentUser: []
-      };
+      return [];
 
     default:
       return oldState;
@@ -3847,6 +3855,38 @@ var sessionReducer = function sessionReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/users_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/users_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var usersReducer = function usersReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+      return Object.assign({}, oldState, _defineProperty({}, action.currentUser.id, action.currentUser));
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (usersReducer);
+
+/***/ }),
+
 /***/ "./frontend/store/store.js":
 /*!*********************************!*\
   !*** ./frontend/store/store.js ***!
@@ -3868,7 +3908,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"] // , logger
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"] // , logger                             this is to see your logs (actions, state) in chrome developer tools
   ));
 };
 
@@ -3978,13 +4018,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateQuestion", function() { return updateQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteQuestion", function() { return deleteQuestion; });
 var fetchQuestions = function fetchQuestions(questions) {
-  return $.ajax({
-    url: "/api/questions",
-    method: "GET",
-    data: {
-      questions: questions
-    }
-  });
+  return (//implicit return of success, failure
+    $.ajax({
+      url: "/api/questions",
+      method: "GET",
+      data: {
+        questions: questions
+      } //implicit return of success, failure
+
+    })
+  );
 };
 var fetchQuestion = function fetchQuestion(question) {
   return $.ajax({
@@ -4080,6 +4123,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    //defines state for logged in status
     loggedIn: Boolean(state.session.currentUser) && state.session.currentUser !== undefined && !Array.isArray(state.session.currentUser)
   };
 };
