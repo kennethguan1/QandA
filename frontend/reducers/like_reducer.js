@@ -24,13 +24,16 @@ const likeReducer = (oldState = {}, action) => {
     //   comment = action.like.comment_id;
     //   currentQuestion = Object.keys(newState)[0];
     //   newState[currentQuestion].comments[comment].likers.push(liker);
-      return newState;
+      return {
+        [action.like.id]: action.like,
+      };
     case REMOVE_LIKE:
     //   liker = action.like.author_id;
     //   comment = action.like.comment_id;
     //   currentQuestion = Object.keys(newState)[0];
     //   const index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
     //   newState[currentQuestion].comments[comment].likers.splice(index);
+      delete newState[action.like];
       return newState;
     default:
       return oldState;

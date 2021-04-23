@@ -122,14 +122,15 @@ var removeCommentErrors = function removeCommentErrors() {
   };
 };
 var receiveComment = function receiveComment(comment) {
+  // debugger;
   return {
     type: RECEIVE_COMMENT,
     comment: comment
   };
 };
-var fetchComment = function fetchComment(id) {
+var fetchComment = function fetchComment(commentId) {
   return function (dispatch) {
-    return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchComment"](id).then(function (comment) {
+    return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchComment"](commentId).then(function (comment) {
       return dispatch(receiveComment(comment));
     }, function (err) {
       return dispatch(receiveCommentErrors(err.responseJSON));
@@ -139,7 +140,9 @@ var fetchComment = function fetchComment(id) {
 var createComment = function createComment(comment) {
   return function (dispatch) {
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["createComment"](comment).then(function () {}, function (err) {
-      return dispatch(receiveCommentErrors(err.responseJSON));
+      return (//Don't need api call result or to call an action creator so this is left blank
+        dispatch(receiveCommentErrors(err.responseJSON))
+      );
     });
   };
 };
@@ -164,7 +167,7 @@ var deleteComment = function deleteComment(comment) {
 /*!******************************************!*\
   !*** ./frontend/actions/like_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_LIKES, receiveLikes, likePost, unlikePost, fetchLikes */
+/*! exports provided: RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_LIKES, receiveLike, removeLike, receiveLikes, likePost, unlikePost, fetchLikes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -172,6 +175,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKE", function() { return RECEIVE_LIKE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIKE", function() { return REMOVE_LIKE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKES", function() { return RECEIVE_LIKES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLike", function() { return receiveLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeLike", function() { return removeLike; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLikes", function() { return receiveLikes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likePost", function() { return likePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikePost", function() { return unlikePost; });
@@ -180,26 +185,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_LIKE = "RECEIVE_LIKE";
 var REMOVE_LIKE = "REMOVE_LIKE";
-var RECEIVE_LIKES = "RECEIVE_LIKES"; // export const RECEIVE_LIKE_ERRORS = "RECEIVE_LIKE_ERRORS";
-
+var RECEIVE_LIKES = "RECEIVE_LIKES";
 var receiveLike = function receiveLike(like) {
   return {
     type: RECEIVE_LIKE,
     like: like
   };
 };
-
 var removeLike = function removeLike(like) {
   return {
     type: REMOVE_LIKE,
     like: like
   };
-}; // export const receiveLikeErrors = (errors) => ({
-//   type: RECEIVE_LIKE_ERRORS,
-//   errors,
-// });
-
-
+};
 var receiveLikes = function receiveLikes(likes) {
   return {
     type: RECEIVE_LIKES,
@@ -226,11 +224,7 @@ var fetchLikes = function fetchLikes() {
       return dispatch(receiveLikes(likes));
     });
   };
-}; //   export const fetchLike = (id) => (dispatch) =>
-//   LikeApiUtil.fetchLike(id).then(
-//     (like) => dispatch(receiveLike(like)),
-//     (err) => dispatch(receiveLikeErrors(err.responseJSON))
-//   );
+};
 
 /***/ }),
 
@@ -238,7 +232,7 @@ var fetchLikes = function fetchLikes() {
 /*!**********************************************!*\
   !*** ./frontend/actions/question_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_QUESTION, RECEIVE_QUESTIONS, REMOVE_QUESTION, RECEIVE_QUESTION_ERRORS, REMOVE_QUESTION_ERRORS, receiveQuestion, receiveQuestions, removeQuestion, receiveQuestionErrors, removeQuestionErrors, fetchQuestions, fetchQuestion, createQuestion, updateQuestion, deleteQuestion */
+/*! exports provided: RECEIVE_QUESTION, RECEIVE_QUESTIONS, REMOVE_QUESTION, RECEIVE_QUESTION_ERRORS, REMOVE_QUESTION_ERRORS, receiveQuestions, receiveQuestion, removeQuestion, receiveQuestionErrors, removeQuestionErrors, fetchQuestions, fetchQuestion, createQuestion, updateQuestion, deleteQuestion */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -248,8 +242,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_QUESTION", function() { return REMOVE_QUESTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_QUESTION_ERRORS", function() { return RECEIVE_QUESTION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_QUESTION_ERRORS", function() { return REMOVE_QUESTION_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveQuestion", function() { return receiveQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveQuestions", function() { return receiveQuestions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveQuestion", function() { return receiveQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeQuestion", function() { return removeQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveQuestionErrors", function() { return receiveQuestionErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeQuestionErrors", function() { return removeQuestionErrors; });
@@ -264,23 +258,25 @@ var RECEIVE_QUESTION = "RECEIVE_QUESTION";
 var RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 var REMOVE_QUESTION = "REMOVE_QUESTION";
 var RECEIVE_QUESTION_ERRORS = "RECEIVE_QUESTION_ERRORS";
-var REMOVE_QUESTION_ERRORS = "REMOVE_QUESTION_ERRORS";
-var receiveQuestion = function receiveQuestion(question) {
-  return {
-    type: RECEIVE_QUESTION,
-    question: question
-  };
-};
+var REMOVE_QUESTION_ERRORS = "REMOVE_QUESTION_ERRORS"; //Regular action creators
+
 var receiveQuestions = function receiveQuestions(questions) {
   return {
     type: RECEIVE_QUESTIONS,
     questions: questions
   };
 };
-var removeQuestion = function removeQuestion(questionId) {
+var receiveQuestion = function receiveQuestion(question) {
+  // debugger;
+  return {
+    type: RECEIVE_QUESTION,
+    question: question
+  }; //question: question
+};
+var removeQuestion = function removeQuestion(questionDelete) {
   return {
     type: REMOVE_QUESTION,
-    questionId: questionId
+    questionDelete: questionDelete
   };
 };
 var receiveQuestionErrors = function receiveQuestionErrors(errors) {
@@ -293,24 +289,28 @@ var removeQuestionErrors = function removeQuestionErrors() {
   return {
     type: REMOVE_QUESTION_ERRORS
   };
-};
-var fetchQuestions = function fetchQuestions(questions) {
+}; //Thunk action creators
+
+var fetchQuestions = function fetchQuestions() {
   return function (dispatch) {
-    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestions"](questions).then( //promise for success and failure.
-    function (questions) {
+    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestions"]().then(function (questions) {
       return dispatch(receiveQuestions(questions));
     }, function (err) {
       return dispatch(receiveQuestionErrors(err.responseJSON));
     });
   };
 };
-var fetchQuestion = function fetchQuestion(id) {
+var fetchQuestion = function fetchQuestion(questionId) {
   return function (dispatch) {
-    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestion"](id).then(function (question) {
-      return dispatch(receiveQuestion(question));
-    }, function (err) {
-      return dispatch(receiveQuestionErrors(err.responseJSON));
-    });
+    return (//pass parameter from components into our function then dispatch to APIUtil
+      _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestion"](questionId).then( //promise for success and failure.
+      function (question) {
+        return dispatch(receiveQuestion(question));
+      }, //left side questions is api call result (jbuilder files if it exists) from the controller which is passed to the right side questions action creator
+      function (err) {
+        return dispatch(receiveQuestionErrors(err.responseJSON));
+      })
+    );
   };
 };
 var createQuestion = function createQuestion(question) {
@@ -333,8 +333,8 @@ var updateQuestion = function updateQuestion(question) {
 };
 var deleteQuestion = function deleteQuestion(question) {
   return function (dispatch) {
-    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteQuestion"](question).then(function (question) {
-      return dispatch(removeQuestion(question));
+    return _util_question_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteQuestion"](question).then(function (questionDelete) {
+      return dispatch(removeQuestion(questionDelete));
     });
   };
 };
@@ -1974,6 +1974,7 @@ var QuestionIndex = /*#__PURE__*/function (_React$Component) {
     _this.state = {};
 
     _this.props.getQuestions().then(function (q) {
+      //q is object passed from receiveQuestions action creator
       _this.state = q;
     });
 
@@ -3433,7 +3434,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  //this is the entry file
 
 document.addEventListener("DOMContentLoaded", function () {
-  // const store = configureStore();                 //this needs to be up here for getstate to work
+  // const store = configureStore();                 //this needs to be up here for getstate to work during testing
   var store;
 
   if (window.currentUser) {
@@ -3582,6 +3583,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/like_actions */ "./frontend/actions/like_actions.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3603,7 +3606,7 @@ var likeReducer = function likeReducer() {
       //   comment = action.like.comment_id;
       //   currentQuestion = Object.keys(newState)[0];
       //   newState[currentQuestion].comments[comment].likers.push(liker);
-      return newState;
+      return _defineProperty({}, action.like.id, action.like);
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIKE"]:
       //   liker = action.like.author_id;
@@ -3611,6 +3614,7 @@ var likeReducer = function likeReducer() {
       //   currentQuestion = Object.keys(newState)[0];
       //   const index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
       //   newState[currentQuestion].comments[comment].likers.splice(index);
+      delete newState[action.like];
       return newState;
 
     default:
@@ -3684,9 +3688,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var questionReducer = function questionReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // let liker;
-  // let comment;
-  // let currentQuestion;
   var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState); //use lodash merge instead of Object.assign()
 
   Object.freeze(oldState);
@@ -3908,7 +3909,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"] // , logger                             this is to see your logs (actions, state) in chrome developer tools
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_3___default.a //this is to see your logs (actions, state) in chrome developer tools
   ));
 };
 
@@ -3929,9 +3930,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
-var fetchComment = function fetchComment(comment) {
+var fetchComment = function fetchComment(commentId) {
   return $.ajax({
-    url: "api/comments/".concat(comment.id),
+    url: "api/comments/".concat(commentId.id),
     method: "GET"
   });
 };
@@ -3966,14 +3967,20 @@ var deleteComment = function deleteComment(comment) {
 /*!****************************************!*\
   !*** ./frontend/util/like_api_util.js ***!
   \****************************************/
-/*! exports provided: likePost, unlikePost, fetchLikes */
+/*! exports provided: fetchLikes, likePost, unlikePost */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLikes", function() { return fetchLikes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likePost", function() { return likePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikePost", function() { return unlikePost; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLikes", function() { return fetchLikes; });
+var fetchLikes = function fetchLikes() {
+  return $.ajax({
+    url: "/api/likes",
+    method: "GET"
+  });
+};
 var likePost = function likePost(commentId, userId) {
   return $.ajax({
     method: "POST",
@@ -3988,12 +3995,6 @@ var unlikePost = function unlikePost(commentId) {
   return $.ajax({
     method: "DELETE",
     url: "api/comments/".concat(commentId, "/like")
-  });
-};
-var fetchLikes = function fetchLikes() {
-  return $.ajax({
-    url: "/api/likes",
-    method: "GET"
   });
 }; //   export const fetchLike = (like) =>
 //   $.ajax({
@@ -4017,21 +4018,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createQuestion", function() { return createQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateQuestion", function() { return updateQuestion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteQuestion", function() { return deleteQuestion; });
-var fetchQuestions = function fetchQuestions(questions) {
-  return (//implicit return of success, failure
-    $.ajax({
-      url: "/api/questions",
-      method: "GET",
-      data: {
-        questions: questions
-      } //implicit return of success, failure
-
-    })
-  );
-};
-var fetchQuestion = function fetchQuestion(question) {
+var fetchQuestions = function fetchQuestions() {
   return $.ajax({
-    url: "api/questions/".concat(question.id),
+    url: "/api/questions",
+    method: "GET"
+  });
+};
+var fetchQuestion = function fetchQuestion(questionId) {
+  // debugger;
+  return $.ajax({
+    url: "api/questions/".concat(questionId.id),
     method: "GET"
   });
 };
@@ -4040,8 +4036,10 @@ var createQuestion = function createQuestion(question) {
     url: "/api/questions",
     method: "POST",
     data: {
-      question: question
-    }
+      question: question //data passed in for POST call question: question
+
+    } //implicit return of success, failure
+
   });
 };
 var updateQuestion = function updateQuestion(question) {

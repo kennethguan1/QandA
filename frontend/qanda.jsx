@@ -9,7 +9,7 @@ import Root from "./components/root";
 //this is the entry file
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const store = configureStore();                 //this needs to be up here for getstate to work
+  // const store = configureStore();                 //this needs to be up here for getstate to work during testing
 
   let store;
   if (window.currentUser) {

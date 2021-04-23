@@ -1,4 +1,4 @@
-export const createReply = (reply) =>
+export const createReply = reply =>
   $.ajax({
     url: `/api/replies`,
     method: "POST",
@@ -7,7 +7,7 @@ export const createReply = (reply) =>
     },
   });
 
-export const updateReply = (reply) =>
+export const updateReply = reply =>
   $.ajax({
     url: `/api/replies/${reply.id}`,
     method: "PATCH",
@@ -16,7 +16,7 @@ export const updateReply = (reply) =>
     },
   });
 
-export const deleteReply = (reply) =>
+export const deleteReply = reply =>
   $.ajax({
     url: `/api/replies/${reply.id}`,
     method: "DELETE",

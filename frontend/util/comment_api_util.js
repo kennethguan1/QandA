@@ -1,10 +1,10 @@
-export const fetchComment = (comment) =>
+export const fetchComment = commentId =>
   $.ajax({
-    url: `api/comments/${comment.id}`,
+    url: `api/comments/${commentId.id}`,
     method: "GET",
   });
 
-export const createComment = (comment) =>
+export const createComment = comment =>
   $.ajax({
     url: `/api/comments`,
     method: "POST",
@@ -13,7 +13,7 @@ export const createComment = (comment) =>
     },
   });
 
-export const updateComment = (comment) =>
+export const updateComment = comment =>
   $.ajax({
     url: `/api/comments/${comment.id}`,
     method: "PATCH",
@@ -22,7 +22,7 @@ export const updateComment = (comment) =>
     },
   });
 
-export const deleteComment = (comment) =>
+export const deleteComment = comment =>
   $.ajax({
     url: `/api/comments/${comment.id}`,
     method: "DELETE",

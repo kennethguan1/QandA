@@ -1,28 +1,27 @@
-export const fetchQuestions = (questions) =>                  //implicit return of success, failure
+export const fetchQuestions = () => 
   $.ajax({
     url: "/api/questions",
     method: "GET",
-    data: {
-      questions,
-    },                                                        //implicit return of success, failure
   });
 
-export const fetchQuestion = (question) =>
-  $.ajax({
-    url: `api/questions/${question.id}`,
+export const fetchQuestion = questionId => {
+  // debugger;
+  return $.ajax({
+    url: `api/questions/${questionId.id}`,
     method: "GET",
   });
+}
 
-export const createQuestion = (question) =>
+export const createQuestion = question =>
   $.ajax({
     url: "/api/questions",
     method: "POST",
     data: {
-      question,
-    },
+      question,                                     //data passed in for POST call question: question
+    },                                              //implicit return of success, failure
   });
 
-export const updateQuestion = (question) =>
+export const updateQuestion = question =>
   $.ajax({
     url: `/api/questions/${question.id}`,
     method: "PATCH",
@@ -31,7 +30,7 @@ export const updateQuestion = (question) =>
     },
   });
 
-export const deleteQuestion = (question) =>
+export const deleteQuestion = question =>
   $.ajax({
     url: `/api/questions/${question.id}`,
     method: "DELETE",

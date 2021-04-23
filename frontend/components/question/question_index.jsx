@@ -5,7 +5,7 @@ class QuestionIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.props.getQuestions().then((q) => {
+    this.props.getQuestions().then((q) => {                           //q is object passed from receiveQuestions action creator
       this.state = q;
     });
   }

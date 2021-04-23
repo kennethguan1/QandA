@@ -14,9 +14,6 @@ import { merge } from 'lodash';
 
 const questionReducer = (oldState = {}, action) => {
   
-  // let liker;
-  // let comment;
-  // let currentQuestion;
   let newState = merge({}, oldState);                               //use lodash merge instead of Object.assign()
   Object.freeze(oldState);
 
