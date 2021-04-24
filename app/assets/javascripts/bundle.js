@@ -3591,9 +3591,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var likeReducer = function likeReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // let liker;
-  // let comment;
-  // let currentQuestion;
   var newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
   Object.freeze(oldState);
 
@@ -3602,19 +3599,10 @@ var likeReducer = function likeReducer() {
       return action.likes;
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIKE"]:
-      //   liker = action.like.author_id;
-      //   comment = action.like.comment_id;
-      //   currentQuestion = Object.keys(newState)[0];
-      //   newState[currentQuestion].comments[comment].likers.push(liker);
       return _defineProperty({}, action.like.id, action.like);
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIKE"]:
-      //   liker = action.like.author_id;
-      //   comment = action.like.comment_id;
-      //   currentQuestion = Object.keys(newState)[0];
-      //   const index = newState[currentQuestion].comments[comment].likers.indexOf(liker);
-      //   newState[currentQuestion].comments[comment].likers.splice(index);
-      delete newState[action.like];
+      delete newState[action.like.id];
       return newState;
 
     default:
@@ -3700,8 +3688,8 @@ var questionReducer = function questionReducer() {
       return _defineProperty({}, action.question.id, action.question);
 
     case _actions_question_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_QUESTION"]:
-      delete newState[action.questionId];
-      return newState;
+      // delete newState[action.questionId];                        //controller api call does not return an Id so delete for now and return blank state object
+      return {};
 
     default:
       return oldState;
