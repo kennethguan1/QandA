@@ -18,7 +18,7 @@ class SessionForm extends React.Component {
     this.demo = this.demo.bind(this);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() {                                                      //invoked before unmounted
     this.props.removeSessionErrors();
   }
 
@@ -30,7 +30,7 @@ class SessionForm extends React.Component {
   }
 
   handleSignupSubmit(e) {
-    e.preventDefault();
+    e.preventDefault();                                                           //for async ajax. Prevent default submit behavior ie refresh
     const user = Object.assign({}, this.state);
     this.props.signupForm(user);
   }
@@ -59,7 +59,7 @@ class SessionForm extends React.Component {
   }
 
   formType() {
-    return this.askLogin ? (
+    return this.askLogin ? (                                                      //set form depending on askLogin true / false
       <form className="login">
         <div className="login-message">Login</div>
         <label>

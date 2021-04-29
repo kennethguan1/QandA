@@ -48,7 +48,7 @@ class QuestionIndex extends React.Component {
         {questions.reverse().map((question, i) => (
           <li key={i} className="question-list-item">
             {this.crudOptions(question)}
-            <QuestionIndexItem question={question} key={question.id} />
+            <QuestionIndexItem question={question}/>
             <br />
           </li>
         ))}

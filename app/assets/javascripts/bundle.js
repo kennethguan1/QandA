@@ -1065,7 +1065,7 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
     value: function displayReplies() {
       var _this3 = this;
 
-      var replies = []; // let likers;
+      var replies = [];
 
       if (this.state.comment.replies != undefined) {
         replies = Object.values(this.state.comment.replies).map(function (reply, i) {
@@ -1076,10 +1076,10 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
             className: "comment-item"
           }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
             className: "reply-username"
-          }, reply.author.username, "   ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
             className: "profile-icon",
             src: window.defaultImage
-          })), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
         });
       } else {
         replies = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1480,29 +1480,13 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-heart"
       }, " Downvote")));
-    } // render() {
-    //   return (
-    //   <div>
-    //     {
-    //     !this.props.comment.likers.includes(this.props.currentUser.id) ?
-    //           (<button className="like-btn" onClick={() => this.props.likePost(this.props.comment.id, this.props.currentUser.id)}>
-    //               <i className="fas fa-heart unclicked post-index-like">Like</i>
-    //           </button>)
-    //           :
-    //           (<button onClick={() => this.props.unlikePost(this.props.comment.id)}>
-    //               <i className="fas fa-heart clicked post-index-like">Unlike</i>
-    //           </button>)
-    //     }
-    //   </div>
-    //   )
-    // }
-
+    }
   }]);
 
   return LikeButton;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(LikeButton)); // pass isLiked prop to question_show.jsx
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(LikeButton));
 
 /***/ }),
 
@@ -2029,8 +2013,7 @@ var QuestionIndex = /*#__PURE__*/function (_React$Component) {
           key: i,
           className: "question-list-item"
         }, _this4.crudOptions(question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_question_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          question: question,
-          key: question.id
+          question: question
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
       }));
     }
@@ -2315,10 +2298,10 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
             className: "comment-item"
           }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
             className: "comment-username"
-          }, comment.author.username, "   ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
             className: "profile-icon",
             src: window.defaultImage
-          })), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "comment-button",
             onClick: function onClick() {
               _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
@@ -3173,11 +3156,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    session_errors: state.errors.session
+    session_errors: state.errors.session //map store state to component
+
   };
 };
 
 var mDTP = function mDTP(dispatch) {
+  //map action functions to component
   return {
     signupForm: function signupForm(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
@@ -3261,6 +3246,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   _createClass(SessionForm, [{
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
+      //invoked before unmounted
       this.props.removeSessionErrors();
     }
   }, {
@@ -3275,7 +3261,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSignupSubmit",
     value: function handleSignupSubmit(e) {
-      e.preventDefault();
+      e.preventDefault(); //for async ajax. Prevent default submit behavior ie refresh
+
       var user = Object.assign({}, this.state);
       this.props.signupForm(user);
     }
@@ -3308,7 +3295,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "formType",
     value: function formType() {
-      return this.askLogin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return this.askLogin ?
+      /*#__PURE__*/
+      //set form depending on askLogin true / false
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "login"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-message"

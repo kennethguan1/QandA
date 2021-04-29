@@ -72,7 +72,6 @@ class CommentShow extends React.Component {
 
   displayReplies() {
     let replies = [];
-    // let likers;
     if (this.state.comment.replies != undefined) {
       replies = Object.values(this.state.comment.replies).map(
         (reply, i) => {
@@ -83,9 +82,9 @@ class CommentShow extends React.Component {
                 {this.crudROptions(reply)}
                 <p>
                   <strong className="reply-username">
-                    {reply.author.username}{"   "}
+                    {reply.author.username}
                     <img className="profile-icon" src={window.defaultImage}/>
-                  </strong>{" "}
+                  </strong>
                 </p>
                 <p>{reply.body}</p>
               </div>

@@ -107,9 +107,9 @@ class QuestionShow extends React.Component {
                 {this.crudCOptions(comment)}
                 <p>
                   <strong className="comment-username">
-                    {comment.author.username}{"   "}
+                    {comment.author.username}
                     <img className="profile-icon" src={window.defaultImage}/>
-                  </strong>{" "}
+                  </strong>
                 </p>
               <button className="comment-button"
                 onClick={() => {

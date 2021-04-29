@@ -3,7 +3,7 @@ import QuestionShow from './question_show';
 
 import { deleteQuestion, fetchQuestion } from '../../actions/question_actions';
 import { deleteComment } from '../../actions/comment_actions';
-import { fetchLikes, fetchLike, likePost, unlikePost } from '../../actions/like_actions';
+import { fetchLikes, likePost, unlikePost } from '../../actions/like_actions';
 
 const mapStateToProps = (state, { match }) => ({
   questionId: parseInt(match.params.id),

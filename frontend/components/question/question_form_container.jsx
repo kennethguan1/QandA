@@ -5,7 +5,6 @@ import { removeQuestionErrors, createQuestion } from '../../actions/question_act
 const mapStateToProps = (state) => ({
     author_id: state.session.currentUser.id,
     question_errors: state.errors.question,
-
 })
 
 const mapDispatchToProps = (dispatch) => ({

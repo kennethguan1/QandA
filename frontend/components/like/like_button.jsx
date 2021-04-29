@@ -74,31 +74,6 @@ class LikeButton extends React.Component {
     )
   }
 
-
-
-
-
-
-
-  // render() {
-
-  //   return (
-  //   <div>
-  //     {
-  //     !this.props.comment.likers.includes(this.props.currentUser.id) ?
-  //           (<button className="like-btn" onClick={() => this.props.likePost(this.props.comment.id, this.props.currentUser.id)}>
-  //               <i className="fas fa-heart unclicked post-index-like">Like</i>
-  //           </button>)
-  //           :
-  //           (<button onClick={() => this.props.unlikePost(this.props.comment.id)}>
-  //               <i className="fas fa-heart clicked post-index-like">Unlike</i>
-  //           </button>)
-  //     }
-  //   </div>
-  //   )
-  // }
 }
 
 export default withRouter(LikeButton);
-
-// pass isLiked prop to question_show.jsx
