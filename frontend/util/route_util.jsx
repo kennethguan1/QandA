@@ -27,16 +27,5 @@ const HiddenOnLogin = ({ loggedIn, path, component: Component }) => (
   />
 );
 
-const ShownOnLogin = ({ loggedIn, path, component: Component }) => (
-  <Route
-    path={path}
-    render={(props) =>
-      loggedIn ? <Component {...props} /> : <div className="hidden"></div>
-    }
-  />
-);
-
 export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));
-
 export const HiddenRoute = withRouter(connect(mapStateToProps)(HiddenOnLogin));
-export const ShownRoute = withRouter(connect(mapStateToProps)(ShownOnLogin));

@@ -19,14 +19,13 @@ import { Route, Switch } from 'react-router-dom';
 import {
   ProtectedRoute,
   HiddenRoute,
-  ShownRoute,
 } from "../util/route_util";
 
 const App = () => {
   return(
   <div className="routes">
     <HiddenRoute exact path="/" component={SessionContainer} />
-    <ShownRoute path="/" component={GreetingContainer} />
+    <ProtectedRoute path="/" component={GreetingContainer} />
     <ProtectedRoute path="/" component={SearchContainer} />
     <ProtectedRoute path="/askquestion" component={QuestionFormContainer} />
     <ProtectedRoute
