@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: likes
+#
+#  id         :bigint           not null, primary key
+#  comment_id :integer          not null
+#  author_id  :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Like < ApplicationRecord
     validates :author_id, :comment_id, presence: true
 

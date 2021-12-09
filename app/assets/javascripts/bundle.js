@@ -2139,7 +2139,7 @@ var QuestionIndexItem = /*#__PURE__*/function (_React$Component) {
   return QuestionIndexItem;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(QuestionIndexItem));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(QuestionIndexItem)); //give component access to this.props.history
 
 /***/ }),
 
@@ -2898,8 +2898,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
-
       var searchTerms = this.state.searchQuery.split(" ");
       var questions = this.props.questions;
       var filteredQuestions = [];
@@ -2924,11 +2922,9 @@ var Search = /*#__PURE__*/function (_React$Component) {
       })), filteredQuestions.slice(0, 5).map(function (question) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           key: question.id,
-          className: "search-items-container",
-          onClick: _this4.submit
+          className: "search-items-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          question: question,
-          submit: _this4.submit
+          question: question
         }));
       }));
     }
@@ -3128,10 +3124,7 @@ var SearchItems = function SearchItems(_ref) {
     className: "sidebar-search-results"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "search-item-name"
-  }, question.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fa fa-angle-right",
-    "aria-hidden": "true"
-  }));
+  }, question.title));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchItems);

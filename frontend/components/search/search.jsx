@@ -66,7 +66,7 @@ class Search extends React.Component {
                     />
                 </form>
                 {filteredQuestions.slice(0, 5).map(question => 
-                    <ul key={question.id} className="search-items-container" onClick={this.submit}><SearchItems question={question} submit={this.submit}/></ul>
+                    <ul key={question.id} className="search-items-container" ><SearchItems question={question}/></ul>
                     )
                 }
             </div>

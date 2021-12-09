@@ -7,6 +7,6 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :questions, :author_id
+    add_index :questions, :author_id                #generally should have index for foreign keys
   end
 end

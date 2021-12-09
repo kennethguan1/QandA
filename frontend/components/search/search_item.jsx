@@ -7,7 +7,6 @@ const SearchItems = ({question}) => {
             className="sidebar-search-results" 
             >
             <div className="search-item-name">{question.title}</div>
-            <i className="fa fa-angle-right" aria-hidden="true"></i>
         </Link>
     )
 }

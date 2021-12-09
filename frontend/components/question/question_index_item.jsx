@@ -27,4 +27,4 @@ class QuestionIndexItem extends React.Component {
 }
 
 
-export default withRouter(QuestionIndexItem);
+export default withRouter(QuestionIndexItem);                                    //give component access to this.props.history
