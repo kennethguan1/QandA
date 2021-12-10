@@ -100,7 +100,125 @@ class QuestionShow extends React.Component {
     if (this.state.question.comments != undefined) {
       comments = Object.values(this.state.question.comments).map(
         (comment, i) => {
-
+//temporary
+        if (comment.author.username=== 'demo_user') {          
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudCOptions(comment)}
+                <p>
+                  <strong className="comment-username">
+                    {comment.author.username}
+                    <img className="profile-icon" src={window.dog}/>
+                  </strong>
+                </p>
+              <button className="comment-button"
+                onClick={() => {
+                  this.props.history.push(`/questions/${this.props.questionId}/comments/${comment.id}`);
+                }}
+              >
+                <p>{comment.body}</p>
+              </button>
+                <LikeButton likes={this.props.likes} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost} getLikes={this.props.getLikes} getLike={this.props.getLike}/>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(comment.author.username=== 'hobby_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudCOptions(comment)}
+                <p>
+                  <strong className="comment-username">
+                    {comment.author.username}
+                    <img className="profile-icon" src={window.cat}/>
+                  </strong>
+                </p>
+              <button className="comment-button"
+                onClick={() => {
+                  this.props.history.push(`/questions/${this.props.questionId}/comments/${comment.id}`);
+                }}
+              >
+                <p>{comment.body}</p>
+              </button>
+                <LikeButton likes={this.props.likes} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost} getLikes={this.props.getLikes} getLike={this.props.getLike}/>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(comment.author.username=== 'curious_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudCOptions(comment)}
+                <p>
+                  <strong className="comment-username">
+                    {comment.author.username}
+                    <img className="profile-icon" src={window.joey}/>
+                  </strong>
+                </p>
+              <button className="comment-button"
+                onClick={() => {
+                  this.props.history.push(`/questions/${this.props.questionId}/comments/${comment.id}`);
+                }}
+              >
+                <p>{comment.body}</p>
+              </button>
+                <LikeButton likes={this.props.likes} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost} getLikes={this.props.getLikes} getLike={this.props.getLike}/>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(comment.author.username=== 'happy_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudCOptions(comment)}
+                <p>
+                  <strong className="comment-username">
+                    {comment.author.username}
+                    <img className="profile-icon" src={window.grinch}/>
+                  </strong>
+                </p>
+              <button className="comment-button"
+                onClick={() => {
+                  this.props.history.push(`/questions/${this.props.questionId}/comments/${comment.id}`);
+                }}
+              >
+                <p>{comment.body}</p>
+              </button>
+                <LikeButton likes={this.props.likes} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost} getLikes={this.props.getLikes} getLike={this.props.getLike}/>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(comment.author.username=== 'opinionated_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudCOptions(comment)}
+                <p>
+                  <strong className="comment-username">
+                    {comment.author.username}
+                    <img className="profile-icon" src={window.disgust}/>
+                  </strong>
+                </p>
+              <button className="comment-button"
+                onClick={() => {
+                  this.props.history.push(`/questions/${this.props.questionId}/comments/${comment.id}`);
+                }}
+              >
+                <p>{comment.body}</p>
+              </button>
+                <LikeButton likes={this.props.likes} comment={comment} currentUser={this.props.currentUser} likePost={this.props.likePost} unlikePost={this.props.unlikePost} getLikes={this.props.getLikes} getLike={this.props.getLike}/>
+              </div>
+              <hr />
+            </li>
+          );
+        }
+        
+        else{
           return (
             <li key={i} className="comment-list-item">
               <div className="comment-item">
@@ -123,6 +241,8 @@ class QuestionShow extends React.Component {
               <hr />
             </li>
           );
+        }
+//temporary
         }
       );
     } else {

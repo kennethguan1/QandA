@@ -35,7 +35,7 @@ class Greeting extends React.Component {
             <br />
             <div className="options">
               <h2 className="welcome">Hi, {this.props.currentUser.username}!</h2>
-              <img className="profile-image" src={window.defaultImage}/>
+              <img className="profile-image" src={window.dog}/>
               <br />
               <br />
               <Link to="/">

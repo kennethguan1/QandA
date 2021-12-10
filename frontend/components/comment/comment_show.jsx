@@ -75,7 +75,90 @@ class CommentShow extends React.Component {
     if (this.state.comment.replies != undefined) {
       replies = Object.values(this.state.comment.replies).map(
         (reply, i) => {
+//temporary
+        if (reply.author.username=== 'demo_user') {    
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudROptions(reply)}
+                <p>
+                  <strong className="reply-username">
+                    {reply.author.username}
+                    <img className="profile-icon" src={window.dog}/>
+                  </strong>
+                </p>
+                <p>{reply.body}</p>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(reply.author.username=== 'hobby_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudROptions(reply)}
+                <p>
+                  <strong className="reply-username">
+                    {reply.author.username}
+                    <img className="profile-icon" src={window.cat}/>
+                  </strong>
+                </p>
+                <p>{reply.body}</p>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(reply.author.username=== 'curious_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudROptions(reply)}
+                <p>
+                  <strong className="reply-username">
+                    {reply.author.username}
+                    <img className="profile-icon" src={window.joey}/>
+                  </strong>
+                </p>
+                <p>{reply.body}</p>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(reply.author.username=== 'happy_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudROptions(reply)}
+                <p>
+                  <strong className="reply-username">
+                    {reply.author.username}
+                    <img className="profile-icon" src={window.grinch}/>
+                  </strong>
+                </p>
+                <p>{reply.body}</p>
+              </div>
+              <hr />
+            </li>
+          );
+        }else if(reply.author.username=== 'opinionated_user'){
+          return (
+            <li key={i} className="comment-list-item">
+              <div className="comment-item">
+                {this.crudROptions(reply)}
+                <p>
+                  <strong className="reply-username">
+                    {reply.author.username}
+                    <img className="profile-icon" src={window.disgust}/>
+                  </strong>
+                </p>
+                <p>{reply.body}</p>
+              </div>
+              <hr />
+            </li>
+          );
+        }
 
+        else{
           return (
             <li key={i} className="comment-list-item">
               <div className="comment-item">
@@ -91,6 +174,8 @@ class CommentShow extends React.Component {
               <hr />
             </li>
           );
+        }
+//temporary
         }
       );
     } else {

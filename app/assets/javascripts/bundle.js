@@ -1069,17 +1069,81 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.comment.replies != undefined) {
         replies = Object.values(this.state.comment.replies).map(function (reply, i) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: i,
-            className: "comment-list-item"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "comment-item"
-          }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-            className: "reply-username"
-          }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-            className: "profile-icon",
-            src: window.defaultImage
-          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          //temporary
+          if (reply.author.username === 'demo_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "reply-username"
+            }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.dog
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (reply.author.username === 'hobby_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "reply-username"
+            }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.cat
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (reply.author.username === 'curious_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "reply-username"
+            }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.joey
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (reply.author.username === 'happy_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "reply-username"
+            }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.grinch
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (reply.author.username === 'opinionated_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "reply-username"
+            }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.disgust
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this3.crudROptions(reply), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "reply-username"
+            }, reply.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.defaultImage
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reply.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } //temporary
+
         });
       } else {
         replies = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1258,7 +1322,7 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           className: "welcome"
         }, "Hi, ", _this.props.currentUser.username, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "profile-image",
-          src: window.defaultImage
+          src: window.dog
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -2117,22 +2181,106 @@ var QuestionIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var question = this.props.question;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "question-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-        className: "question-by"
-      }, "Question by "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-        className: "question-username"
-      }, question.author.username, "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "profile-icon",
-        src: window.defaultImage
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "question-button",
-        onClick: function onClick() {
-          _this.props.history.push("/questions/".concat(question.id));
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, question.title)));
+      var question = this.props.question; //temporary
+
+      if (question.author.username === 'demo_user') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-by"
+        }, "Question by "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-username"
+        }, question.author.username, "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-icon",
+          src: window.dog
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "question-button",
+          onClick: function onClick() {
+            _this.props.history.push("/questions/".concat(question.id));
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, question.title)));
+      } else if (question.author.username === 'hobby_user') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-by"
+        }, "Question by "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-username"
+        }, question.author.username, "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-icon",
+          src: window.cat
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "question-button",
+          onClick: function onClick() {
+            _this.props.history.push("/questions/".concat(question.id));
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, question.title)));
+      } else if (question.author.username === 'curious_user') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-by"
+        }, "Question by "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-username"
+        }, question.author.username, "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-icon",
+          src: window.joey
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "question-button",
+          onClick: function onClick() {
+            _this.props.history.push("/questions/".concat(question.id));
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, question.title)));
+      } else if (question.author.username === 'happy_user') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-by"
+        }, "Question by "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-username"
+        }, question.author.username, "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-icon",
+          src: window.grinch
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "question-button",
+          onClick: function onClick() {
+            _this.props.history.push("/questions/".concat(question.id));
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, question.title)));
+      } else if (question.author.username === 'opinionated_user') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-by"
+        }, "Question by "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-username"
+        }, question.author.username, "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-icon",
+          src: window.disgust
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "question-button",
+          onClick: function onClick() {
+            _this.props.history.push("/questions/".concat(question.id));
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, question.title)));
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "question-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-by"
+        }, "Question by "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "question-username"
+        }, question.author.username, "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-icon",
+          src: window.defaultImage
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "question-button",
+          onClick: function onClick() {
+            _this.props.history.push("/questions/".concat(question.id));
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, question.title)));
+      } //temporary
+
     }
   }]);
 
@@ -2291,30 +2439,159 @@ var QuestionShow = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.question.comments != undefined) {
         comments = Object.values(this.state.question.comments).map(function (comment, i) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: i,
-            className: "comment-list-item"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "comment-item"
-          }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-            className: "comment-username"
-          }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-            className: "profile-icon",
-            src: window.defaultImage
-          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "comment-button",
-            onClick: function onClick() {
-              _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            likes: _this5.props.likes,
-            comment: comment,
-            currentUser: _this5.props.currentUser,
-            likePost: _this5.props.likePost,
-            unlikePost: _this5.props.unlikePost,
-            getLikes: _this5.props.getLikes,
-            getLike: _this5.props.getLike
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          //temporary
+          if (comment.author.username === 'demo_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "comment-username"
+            }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.dog
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "comment-button",
+              onClick: function onClick() {
+                _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
+              }
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              likes: _this5.props.likes,
+              comment: comment,
+              currentUser: _this5.props.currentUser,
+              likePost: _this5.props.likePost,
+              unlikePost: _this5.props.unlikePost,
+              getLikes: _this5.props.getLikes,
+              getLike: _this5.props.getLike
+            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (comment.author.username === 'hobby_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "comment-username"
+            }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.cat
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "comment-button",
+              onClick: function onClick() {
+                _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
+              }
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              likes: _this5.props.likes,
+              comment: comment,
+              currentUser: _this5.props.currentUser,
+              likePost: _this5.props.likePost,
+              unlikePost: _this5.props.unlikePost,
+              getLikes: _this5.props.getLikes,
+              getLike: _this5.props.getLike
+            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (comment.author.username === 'curious_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "comment-username"
+            }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.joey
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "comment-button",
+              onClick: function onClick() {
+                _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
+              }
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              likes: _this5.props.likes,
+              comment: comment,
+              currentUser: _this5.props.currentUser,
+              likePost: _this5.props.likePost,
+              unlikePost: _this5.props.unlikePost,
+              getLikes: _this5.props.getLikes,
+              getLike: _this5.props.getLike
+            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (comment.author.username === 'happy_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "comment-username"
+            }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.grinch
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "comment-button",
+              onClick: function onClick() {
+                _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
+              }
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              likes: _this5.props.likes,
+              comment: comment,
+              currentUser: _this5.props.currentUser,
+              likePost: _this5.props.likePost,
+              unlikePost: _this5.props.unlikePost,
+              getLikes: _this5.props.getLikes,
+              getLike: _this5.props.getLike
+            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else if (comment.author.username === 'opinionated_user') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "comment-username"
+            }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.disgust
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "comment-button",
+              onClick: function onClick() {
+                _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
+              }
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              likes: _this5.props.likes,
+              comment: comment,
+              currentUser: _this5.props.currentUser,
+              likePost: _this5.props.likePost,
+              unlikePost: _this5.props.unlikePost,
+              getLikes: _this5.props.getLikes,
+              getLike: _this5.props.getLike
+            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } else {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: i,
+              className: "comment-list-item"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "comment-item"
+            }, _this5.crudCOptions(comment), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+              className: "comment-username"
+            }, comment.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+              className: "profile-icon",
+              src: window.defaultImage
+            }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "comment-button",
+              onClick: function onClick() {
+                _this5.props.history.push("/questions/".concat(_this5.props.questionId, "/comments/").concat(comment.id));
+              }
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_like_like_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              likes: _this5.props.likes,
+              comment: comment,
+              currentUser: _this5.props.currentUser,
+              likePost: _this5.props.likePost,
+              unlikePost: _this5.props.unlikePost,
+              getLikes: _this5.props.getLikes,
+              getLike: _this5.props.getLike
+            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+          } //temporary
+
         });
       } else {
         comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
